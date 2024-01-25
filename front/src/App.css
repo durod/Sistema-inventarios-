@@ -1,0 +1,48 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-items: flex-end; */
+  text-align: center;
+  background-color: lightslategray;
+  padding: 4%;
+  width: 100%;
+}
+.botonesAgregarBuscar {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 1%;
+}
+
+.text-center-input {
+  text-align: center;
+  font-size: x-large;
+}
+
+.formLabel {
+  font-weight: bold;
+}
+
+.container {
+  display: contents;
+}
+
+.containerform {
+  font-size: x-large;
+}
+
+.colbuscar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.colbuscarinput {
+  display: flex;
+}
+
+.formagregarActualizarEquipo {
+  background-color: mediumturquoise;
+  border: 3px solid black;
+  border-radius: 20px;
+  padding: 2%;
+}

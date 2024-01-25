@@ -1,0 +1,83 @@
+tabla para unir la tabla empleados y pc_info
+CREATE TABLE asignaciones (
+    id_asignacion SERIAL PRIMARY KEY,
+    numEmpleado INT,
+    codigo_inventario VARCHAR(255),
+    fecha_asignacion DATE,
+    FOREIGN KEY (numEmpleado) REFERENCES empleados(numEmpleado),
+    FOREIGN KEY (codigo_inventario) REFERENCES pc_info(codigo_inventario)
+);
+
+
+
+tabla empleados:
+
+CREATE TABLE empleados (
+    numEmpleado BIGINT PRIMARY KEY,
+    idUsuario INT,
+    jefe VARCHAR(255),
+    nombre VARCHAR(255),
+    appaterno VARCHAR(255),
+    apmaterno VARCHAR(255),
+    FechaIngreso VARCHAR(255),
+    email VARCHAR(255),
+    foto TEXT,
+    FechaNacimiento VARCHAR(255),
+    perfilLlamada VARCHAR(255),
+    extencion INT,
+    sustituye VARCHAR(255),
+    FechaElavoracion VARCHAR(255),
+    observaciones TEXT,
+    estatus VARCHAR(255),
+    horario VARCHAR(255),
+    moviliario VARCHAR(255),
+    id_direccion INT,
+    id_tipo_puesto INT,
+    puesto VARCHAR(255),
+    id_departamento INT,
+    rfc VARCHAR(255),
+    nss VARCHAR(255),
+    cajon TEXT,
+    auto TEXT,
+    password_raw VARCHAR(255),
+    firma TEXT,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    tarjeta_pin VARCHAR(255),
+    activo_pin INT,
+    alta_pin DATE,
+    baja_pin DATE,
+    activo_cms INT,
+    alta_cms DATE,
+    baja_cms DATE,
+    activo_eeclub INT,
+    alta_eeclub DATE,
+    baja_eeclub DATE,
+    restriccion VARCHAR(255),
+    tiempoRestriccion VARCHAR(255),
+    fechaRestriccionInicio VARCHAR(255),
+    fechaRestriccionFin VARCHAR(255)
+);
+
+
+tabla pc_info
+
+CREATE TABLE pc_info (
+    id SERIAL PRIMARY KEY,
+    id_empleado INTEGER REFERENCES empleados(id),
+    codigo_inventario VARCHAR(255),
+    tipo_equipo VARCHAR(50),
+    numero_serie VARCHAR(255),
+    marca VARCHAR(50),
+    modelo VARCHAR(255),
+    sistema_operativo VARCHAR(50),
+    memoria_ram VARCHAR(20),
+    procesador VARCHAR(255),
+    almacenamiento VARCHAR(255),
+    numero_serie_cargador VARCHAR(255),
+    monitor VARCHAR(255),
+    teclado VARCHAR(255),
+    raton VARCHAR(255),
+    accesorios TEXT,
+    suscripcion_office VARCHAR(255)
+);
