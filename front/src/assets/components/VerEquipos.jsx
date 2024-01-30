@@ -34,7 +34,9 @@ function VerEquipos() {
 
   const eliminarEquipo = async (id) => {
     try {
+      console.log("Antes de eliminar el equipo, ID:", id);
       await axios.delete(`${URI}/${id}`);
+      console.log("Después de eliminar el equipo");
       verEquipos();
     } catch (error) {
       console.error("Error al eliminar equipo:", error.message);
@@ -44,25 +46,24 @@ function VerEquipos() {
   const renderEquipos = () => {
     return equipos.map((equipo) => (
       <tr key={equipo.id}>
+        {/* Información de empleados */}
+        <td className="text-center align-middle">{equipo.numempleado}</td>
+        <td className="text-center align-middle">
+          {`${equipo.nombre} ${equipo.appaterno} ${equipo.apmaterno}`}
+        </td>
+        <td className="text-center align-middle">{equipo.id_direccion}</td>
+        <td className="text-center align-middle">{equipo.id_departamento}</td>
+        <td className="text-center align-middle">{equipo.puesto}</td>
+
+        {/* Información de equipos */}
         <td className="text-center align-middle">{equipo.codigo_inventario}</td>
-      {/*  <td className="text-center align-middle">{equipo.tipo_equipo}</td> */}
+        {/* Resto de las columnas de equipos */}
         <td className="text-center align-middle">{equipo.numero_serie}</td>
         <td className="text-center align-middle">{equipo.marca}</td>
         <td className="text-center align-middle">{equipo.modelo}</td>
-     {/* <td className="text-center align-middle">{equipo.sistema_operativo}</td>
-        <td className="text-center align-middle">{equipo.memoria_ram}</td>
-        <td className="text-center align-middle">{equipo.procesador}</td>
-        <td className="text-center align-middle">{equipo.almacenamiento}</td>
-        <td className="text-center align-middle">
-          {equipo.numero_serie_cargador}
-    </td> */}
         <td className="text-center align-middle">{equipo.monitor}</td>
-      {/* <td className="text-center align-middle">{equipo.teclado}</td>
-        <td className="text-center align-middle">{equipo.raton}</td>
-        <td className="text-center align-middle">{equipo.accesorios}</td>
-        <td className="text-center align-middle">
-          {equipo.suscripcion_office}
-  </td> */}
+        {/* Resto de las columnas de equipos */}
+
         <td>
           <Link
             to={`/actualizarequipo/${equipo.id}`}
@@ -100,14 +101,21 @@ function VerEquipos() {
           <Table striped bordered hover variant="dark" className="custom-table">
             <thead>
               <tr>
+                <th className="text-center align-middle">Número de Empleado</th>
+                <th className="text-center align-middle">Empleado </th>
+
+                <th className="text-center align-middle">Dirección</th>
+                <th className="text-center align-middle">Departamento</th>
+                <th className="text-center align-middle">Puesto</th>
                 <th className="text-center align-middle">
                   Código de Inventario
                 </th>
-               {/* <th className="text-center align-middle ">Tipo de Equipo</th> */}
+
                 <th className="text-center align-middle">Número de Serie</th>
                 <th className="text-center align-middle">Marca</th>
                 <th className="text-center align-middle">Modelo</th>
-              {/* <th className="text-center align-middle"> Sistema Operativo</th>
+                {/* <th className="text-center align-middle ">Tipo de Equipo</th> */}
+                {/* <th className="text-center align-middle"> Sistema Operativo</th>
                 <th className="text-center align-middle">Memoria RAM</th>
                 <th className="text-center align-middle">Procesador</th>
                 <th className="text-center align-middle">Almacenamiento</th>
@@ -115,7 +123,7 @@ function VerEquipos() {
                   Número de Serie del Cargador
   </th> */}
                 <th className="text-center align-middle">Monitor</th>
-            {/*  <th className="text-center align-middle">Teclado</th>
+                {/*  <th className="text-center align-middle">Teclado</th>
                 <th className="text-center align-middle">Ratón</th>
                 <th className="text-center align-middle">Accesorios</th>
                 <th className="text-center align-middle">

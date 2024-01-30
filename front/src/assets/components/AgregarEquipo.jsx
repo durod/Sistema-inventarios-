@@ -64,10 +64,13 @@ export default function AgregarEquipo() {
     try {
       // Enviar la solicitud solo si al menos un campo está lleno
       await axios.post(URI, equipoData);
+
       // Limpiar el formulario después de agregar el equipo
       event.target.reset();
+
       // Mostrar el mensaje de éxito
       alert("El equipo se ha agregado correctamente.");
+
       // Redirigir a la página de inicio después de agregar el equipo
       window.location.href = "/";
     } catch (error) {
@@ -84,7 +87,9 @@ export default function AgregarEquipo() {
   const handleModelChange = (event) => {
     const selectedModelName = event.target.value;
     const models = selectedBrand === "Dell" ? dellModels : appleModels;
-    const modelInfo = models.find((model) => model.nombre === selectedModelName);
+    const modelInfo = models.find(
+      (model) => model.nombre === selectedModelName
+    );
 
     if (modelInfo) {
       setSelectedModel(modelInfo);

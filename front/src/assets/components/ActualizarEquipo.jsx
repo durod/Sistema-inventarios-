@@ -63,6 +63,21 @@ const ActualizarEquipo = () => {
       <h2>Actualizar Equipo</h2>
       <Form onSubmit={handleSubmit}>
         <Row className="mb-3">
+          <Form.Group as={Col} controlId="formGridEmployeeNumber">
+            <Form.Label className="formLabel">
+              NÚMERO DE EMPLEADO PARA ASIGNAR
+            </Form.Label>
+            <Form.Control
+              className="text-center-input"
+              type="text"
+              name="numEmpleado"
+              value={equipoData.numEmpleado || ""}
+              onChange={handleChange}
+            />
+          </Form.Group>
+        </Row>
+
+        <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridInventoryCode">
             <Form.Label className="formLabel">CÓDIGO DE INVENTARIO</Form.Label>
             <Form.Control

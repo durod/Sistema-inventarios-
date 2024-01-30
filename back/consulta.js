@@ -23,8 +23,9 @@ const agregarEquipo = async ({ codigo_inventario, tipo_equipo, numero_serie, mar
         console.log("Filas procesadas: ", result.rowCount);
         console.log("Información ingresada: ", result.rows[0]);
         console.log("----------------------------------------------------------------");
-    } catch (error) {
+    }catch (error) {
         console.error("Error al agregar el equipo: ", error);
+        throw error; // Agrega esto para propagar el error
 
     }
 };
@@ -33,7 +34,14 @@ const agregarEquipo = async ({ codigo_inventario, tipo_equipo, numero_serie, mar
 // funcion listar el contenido de la tabla
 const verEquipos = async () => {
     try {
-        const { rows, command, rowCount, fields } = await pool.query("SELECT * FROM pc_info");
+        const query = `
+        SELECT pc_info.*, empleados.*
+        FROM pc_info
+        LEFT JOIN asignaciones ON pc_info.codigo_inventario = asignaciones.codigo_inventario
+        LEFT JOIN empleados ON asignaciones.numEmpleado = empleados.numEmpleado;
+        `;
+        const { rows, command, rowCount, fields } = await pool.query(query);
+
         /*
         console.log("----------------------------------------------")
         console.log("ver equipos registrados en la tabla")
@@ -42,17 +50,19 @@ const verEquipos = async () => {
         console.log("Contenido procesado: ", rows)
         console.log("Campos procesados: ", fields)
         console.log("----------------------------------------------")
-*/
-        return rows;  // aquí la función está retornando algo
+        */
+
+        return rows;
     } catch (error) {
         console.error("Error al intentar ver equipos: ", error);
-
         throw error;
     }
 };
 
 
-// FUNCION PARA MODIFICAR UN REGISTRO DE LA TABLA
+
+
+// Función para actualizar un equipo en la tabla
 // Función para actualizar un equipo en la tabla
 const actualizarEquipo = async (id, newData) => {
     try {
@@ -101,12 +111,27 @@ const actualizarEquipo = async (id, newData) => {
         // Ejecutar la consulta y obtener el resultado
         const result = await pool.query(consulta, values);
 
-        console.log("---------------------------------------------------------------");
+        const asignacionConsulta = `
+    INSERT INTO asignaciones (codigo_inventario, numEmpleado)
+    VALUES ($1, $2)
+    ON CONFLICT (codigo_inventario) DO UPDATE
+    SET numEmpleado = $2
+    RETURNING *;
+`;
+
+const asignacionValues = [
+    newData.codigo_inventario,  // Código de inventario del equipo
+    newData.numEmpleado  // Número de empleado especificado
+]
+
+await pool.query(asignacionConsulta, asignacionValues);
+
+        /*console.log("---------------------------------------------------------------");
         console.log("Equipo actualizado");
         console.log("Objeto devuelto de la consulta: ", result);
         console.log("Filas procesadas: ", result.rowCount);
         console.log("Información actualizada: ", result.rows[0]);
-        console.log("----------------------------------------------------------------");
+        console.log("----------------------------------------------------------------");*/
 
         return result.rows[0]; // Retornar los datos del equipo actualizado
     } catch (error) {
@@ -177,19 +202,25 @@ const buscarEquiposPorParametro = async (parametro) => {
 
 const eliminarEquipo = async (id) => {
     try {
-        const consulta = "DELETE FROM pc_info WHERE id = $1 RETURNING *"; // Agrega RETURNING * para obtener los datos del equipo eliminado
-        const values = [id];
-
-        const result = await pool.query(consulta, values);
-
-        console.log("Equipo eliminado:", result.rows[0]); // Imprime los datos del equipo eliminado
-
-        return result.rows[0]; // Retorna los datos del equipo eliminado
+      // Obtener el código_inventario del equipo que se va a eliminar
+      const equipo = await obtenerDetallesEquipoPorId(id);
+      const codigoInventario = equipo.codigo_inventario;
+  
+      // Eliminar asignaciones para el código_inventario
+      const asignacionConsulta = "DELETE FROM asignaciones WHERE codigo_inventario = $1 RETURNING *";
+      const asignacionValues = [codigoInventario];
+      await pool.query(asignacionConsulta, asignacionValues);
+  
+      // Ahora puedes eliminar el equipo sin violar la restricción de clave externa
+      const result = await pool.query("DELETE FROM pc_info WHERE id = $1 RETURNING *", [id]);
+  
+      console.log("Equipo eliminado:", result.rows[0]); // Imprime los datos del equipo eliminado
+  
+      verEquipos(); // Actualizar la lista de equipos después de la eliminación
     } catch (error) {
-        console.error("Error al eliminar equipo:", error.message);
-        throw error;
+      console.error("Error al eliminar equipo:", error.message);
     }
-};
+  };
 
 
 export { agregarEquipo, verEquipos, actualizarEquipo, eliminarEquipo, buscarEquiposPorParametro, obtenerDetallesEquipoPorId } 

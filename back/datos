@@ -2,8 +2,7 @@ tabla para unir la tabla empleados y pc_info
 CREATE TABLE asignaciones (
     id_asignacion SERIAL PRIMARY KEY,
     numEmpleado INT,
-    codigo_inventario VARCHAR(255),
-    fecha_asignacion DATE,
+    codigo_inventario VARCHAR(255),    
     FOREIGN KEY (numEmpleado) REFERENCES empleados(numEmpleado),
     FOREIGN KEY (codigo_inventario) REFERENCES pc_info(codigo_inventario)
 );

@@ -8,7 +8,8 @@ import {
   agregarEquipo,
   verEquipos,
   actualizarEquipo,
-  eliminarEquipo, buscarEquiposPorParametro
+  eliminarEquipo,
+  buscarEquiposPorParametro,
 } from "./consulta.js";
 import { obtenerDetallesEquipoPorId } from "./consulta.js";
 
@@ -27,12 +28,9 @@ app.listen(PORT, () => {
   console.log("servidor listo en http://localhost:" + PORT);
 });
 
-
-
 //rutas del enrutador/ Api Rest, enlazar ruta con funcion BD
 
-
-//1. GET para ver todos los equipos registrados en la tabla 
+//1. GET para ver todos los equipos registrados en la tabla
 app.get("/equipos", async (req, res) => {
   try {
     const equipos = await verEquipos();
@@ -44,13 +42,45 @@ app.get("/equipos", async (req, res) => {
   }
 });
 
-//2. POST para ingresar un equipo en la tabla 
+//2. POST para ingresar un equipo en la tabla
 app.post("/equipos", async (req, res) => {
-  const { codigo_inventario, tipo_equipo, numero_serie, marca, modelo, sistema_operativo, memoria_ram, procesador, almacenamiento, numero_serie_cargador, monitor, teclado, raton, accesorios, suscripcion_office } = req.body;
+  const {
+    codigo_inventario,
+    tipo_equipo,
+    numero_serie,
+    marca,
+    modelo,
+    sistema_operativo,
+    memoria_ram,
+    procesador,
+    almacenamiento,
+    numero_serie_cargador,
+    monitor,
+    teclado,
+    raton,
+    accesorios,
+    suscripcion_office,
+  } = req.body;
 
   try {
     console.log("valor req.body en la ruta /equipos: ", req.body);
-    await agregarEquipo({ codigo_inventario, tipo_equipo, numero_serie, marca, modelo, sistema_operativo, memoria_ram, procesador, almacenamiento, numero_serie_cargador, monitor, teclado, raton, accesorios, suscripcion_office });
+    await agregarEquipo({
+      codigo_inventario,
+      tipo_equipo,
+      numero_serie,
+      marca,
+      modelo,
+      sistema_operativo,
+      memoria_ram,
+      procesador,
+      almacenamiento,
+      numero_serie_cargador,
+      monitor,
+      teclado,
+      raton,
+      accesorios,
+      suscripcion_office,
+    });
     res.send("equipo agregado con éxito");
   } catch (error) {
     console.error("Error en la ruta /equipos (agregarEquipo): ", error);
@@ -58,7 +88,6 @@ app.post("/equipos", async (req, res) => {
     res.status(status).send("Error al agregar el equipo: " + message);
   }
 });
-
 
 app.get("/equipos/:id", async (req, res) => {
   const equipoId = req.params.id;
@@ -69,27 +98,32 @@ app.get("/equipos/:id", async (req, res) => {
     res.json(equipoDetalles);
   } catch (error) {
     console.error("Error al obtener detalles del equipo:", error);
-    res.status(500).send("Error interno del servidor al obtener detalles del equipo");
+    res
+      .status(500)
+      .send("Error interno del servidor al obtener detalles del equipo");
   }
 });
 
-
-app.get('/buscarEquipo', async (req, res) => {
+app.get("/buscarEquipo", async (req, res) => {
   const parametro = req.query.parametro;
-  console.log('Parámetro de búsqueda:', parametro);
+  console.log("Parámetro de búsqueda:", parametro);
 
   if (!parametro) {
-    return res.status(400).json({ error: 'El parámetro de búsqueda "parametro" es necesario.' });
+    return res
+      .status(400)
+      .json({ error: 'El parámetro de búsqueda "parametro" es necesario.' });
   }
 
   try {
-    console.log('Antes de buscarEquiposPorParametro');
+    console.log("Antes de buscarEquiposPorParametro");
     const resultadoBusqueda = await buscarEquiposPorParametro(parametro);
-    console.log('Después de buscarEquiposPorParametro');
+    console.log("Después de buscarEquiposPorParametro");
     res.json(resultadoBusqueda);
   } catch (error) {
-    console.error('Error al realizar la búsqueda:', error);
-    res.status(500).json({ error: 'Error interno del servidor al realizar la búsqueda.' });
+    console.error("Error al realizar la búsqueda:", error);
+    res
+      .status(500)
+      .json({ error: "Error interno del servidor al realizar la búsqueda." });
   }
 });
 
