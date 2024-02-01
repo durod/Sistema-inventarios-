@@ -80,3 +80,6 @@ CREATE TABLE pc_info (
     accesorios TEXT,
     suscripcion_office VARCHAR(255)
 );
+
+
+prueba
