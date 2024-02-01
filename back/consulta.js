@@ -114,15 +114,13 @@ const actualizarEquipo = async (id, newData) => {
         const asignacionConsulta = `
     INSERT INTO asignaciones (codigo_inventario, numEmpleado)
     VALUES ($1, $2)
-    ON CONFLICT (codigo_inventario) DO UPDATE
-    SET numEmpleado = $2
     RETURNING *;
 `;
 
 const asignacionValues = [
     newData.codigo_inventario,  // Código de inventario del equipo
     newData.numEmpleado  // Número de empleado especificado
-]
+];
 
 await pool.query(asignacionConsulta, asignacionValues);
 
@@ -143,7 +141,13 @@ await pool.query(asignacionConsulta, asignacionValues);
 
 const obtenerDetallesEquipoPorId = async (id) => {
     try {
-      const consulta = "SELECT * FROM pc_info WHERE id = $1";
+        const consulta = `
+        SELECT pc_info.*, empleados.*
+        FROM pc_info
+        LEFT JOIN asignaciones ON pc_info.codigo_inventario = asignaciones.codigo_inventario
+        LEFT JOIN empleados ON asignaciones.numEmpleado = empleados.numEmpleado
+        WHERE pc_info.id = $1;
+    `;
       const values = [id];
   
       const result = await pool.query(consulta, values);

@@ -66,10 +66,10 @@ function VerEquipos() {
 
         <td>
           <Link
-            to={`/actualizarequipo/${equipo.id}`}
+            to={`/datoscompletos/${equipo.id}`}
             className="btn btn-info mb-2"
           >
-            Actualizar
+            Ver Mas
           </Link>
           <button
             className="btn btn-danger mx-auto"

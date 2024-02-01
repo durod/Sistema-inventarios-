@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -104,7 +104,7 @@ export default function AgregarEquipo() {
       <Form onSubmit={handleSubmit} className="formagregarEquipo">
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridInventoryCode">
-            <Form.Label className="formLabel">CÓDIGO DE INVENTARIO</Form.Label>
+            <Form.Label className="formLabel">CÓDIGO DE INV</Form.Label>
             <Form.Control
               className="text-center-input"
               type="text"

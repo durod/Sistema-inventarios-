@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -8,7 +9,7 @@ import Row from "react-bootstrap/Row";
 //import Table from "react-bootstrap/Table";
 const URI = "http://localhost:3002/equipos";
 
-const ActualizarEquipo = () => {
+function DatosCompletos() {
   const { id } = useParams(); // Obtener el parámetro de la URL
   const [equipoData, setEquipoData] = useState({
     codigo_inventario: "",
@@ -26,13 +27,23 @@ const ActualizarEquipo = () => {
     raton: "",
     accesorios: "",
     suscripcion_office: "",
+    numempleado: "",
+    nombre: "",
+    appaterno: "",
+    apmaterno: "",
+    id_direccion: "",
+    id_departamento: "",
+    puesto: "",
   });
+
+  console.log("Equipo Data en DatosCompletos:", equipoData);
 
   useEffect(() => {
     const cargarDatosEquipo = async () => {
       try {
         const response = await axios.get(`${URI}/${id}`);
         setEquipoData(response.data);
+        console.log("equipoData:", response.data);
       } catch (error) {
         console.error("Error al cargar datos del equipo:", error.message);
       }
@@ -41,38 +52,38 @@ const ActualizarEquipo = () => {
     cargarDatosEquipo();
   }, [id]);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setEquipoData((prevData) => ({ ...prevData, [name]: value }));
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      await axios.put(`${URI}/actualizar/${id}`, equipoData); // Cambiado el llamado a la función
-      alert("El equipo se ha actualizado correctamente.");
-      // Puedes redirigir a la página de VerEquipos o a otra página según tus necesidades
-    } catch (error) {
-      console.error("Error al actualizar equipo:", error.message);
-    }
-  };
-
   return (
     <div className="containerform formagregarActualizarEquipo">
-      <h2>Actualizar Equipo</h2>
-      <Form onSubmit={handleSubmit}>
+      <h2>Datos completos</h2>
+      <Form>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridEmployeeNumber">
-            <Form.Label className="formLabel">
-              NÚMERO DE EMPLEADO PARA ASIGNAR
-            </Form.Label>
+            <Form.Label className="formLabel">NÚMERO DE EMPLEADO:</Form.Label>
             <Form.Control
               className="text-center-input"
               type="text"
               name="numEmpleado"
-              value={equipoData.numEmpleado || ""}
-              onChange={handleChange}
+              value={equipoData.numempleado || ""}
+            />
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridEmployeeName">
+            <Form.Label className="formLabel">Nombre Empleado:</Form.Label>
+            <Form.Control
+              className="text-center-input"
+              type="text"
+              name="nombre"
+              value={`${equipoData.nombre || ''} ${equipoData.appaterno || ''} ${equipoData.apmaterno || ''}`}
+            />
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridEmployeePuesto">
+            <Form.Label className="formLabel">Puesto:</Form.Label>
+            <Form.Control
+              className="text-center-input"
+              type="text"
+              name="id_direccion"
+              value={`${equipoData.id_direccion || ''} `}
             />
           </Form.Group>
         </Row>
@@ -85,7 +96,6 @@ const ActualizarEquipo = () => {
               type="text"
               name="codigo_inventario"
               value={equipoData.codigo_inventario || ""}
-              onChange={handleChange}
             />
           </Form.Group>
 
@@ -96,7 +106,6 @@ const ActualizarEquipo = () => {
               as="select"
               name="tipo_equipo"
               value={equipoData.tipo_equipo || ""}
-              onChange={handleChange}
             >
               <option>Selecciona el tipo de equipo</option>
               <option value="Desktop">Desktop</option>
@@ -112,7 +121,6 @@ const ActualizarEquipo = () => {
               type="text"
               name="numero_serie"
               value={equipoData.numero_serie || ""}
-              onChange={handleChange}
             />
           </Form.Group>
 
@@ -123,7 +131,6 @@ const ActualizarEquipo = () => {
               as="select"
               name="marca"
               value={equipoData.marca || ""}
-              onChange={handleChange}
             >
               <option>Selecciona la marca</option>
               <option value="">Selecciona la marca</option>
@@ -142,7 +149,6 @@ const ActualizarEquipo = () => {
               type="text"
               name="modelo"
               value={equipoData.modelo || ""}
-              onChange={handleChange}
             />
           </Form.Group>
 
@@ -153,7 +159,6 @@ const ActualizarEquipo = () => {
               as="select"
               name="sistema_operativo"
               value={equipoData.sistema_operativo || ""}
-              onChange={handleChange}
             >
               <option>Selecciona el sistema operativo</option>
               <option value="Windows 11">Windows 11</option>
@@ -169,7 +174,6 @@ const ActualizarEquipo = () => {
               as="select"
               name="memoria_ram"
               value={equipoData.memoria_ram || ""}
-              onChange={handleChange}
             >
               <option>Selecciona la cantidad de memoria RAM</option>
               <option value="4GB">4 GB</option>
@@ -186,7 +190,6 @@ const ActualizarEquipo = () => {
               type="text"
               name="procesador"
               value={equipoData.procesador || ""}
-              onChange={handleChange}
             />
           </Form.Group>
         </Row>
@@ -198,7 +201,6 @@ const ActualizarEquipo = () => {
               type="text"
               name="almacenamiento"
               value={equipoData.almacenamiento || ""}
-              onChange={handleChange}
             />
           </Form.Group>
 
@@ -209,7 +211,6 @@ const ActualizarEquipo = () => {
               type="text"
               name="numero_serie_cargador"
               value={equipoData.numero_serie_cargador || ""}
-              onChange={handleChange}
             />
           </Form.Group>
         </Row>
@@ -220,7 +221,6 @@ const ActualizarEquipo = () => {
             type="text"
             name="monitor"
             value={equipoData.monitor || ""}
-            onChange={handleChange}
           />
         </Form.Group>
 
@@ -231,7 +231,6 @@ const ActualizarEquipo = () => {
             type="text"
             name="teclado"
             value={equipoData.teclado || ""}
-            onChange={handleChange}
           />
         </Form.Group>
 
@@ -242,7 +241,6 @@ const ActualizarEquipo = () => {
             type="text"
             name="raton"
             value={equipoData.raton || ""}
-            onChange={handleChange}
           />
         </Form.Group>
 
@@ -254,7 +252,6 @@ const ActualizarEquipo = () => {
               type="text"
               name="accesorios"
               value={equipoData.accesorios || ""}
-              onChange={handleChange}
             />
           </Form.Group>
 
@@ -265,15 +262,17 @@ const ActualizarEquipo = () => {
               type="text"
               name="suscripcion_office"
               value={equipoData.suscripcion_office || ""}
-              onChange={handleChange}
             />
           </Form.Group>
         </Row>
         <Row className="mb-3">
           <Col>
-            <Button variant="primary" type="submit">
-              Guardar Cambios
-            </Button>
+          <Link
+            to={`/actualizarequipo/${equipoData.id}`}
+            className="btn btn-info mb-2"
+          >
+            Actualizar Datos
+          </Link>
           </Col>
           <Col>
             <Button
@@ -287,6 +286,6 @@ const ActualizarEquipo = () => {
       </Form>
     </div>
   );
-};
+}
 
-export default ActualizarEquipo;
+export default DatosCompletos;

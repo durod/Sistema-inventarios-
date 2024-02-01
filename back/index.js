@@ -82,6 +82,8 @@ app.post("/equipos", async (req, res) => {
       suscripcion_office,
     });
     res.send("equipo agregado con éxito");
+    console.log("valor req.body en la ruta /equipos: ", req.body);
+
   } catch (error) {
     console.error("Error en la ruta /equipos (agregarEquipo): ", error);
     const { status, message } = handleErrors(error.code);
@@ -126,6 +128,8 @@ app.get("/buscarEquipo", async (req, res) => {
       .json({ error: "Error interno del servidor al realizar la búsqueda." });
   }
 });
+
+
 
 //3. PUT para modificar el equipo
 app.put("/equipos/actualizar/:id", async (req, res) => {
