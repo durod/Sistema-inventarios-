@@ -63,7 +63,7 @@ tabla pc_info
 
 CREATE TABLE pc_info (
     id SERIAL PRIMARY KEY,
-    id_empleado INTEGER REFERENCES empleados(id),
+    numEmpleado INTEGER REFERENCES empleados(numEmpleado),
     codigo_inventario VARCHAR(255),
     tipo_equipo VARCHAR(50),
     numero_serie VARCHAR(255),
@@ -80,6 +80,3 @@ CREATE TABLE pc_info (
     accesorios TEXT,
     suscripcion_office VARCHAR(255)
 );
-
-
-prueba

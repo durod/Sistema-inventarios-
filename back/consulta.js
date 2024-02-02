@@ -160,15 +160,20 @@ const actualizarEquipo = async (id, newData) => {
     const asignacionConsulta = `
     INSERT INTO asignaciones (codigo_inventario, numEmpleado)
     VALUES ($1, $2)
-    ON CONFLICT (codigo_inventario) DO UPDATE
-    SET numEmpleado = $2
     RETURNING *;
 `;
 
+<<<<<<< HEAD
     const asignacionValues = [
       newData.codigo_inventario, // Código de inventario del equipo
       newData.numEmpleado, // Número de empleado especificado
     ];
+=======
+const asignacionValues = [
+    newData.codigo_inventario,  // Código de inventario del equipo
+    newData.numEmpleado  // Número de empleado especificado
+];
+>>>>>>> 92396a7787684d662ec1c8d1c66882faa858ee92
 
     await pool.query(asignacionConsulta, asignacionValues);
 
@@ -187,6 +192,7 @@ const actualizarEquipo = async (id, newData) => {
 };
 
 const obtenerDetallesEquipoPorId = async (id) => {
+<<<<<<< HEAD
   try {
     const consulta = "SELECT * FROM pc_info WHERE id = $1";
     const values = [id];
@@ -196,6 +202,29 @@ const obtenerDetallesEquipoPorId = async (id) => {
     if (result.rowCount === 0) {
       // Si no se encuentra el equipo, puedes lanzar una excepción o devolver un mensaje indicando que no se encontró
       throw new Error("No se encontró el equipo con el ID proporcionado.");
+=======
+    try {
+        const consulta = `
+        SELECT pc_info.*, empleados.*
+        FROM pc_info
+        LEFT JOIN asignaciones ON pc_info.codigo_inventario = asignaciones.codigo_inventario
+        LEFT JOIN empleados ON asignaciones.numEmpleado = empleados.numEmpleado
+        WHERE pc_info.id = $1;
+    `;
+      const values = [id];
+  
+      const result = await pool.query(consulta, values);
+  
+      if (result.rowCount === 0) {
+        // Si no se encuentra el equipo, puedes lanzar una excepción o devolver un mensaje indicando que no se encontró
+        throw new Error("No se encontró el equipo con el ID proporcionado.");
+      }
+  
+      return result.rows[0];
+    } catch (error) {
+      console.error("Error al obtener detalles del equipo por ID:", error);
+      throw error;
+>>>>>>> 92396a7787684d662ec1c8d1c66882faa858ee92
     }
 
     return result.rows[0];
