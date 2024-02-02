@@ -1,48 +1,98 @@
-import pkg from 'pg';
+import pkg from "pg";
 const { Pool } = pkg;
 
-
 const pool = new Pool({
-    allowExitOnIdle: true,
+  allowExitOnIdle: true,
 });
 
-
 // funcion para insertar un equipo en la tabla en forma de parametros
-const agregarEquipo = async ({ codigo_inventario, tipo_equipo, numero_serie, marca, modelo, sistema_operativo, memoria_ram, procesador, almacenamiento, numero_serie_cargador, monitor, teclado, raton, accesorios, suscripcion_office }) => {
-    try {
-        console.log("Entro agregarEquipo: ", codigo_inventario, tipo_equipo, numero_serie, marca, modelo, sistema_operativo, memoria_ram, procesador, almacenamiento, numero_serie_cargador, monitor, teclado, raton, accesorios, suscripcion_office);
+const agregarEquipo = async ({
+  codigo_inventario,
+  tipo_equipo,
+  numero_serie,
+  marca,
+  modelo,
+  sistema_operativo,
+  memoria_ram,
+  procesador,
+  almacenamiento,
+  numero_serie_cargador,
+  monitor,
+  teclado,
+  raton,
+  accesorios,
+  suscripcion_office,
+}) => {
+  try {
+    console.log(
+      "Entro agregarEquipo: ",
+      codigo_inventario,
+      tipo_equipo,
+      numero_serie,
+      marca,
+      modelo,
+      sistema_operativo,
+      memoria_ram,
+      procesador,
+      almacenamiento,
+      numero_serie_cargador,
+      monitor,
+      teclado,
+      raton,
+      accesorios,
+      suscripcion_office
+    );
 
-        const consulta = "INSERT INTO pc_info VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING *";
-        const values = [codigo_inventario, tipo_equipo, numero_serie, marca, modelo, sistema_operativo, memoria_ram, procesador, almacenamiento, numero_serie_cargador, monitor, teclado, raton, accesorios, suscripcion_office];
+    const consulta =
+      "INSERT INTO pc_info VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING *";
+    const values = [
+      codigo_inventario,
+      tipo_equipo,
+      numero_serie,
+      marca,
+      modelo,
+      sistema_operativo,
+      memoria_ram,
+      procesador,
+      almacenamiento,
+      numero_serie_cargador,
+      monitor,
+      teclado,
+      raton,
+      accesorios,
+      suscripcion_office,
+    ];
 
-        const result = await pool.query(consulta, values);
+    const result = await pool.query(consulta, values);
 
-        console.log("---------------------------------------------------------------");
-        console.log("Equipo agregado");
-        console.log("Objeto devuelto de la consulta: ", result);
-        console.log("Filas procesadas: ", result.rowCount);
-        console.log("Información ingresada: ", result.rows[0]);
-        console.log("----------------------------------------------------------------");
-    }catch (error) {
-        console.error("Error al agregar el equipo: ", error);
-        throw error; // Agrega esto para propagar el error
-
-    }
+    console.log(
+      "---------------------------------------------------------------"
+    );
+    console.log("Equipo agregado");
+    console.log("Objeto devuelto de la consulta: ", result);
+    console.log("Filas procesadas: ", result.rowCount);
+    console.log("Información ingresada: ", result.rows[0]);
+    console.log(
+      "----------------------------------------------------------------"
+    );
+  } catch (error) {
+    console.error("Error al agregar el equipo: ", error);
+    throw error; // Agrega esto para propagar el error
+  }
 };
-
 
 // funcion listar el contenido de la tabla
 const verEquipos = async () => {
-    try {
-        const query = `
+  try {
+    const query = `
         SELECT pc_info.*, empleados.*
         FROM pc_info
         LEFT JOIN asignaciones ON pc_info.codigo_inventario = asignaciones.codigo_inventario
         LEFT JOIN empleados ON asignaciones.numEmpleado = empleados.numEmpleado;
         `;
-        const { rows, command, rowCount, fields } = await pool.query(query);
+    const { rows, command, rowCount, fields } = await pool.query(query);
 
-        /*
+    /*
         console.log("----------------------------------------------")
         console.log("ver equipos registrados en la tabla")
         console.log("Instrucción procesada: ", command)
@@ -52,22 +102,18 @@ const verEquipos = async () => {
         console.log("----------------------------------------------")
         */
 
-        return rows;
-    } catch (error) {
-        console.error("Error al intentar ver equipos: ", error);
-        throw error;
-    }
+    return rows;
+  } catch (error) {
+    console.error("Error al intentar ver equipos: ", error);
+    throw error;
+  }
 };
 
-
-
-
-// Función para actualizar un equipo en la tabla
 // Función para actualizar un equipo en la tabla
 const actualizarEquipo = async (id, newData) => {
-    try {
-        // Crear la consulta para actualizar los datos del equipo con el ID proporcionado
-        const consulta = `
+  try {
+    // Crear la consulta para actualizar los datos del equipo con el ID proporcionado
+    const consulta = `
             UPDATE pc_info
             SET 
                 codigo_inventario = $2,
@@ -88,30 +134,30 @@ const actualizarEquipo = async (id, newData) => {
             WHERE id = $1
             RETURNING *`;
 
-        // Organizar los valores para la actualización
-        const values = [
-            id,
-            newData.codigo_inventario,
-            newData.tipo_equipo,
-            newData.numero_serie,
-            newData.marca,
-            newData.modelo,
-            newData.sistema_operativo,
-            newData.memoria_ram,
-            newData.procesador,
-            newData.almacenamiento,
-            newData.numero_serie_cargador,
-            newData.monitor,
-            newData.teclado,
-            newData.raton,
-            newData.accesorios,
-            newData.suscripcion_office
-        ];
+    // Organizar los valores para la actualización
+    const values = [
+      id,
+      newData.codigo_inventario,
+      newData.tipo_equipo,
+      newData.numero_serie,
+      newData.marca,
+      newData.modelo,
+      newData.sistema_operativo,
+      newData.memoria_ram,
+      newData.procesador,
+      newData.almacenamiento,
+      newData.numero_serie_cargador,
+      newData.monitor,
+      newData.teclado,
+      newData.raton,
+      newData.accesorios,
+      newData.suscripcion_office,
+    ];
 
-        // Ejecutar la consulta y obtener el resultado
-        const result = await pool.query(consulta, values);
+    // Ejecutar la consulta y obtener el resultado
+    const result = await pool.query(consulta, values);
 
-        const asignacionConsulta = `
+    const asignacionConsulta = `
     INSERT INTO asignaciones (codigo_inventario, numEmpleado)
     VALUES ($1, $2)
     ON CONFLICT (codigo_inventario) DO UPDATE
@@ -119,53 +165,50 @@ const actualizarEquipo = async (id, newData) => {
     RETURNING *;
 `;
 
-const asignacionValues = [
-    newData.codigo_inventario,  // Código de inventario del equipo
-    newData.numEmpleado  // Número de empleado especificado
-]
+    const asignacionValues = [
+      newData.codigo_inventario, // Código de inventario del equipo
+      newData.numEmpleado, // Número de empleado especificado
+    ];
 
-await pool.query(asignacionConsulta, asignacionValues);
+    await pool.query(asignacionConsulta, asignacionValues);
 
-        /*console.log("---------------------------------------------------------------");
+    /*console.log("---------------------------------------------------------------");
         console.log("Equipo actualizado");
         console.log("Objeto devuelto de la consulta: ", result);
         console.log("Filas procesadas: ", result.rowCount);
         console.log("Información actualizada: ", result.rows[0]);
         console.log("----------------------------------------------------------------");*/
 
-        return result.rows[0]; // Retornar los datos del equipo actualizado
-    } catch (error) {
-        console.error("Error al actualizar el equipo: ", error);
-        throw error;
-    }
+    return result.rows[0]; // Retornar los datos del equipo actualizado
+  } catch (error) {
+    console.error("Error al actualizar el equipo: ", error);
+    throw error;
+  }
 };
 
-
 const obtenerDetallesEquipoPorId = async (id) => {
-    try {
-      const consulta = "SELECT * FROM pc_info WHERE id = $1";
-      const values = [id];
-  
-      const result = await pool.query(consulta, values);
-  
-      if (result.rowCount === 0) {
-        // Si no se encuentra el equipo, puedes lanzar una excepción o devolver un mensaje indicando que no se encontró
-        throw new Error("No se encontró el equipo con el ID proporcionado.");
-      }
-  
-      return result.rows[0];
-    } catch (error) {
-      console.error("Error al obtener detalles del equipo por ID:", error);
-      throw error;
+  try {
+    const consulta = "SELECT * FROM pc_info WHERE id = $1";
+    const values = [id];
+
+    const result = await pool.query(consulta, values);
+
+    if (result.rowCount === 0) {
+      // Si no se encuentra el equipo, puedes lanzar una excepción o devolver un mensaje indicando que no se encontró
+      throw new Error("No se encontró el equipo con el ID proporcionado.");
     }
-  };
 
-
+    return result.rows[0];
+  } catch (error) {
+    console.error("Error al obtener detalles del equipo por ID:", error);
+    throw error;
+  }
+};
 
 // Función para buscar equipos en función de un parámetro en todas las columnas
 const buscarEquiposPorParametro = async (parametro) => {
-    try {
-        const consulta = `
+  try {
+    const consulta = `
         SELECT * 
         FROM pc_info
         WHERE 
@@ -185,42 +228,50 @@ const buscarEquiposPorParametro = async (parametro) => {
           accesorios ILIKE $1 OR
           suscripcion_office ILIKE $1
       `;
-        const values = [`%${parametro}%`];
+    const values = [`%${parametro}%`];
 
-        const result = await pool.query(consulta, values);
+    const result = await pool.query(consulta, values);
 
-        return result.rows;
-    } catch (error) {
-        console.error("Error al buscar equipos por parámetro:", error);
-        throw error;
-    }
+    return result.rows;
+  } catch (error) {
+    console.error("Error al buscar equipos por parámetro:", error);
+    throw error;
+  }
 };
-
-
 
 // FUNCION PARA ELIMINAR UN REGISTRO DE LA TABLA
 
 const eliminarEquipo = async (id) => {
-    try {
-      // Obtener el código_inventario del equipo que se va a eliminar
-      const equipo = await obtenerDetallesEquipoPorId(id);
-      const codigoInventario = equipo.codigo_inventario;
-  
-      // Eliminar asignaciones para el código_inventario
-      const asignacionConsulta = "DELETE FROM asignaciones WHERE codigo_inventario = $1 RETURNING *";
-      const asignacionValues = [codigoInventario];
-      await pool.query(asignacionConsulta, asignacionValues);
-  
-      // Ahora puedes eliminar el equipo sin violar la restricción de clave externa
-      const result = await pool.query("DELETE FROM pc_info WHERE id = $1 RETURNING *", [id]);
-  
-      console.log("Equipo eliminado:", result.rows[0]); // Imprime los datos del equipo eliminado
-  
-      verEquipos(); // Actualizar la lista de equipos después de la eliminación
-    } catch (error) {
-      console.error("Error al eliminar equipo:", error.message);
-    }
-  };
+  try {
+    // Obtener el código_inventario del equipo que se va a eliminar
+    const equipo = await obtenerDetallesEquipoPorId(id);
+    const codigoInventario = equipo.codigo_inventario;
 
+    // Eliminar asignaciones para el código_inventario
+    const asignacionConsulta =
+      "DELETE FROM asignaciones WHERE codigo_inventario = $1 RETURNING *";
+    const asignacionValues = [codigoInventario];
+    await pool.query(asignacionConsulta, asignacionValues);
 
-export { agregarEquipo, verEquipos, actualizarEquipo, eliminarEquipo, buscarEquiposPorParametro, obtenerDetallesEquipoPorId } 
+    // Ahora puedes eliminar el equipo sin violar la restricción de clave externa
+    const result = await pool.query(
+      "DELETE FROM pc_info WHERE id = $1 RETURNING *",
+      [id]
+    );
+
+    console.log("Equipo eliminado:", result.rows[0]); // Imprime los datos del equipo eliminado
+
+    verEquipos(); // Actualizar la lista de equipos después de la eliminación
+  } catch (error) {
+    console.error("Error al eliminar equipo:", error.message);
+  }
+};
+
+export {
+  agregarEquipo,
+  verEquipos,
+  actualizarEquipo,
+  eliminarEquipo,
+  buscarEquiposPorParametro,
+  obtenerDetallesEquipoPorId,
+};
