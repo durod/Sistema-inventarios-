@@ -9,6 +9,7 @@ import AgregarEquipo from "./assets/components/AgregarEquipo";
 import ActualizarEquipo from "./assets/components/ActualizarEquipo";
 import BusquedaEquipos from "./assets/components/BusquedaEquipos";
 import DatosCompletos from "./assets/components/DatosCompletos";
+import Responsiva from "./assets/components/Responsiva";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/actualizarequipo/:id" element={<ActualizarEquipo />} />
           <Route path="/datoscompletos/:id" element={<DatosCompletos />} />
           <Route path="/buscarEquipo" element={<BusquedaEquipos />} />
+          <Route path="//verResponsiva/:id" element={<Responsiva />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -40,31 +40,34 @@ const BusquedaEquipos = () => {
   const renderEquipos = () => {
     return equipos.map((equipo) => (
       <tr key={equipo.id}>
-        <td>{equipo.codigo_inventario}</td>
-        <td>{equipo.tipo_equipo}</td>
-        <td>{equipo.numero_serie}</td>
-        <td>{equipo.marca}</td>
-        <td>{equipo.modelo}</td>
-        <td>{equipo.sistema_operativo}</td>
-        <td>{equipo.memoria_ram}</td>
-        <td>{equipo.procesador}</td>
-        <td>{equipo.almacenamiento}</td>
-        <td>{equipo.numero_serie_cargador}</td>
-        <td>{equipo.monitor}</td>
-        <td>{equipo.teclado}</td>
-        <td>{equipo.raton}</td>
-        <td>{equipo.accesorios}</td>
-        <td>{equipo.suscripcion_office}</td>
+        {/* Información de empleados */}
+        <td className="text-center align-middle">{equipo.numempleado}</td>
+        <td className="text-center align-middle">
+          {`${equipo.nombre} ${equipo.appaterno} ${equipo.apmaterno}`}
+        </td>
+        <td className="text-center align-middle">{equipo.id_direccion}</td>
+        <td className="text-center align-middle">{equipo.id_departamento}</td>
+        <td className="text-center align-middle">{equipo.puesto}</td>
+
+        {/* Información de equipos */}
+        <td className="text-center align-middle">{equipo.codigo_inventario}</td>
+        {/* Resto de las columnas de equipos */}
+        <td className="text-center align-middle">{equipo.numero_serie}</td>
+        <td className="text-center align-middle">{equipo.marca}</td>
+        <td className="text-center align-middle">{equipo.modelo}</td>
+        <td className="text-center align-middle">{equipo.monitor}</td>
+        {/* Resto de las columnas de equipos */}
+
         <td>
           <Link
-            to={`/actualizarequipo/${equipo.id}`}
-            className="btn btn-warning"
+            to={`/datoscompletos/${equipo.id}`}
+            className="btn btn-info mb-2"
           >
-            Actualizar
+            Ver Mas
           </Link>
           <button
+            className="btn btn-danger mx-auto"
             onClick={() => eliminarEquipo(equipo.id, equipo.codigo_inventario)}
-            className="btn btn-danger ml-2"
           >
             Eliminar
           </button>
@@ -100,27 +103,34 @@ const BusquedaEquipos = () => {
           <Table striped bordered hover variant="dark" className="custom-table">
             <thead>
               <tr>
-                <th className="text-center align-middle ">
+                <th className="text-center align-middle">Número de Empleado</th>
+                <th className="text-center align-middle">Empleado </th>
+
+                <th className="text-center align-middle">Dirección</th>
+                <th className="text-center align-middle">Departamento</th>
+                <th className="text-center align-middle">Puesto</th>
+                <th className="text-center align-middle">
                   Código de Inventario
                 </th>
-                <th className="text-center align-middle ">Tipo de Equipo</th>
+
                 <th className="text-center align-middle">Número de Serie</th>
                 <th className="text-center align-middle">Marca</th>
                 <th className="text-center align-middle">Modelo</th>
-                <th className="text-center align-middle"> Sistema Operativo</th>
+                {/* <th className="text-center align-middle ">Tipo de Equipo</th> */}
+                {/* <th className="text-center align-middle"> Sistema Operativo</th>
                 <th className="text-center align-middle">Memoria RAM</th>
                 <th className="text-center align-middle">Procesador</th>
                 <th className="text-center align-middle">Almacenamiento</th>
                 <th className="text-center align-middle">
                   Número de Serie del Cargador
-                </th>
+  </th> */}
                 <th className="text-center align-middle">Monitor</th>
-                <th className="text-center align-middle">Teclado</th>
+                {/*  <th className="text-center align-middle">Teclado</th>
                 <th className="text-center align-middle">Ratón</th>
                 <th className="text-center align-middle">Accesorios</th>
                 <th className="text-center align-middle">
                   Suscripción a Office
-                </th>
+</th> */}
                 <th className="text-center align-middle">Acciones</th>
               </tr>
             </thead>

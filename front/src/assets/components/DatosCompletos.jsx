@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -10,6 +12,7 @@ import Row from "react-bootstrap/Row";
 const URI = "http://localhost:3002/equipos";
 
 function DatosCompletos() {
+  const navigate = useNavigate();
   const { id } = useParams(); // Obtener el parámetro de la URL
   const [equipoData, setEquipoData] = useState({
     codigo_inventario: "",
@@ -51,23 +54,24 @@ function DatosCompletos() {
 
     cargarDatosEquipo();
   }, [id]);
+  
 
+  const handleVerResponsivaClick = () => {
+    // Cambia history.push a navigate
+    navigate(`/verResponsiva/${equipoData.id}`, {
+      state: { equipoData: equipoData },
+    });
+  };
   return (
     <div className="containerform formagregarActualizarEquipo">
-      <h2>Datos completos</h2>
+      <h2 >Datos completos</h2>
       <Form>
+      <div style={{border: "5px solid dimgray"}}>
+      <h2 style={{textAlign: "left", marginTop: "25px",padding: "5px"}}>Datos del empleado:</h2>
         <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGridEmployeeNumber">
-            <Form.Label className="formLabel">NÚMERO DE EMPLEADO:</Form.Label>
-            <Form.Control
-              className="text-center-input"
-              type="text"
-              name="numEmpleado"
-              value={equipoData.numempleado || ""}
-            />
-          </Form.Group>
+          
 
-          <Form.Group as={Col} controlId="formGridEmployeeName">
+                    <Form.Group as={Col} controlId="formGridEmployeeName">
             <Form.Label className="formLabel">Nombre Empleado:</Form.Label>
             <Form.Control
               className="text-center-input"
@@ -77,17 +81,53 @@ function DatosCompletos() {
             />
           </Form.Group>
 
+          <Form.Group as={Col} controlId="formGridEmployeeNumber">
+            <Form.Label className="formLabel">DIRECCIÓN</Form.Label>
+            <Form.Control
+              className="text-center-input"
+              type="text"
+              name="numEmpleado"
+              value={equipoData.id_direccion || ""}
+            />
+          </Form.Group>
+
           <Form.Group as={Col} controlId="formGridEmployeePuesto">
-            <Form.Label className="formLabel">Puesto:</Form.Label>
+            <Form.Label className="formLabel">DEPARTAMENTO:</Form.Label>
             <Form.Control
               className="text-center-input"
               type="text"
               name="id_direccion"
-              value={`${equipoData.id_direccion || ''} `}
+              value={`${equipoData.id_departamento   || ''} `}
             />
           </Form.Group>
         </Row>
+        <Row className="mb-3">
+        <Form.Group as={Col} controlId="formGridEmployeedireccion">
+            <Form.Label className="formLabel">PUESTO:</Form.Label>
+            <Form.Control
+              className="text-center-input"
+              type="text"
+              name="numEmpleado"
+              value={equipoData.puesto || ""}
+            />
+          </Form.Group>
 
+          <Form.Group as={Col} controlId="formGridEmployeeNumber">
+            <Form.Label className="formLabel">NÚMERO EMPLEADO:</Form.Label>
+            <Form.Control
+              className="text-center-input"
+              type="text"
+              name="numEmpleado"
+              value={equipoData.numempleado || ""}
+            />
+          </Form.Group>
+
+        </Row>
+        </div>
+
+        <div  style={{border: "5px solid dimgray", marginTop: "45px"}}>
+          <h2 style={{textAlign: "left", marginTop: "25px",padding: "5px"}}>Datos del Equipo</h2>
+        
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridInventoryCode">
             <Form.Label className="formLabel">CÓDIGO DE INV</Form.Label>
@@ -265,6 +305,7 @@ function DatosCompletos() {
             />
           </Form.Group>
         </Row>
+        </div>
         <Row className="mb-3">
           <Col>
           <Link
@@ -281,6 +322,12 @@ function DatosCompletos() {
             >
               Ir a Home
             </Button>
+            <Button
+  variant="info"
+  onClick={handleVerResponsivaClick}
+>
+  Ver Responsiva
+</Button>
           </Col>
         </Row>
       </Form>

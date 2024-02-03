@@ -294,7 +294,7 @@ export default function AgregarEquipo() {
         <Row className="mb-3">
           <Col>
             <Button variant="primary" type="submit">
-              Enviar
+              Agregar Equipo
             </Button>
           </Col>
           <Col>

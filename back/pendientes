@@ -1,2 +1,5 @@
-permitir buscar por informacion de equipo o por informacion de usuario
+permitir buscar por informacion de equipo o por informacion de usuario  (COMPLETADO)
 permitir que al agregar un equipo nuevo en el mismo componente AgregarEquipo.jsx se permita asignar a un usuario.
+crear el inicio de sesion
+crear formato responsiva (COMPLETADO)
+crear apartado para auditores
