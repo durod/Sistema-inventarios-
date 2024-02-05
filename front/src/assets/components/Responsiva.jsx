@@ -1,16 +1,39 @@
+import  { useRef } from "react";
 import { useLocation } from "react-router-dom";
-
+import html2pdf from "html2pdf.js";
 import "../components/styles/responsivastyles.css";
 
 function Responsiva() {
     const location = useLocation();
   const equipoData = location.state ? location.state.equipoData : null;
-  return (
-    <div>
-      <h2>Carta Responsiva de Equipo de cómputo y comunicaciones</h2>
 
-      <div style={{ marginTop: "45px" }}>
-        <htmlForm action="#" method="post">
+
+  const generatePDF = () => {
+    const pdfOptions = {
+      margin: 5, // Reduce los márgenes
+      filename: 'responsiva.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'mm', format: 'letter', orientation: 'portrait' },
+    };
+  
+    const originalFontSize = window.getComputedStyle(document.body).fontSize;
+    
+    // Reduzco el tamaño de fuente para intentar que todo quepa en una página
+    document.body.style.fontSize = '10px';
+  
+    html2pdf(responsivaRef.current, pdfOptions);
+  
+    // Restauro el tamaño de fuente original después de generar el PDF
+    document.body.style.fontSize = originalFontSize;
+  };
+  const responsivaRef = useRef();
+  return (
+    <div ref={responsivaRef}>
+      <h2>Carta Responsiva de Equipo de cómputo y comunicaciones</h2>
+     
+      <div style={{ marginTop: "5px" }}>
+        <htmlForm >
           <div className="datosempleadoid">
             <label htmlFor="fecha" className="fondo">
               Fecha:
@@ -19,7 +42,7 @@ function Responsiva() {
           </div>
 
           <fieldset>
-            <legend>Datos del Empleado</legend>
+            <legend  style={{ textAlign: "left" }}>Datos del Empleado</legend>
             <hr />
             <div className="datosempleadoid">
               <label htmlFor="numEmpleado" className="fondo" id="numEmpleado">
@@ -54,7 +77,7 @@ function Responsiva() {
           </fieldset>
 
           <fieldset>
-            <legend>Datos del Equipo Asignado</legend>
+            <legend style={{ textAlign: "left" }}>Datos del Equipo Asignado</legend>
             <hr />
 
             <div className="noinventarioserie">
@@ -116,7 +139,7 @@ function Responsiva() {
 
             <div className="tiporow">
               <label htmlFor="sistemaOperativo" className="fondo">
-                Sistema Operativo Instalado:
+                Sistema Operativo:
               </label>
               <input
                 type="text"
@@ -128,7 +151,7 @@ function Responsiva() {
             </div>
             <div className="tiporow">
               <label htmlFor="versionOffice" className="fondo">
-                Versión de Office Instalado:
+                Versión de Office:
               </label>
               <input
                 type="text"
@@ -209,9 +232,13 @@ nómina.
             </div>
           </div>
 
-          <button type="submit">Generar Responsiva</button>
+          <button type="button" onClick={generatePDF}>
+        Generar Responsiva
+      </button>
+          
         </htmlForm>
       </div>
+      
     </div>
   );
 }

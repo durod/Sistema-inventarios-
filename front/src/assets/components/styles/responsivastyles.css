@@ -1,84 +1,103 @@
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 20px;
-    background-color: white;
-  }
-  hr{
-    border: 3px solid lightseagreen  ;
-    margin: 20px 0;
-  }
-  h2 {
-    text-align: center;
-  }
-  form {
-    margin-top: 20px;
-  }
-  label {
-    display: block;
-    text-align: center;
-  }
-  input,
-  textarea {
-    width: 100%;
-    padding: 8px;
-    height: 30px;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 10px; /* Reduzco los márgenes */
+  background-color: white;
+}
 
-    box-sizing: border-box;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  table,
-  th,
-  td {
-    border: 1px solid black;
-  }
-  th,
-  td {
-    padding: 10px;
-    text-align: left;
-  }
-  .fondo{
-    background-color: aqua;
-    border: 1px solid black;
-    width: 33%;
-  }
-  .signature {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 26px;
-    font-size: medium;
-  }
-  .datosempleado,
-  .noinventarioserie,
-  .tiporow {
-    display: flex;
-  }
-  .datosempleadoid{
-    display: flex;
-    flex-direction: row;
-    margin-left: 68%;
-  }
-  #numEmpleado{
-    width: 62%;
-  }
-  .textoimportante{
-    height: 35vh;
-    font-size: small;
-    font-family: inherit;
-    font-weight: 700;
-    
-  }
-  fieldset{
-    margin-bottom: 10px;
-  }
-  .invserproram{
-    display: flex;
-    width: 50%;
-  }
- 
+hr {
+  border: 2px solid lightseagreen;
   
+}
+
+h2 {
+  text-align: center;
+  font-size: larger;
+}
+
+form {
+  margin-top: 10px;
+}
+
+label {
+  display: block;
+  text-align: center;
+  height: 21PX;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 8px;
+  height: 21px; /* Reduzco la altura de los inputs */
+  box-sizing: border-box;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.table,
+th,
+td {
+  border: 1px solid black;
+}
+
+.th,
+.td {
+  padding: 8px; /* Reduzco el espacio en las celdas de la tabla */
+  text-align: left;
+}
+
+.fondo {
+  
+  background-color: aqua;
+  border: 1px solid black;
+  width: 33%;
+  display: flex;
+  line-height: initial;
+  align-items: end;
+}
+
+.signature {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: small;
+}
+
+.datosempleado,
+.noinventarioserie,
+.tiporow {
+  display: flex;
+  
+}
+
+.datosempleadoid {
+  display: flex;
+  flex-direction: row;
+  margin-left: 50%;
+}
+
+#numEmpleado {
+  width: 62%;
+}
+
+.textoimportante {
+  height: 20vh; /* Reduzco la altura del textarea */
+  font-size: x-small; /* Ajusto el tamaño de fuente */
+  font-family: inherit;
+  font-weight: 700;
+}
+
+fieldset {
+  margin-bottom: 5px;
+}
+
+.invserproram {
+  display: flex;
+  width: 50%;
+}
