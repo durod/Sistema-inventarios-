@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 const URI = "http://localhost:3002/equipos";
 import Table from "react-bootstrap/Table";
+import { Dropdown } from 'react-bootstrap';
 
 function VerEquipos() {
   const [equipos, setEquipos] = useState([]);
@@ -65,20 +66,27 @@ function VerEquipos() {
         {/* Resto de las columnas de equipos */}
 
         <td>
-          <Link
-            to={`/datoscompletos/${equipo.id}`}
-            className="btn btn-info mb-2"
-          >
-            Ver Mas
-          </Link>
-          <button
-            className="btn btn-danger mx-auto"
-            onClick={() =>
-              confirmarEliminarEquipo(equipo.id, equipo.codigo_inventario)
-            }
-          >
-            Eliminar
-          </button>
+        <Dropdown>
+          <Dropdown.Toggle variant="primary" id="dropdown-basic">
+            Acciones
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item>
+              <Link to={`/datoscompletos/${equipo.id}`} className="btn btn-info mb-2">
+                Ver Más
+              </Link>
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <button
+                className="btn btn-danger mx-auto"
+                onClick={() => confirmarEliminarEquipo(equipo.id, equipo.codigo_inventario)}
+              >
+                Eliminar
+              </button>
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
         </td>
       </tr>
     ));
@@ -129,7 +137,7 @@ function VerEquipos() {
                 <th className="text-center align-middle">
                   Suscripción a Office
 </th> */}
-                <th className="text-center align-middle">Acciones</th>
+                <th className="text-center align-middle"></th>
               </tr>
             </thead>
             <tbody>{renderEquipos()}</tbody>
