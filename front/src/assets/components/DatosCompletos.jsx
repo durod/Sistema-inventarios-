@@ -66,7 +66,9 @@ function DatosCompletos() {
     <div className="containerform formagregarActualizarEquipo">
       <h2 >Datos completos</h2>
       <Form>
-      <div style={{border: "5px solid dimgray"}}>
+      <div style={{border: '5px solid dimgray',
+        backgroundColor: 'mediumturquoise',
+        padding: '1%'}}>
       <h2 style={{textAlign: "left", marginTop: "25px",padding: "5px"}}>Datos del empleado:</h2>
         <Row className="mb-3">
           
@@ -125,7 +127,9 @@ function DatosCompletos() {
         </Row>
         </div>
 
-        <div  style={{border: "5px solid dimgray", marginTop: "45px"}}>
+        <div  style={{border: '5px solid dimgray',
+        backgroundColor: 'mediumturquoise',
+        padding: '1%', marginTop: "45px"}}>
           <h2 style={{textAlign: "left", marginTop: "25px",padding: "5px"}}>Datos del Equipo</h2>
         
         <Row className="mb-3">

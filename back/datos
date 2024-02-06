@@ -1,4 +1,8 @@
 tabla para unir la tabla empleados y pc_info
+
+------ -- Eliminar restricción única IMPORTANTE-----------
+ALTER TABLE asignaciones DROP CONSTRAINT asignaciones_codigo_inventario_unique;
+
 CREATE TABLE asignaciones (
     id_asignacion SERIAL PRIMARY KEY,
     numEmpleado INT,

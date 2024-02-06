@@ -9,9 +9,10 @@ import {
   verEquipos,
   actualizarEquipo,
   eliminarEquipo,
+  obtenerDetallesEquipoPorId,
   buscarEquiposPorParametro,
 } from "./consulta.js";
-import { obtenerDetallesEquipoPorId } from "./consulta.js";
+
 
 // importando express y cors
 import express from "express";
@@ -155,8 +156,10 @@ app.put("/equipos/actualizar/:id", async (req, res) => {
   }
 });
 
-//5. DELETE para eliminar un registro de la tabla segun ID
 
+
+
+//5. DELETE para eliminar un registro de la tabla segun ID
 app.delete("/equipos/:id", async (req, res) => {
   const equipoId = req.params.id;
   try {

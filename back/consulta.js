@@ -163,10 +163,10 @@ const actualizarEquipo = async (id, newData) => {
     RETURNING *;
 `;
 
-const asignacionValues = [
-    newData.codigo_inventario,  // Código de inventario del equipo
-    newData.numEmpleado  // Número de empleado especificado
-];
+    const asignacionValues = [
+      newData.codigo_inventario, // Código de inventario del equipo
+      newData.numEmpleado, // Número de empleado especificado
+    ];
 
     await pool.query(asignacionConsulta, asignacionValues);
 
@@ -185,34 +185,34 @@ const asignacionValues = [
 };
 
 const obtenerDetallesEquipoPorId = async (id) => {
-    try {
-        const consulta = `
+  try {
+    const consulta = `
         SELECT pc_info.*, empleados.*
         FROM pc_info
         LEFT JOIN asignaciones ON pc_info.codigo_inventario = asignaciones.codigo_inventario
         LEFT JOIN empleados ON asignaciones.numEmpleado = empleados.numEmpleado
         WHERE pc_info.id = $1;
     `;
-      const values = [id];
-  
-      const result = await pool.query(consulta, values);
-  
-      if (result.rowCount === 0) {
-        // Si no se encuentra el equipo, puedes lanzar una excepción o devolver un mensaje indicando que no se encontró
-        throw new Error("No se encontró el equipo con el ID proporcionado.");
-      }
-  
-      return result.rows[0];
-    } catch (error) {
-      console.error("Error al obtener detalles del equipo por ID:", error);
-      throw error;
+    const values = [id];
+
+    const result = await pool.query(consulta, values);
+
+    if (result.rowCount === 0) {
+      // Si no se encuentra el equipo, puedes lanzar una excepción o devolver un mensaje indicando que no se encontró
+      throw new Error("No se encontró el equipo con el ID proporcionado.");
     }
-  };
+
+    return result.rows[0];
+  } catch (error) {
+    console.error("Error al obtener detalles del equipo por ID:", error);
+    throw error;
+  }
+};
 
 // Función para buscar equipos en función de un parámetro en todas las columnas
 const buscarEquiposPorParametro = async (parametro) => {
-    try {
-        const consulta = `
+  try {
+    const consulta = `
         SELECT * 
         FROM pc_info
         WHERE 

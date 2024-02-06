@@ -21,6 +21,7 @@ body {
 
 .formLabel {
   font-weight: bold;
+  font-family: monospace;
 }
 
 .container {
@@ -41,7 +42,7 @@ body {
 }
 
 .formagregarActualizarEquipo {
-  background-color: mediumturquoise;
+  background-color: mediumaquamarine;
   border: 3px solid black;
   border-radius: 20px;
   padding: 2%;
