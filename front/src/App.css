@@ -5,8 +5,9 @@ body {
   /* justify-items: flex-end; */
   text-align: center;
   background-color: lightslategray;
-  padding: 4%;
+  padding: 0;
   width: 100%;
+  margin: 0;
 }
 .botonesAgregarBuscar {
   display: flex;

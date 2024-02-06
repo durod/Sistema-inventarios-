@@ -1,0 +1,52 @@
+.formagregarActualizarEquipo {
+    background-color: aqua;
+    border: 3px solid black;
+    padding: 2%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cajaprincipaldatos {
+    display: flex;
+    gap: 6px;
+    width: 100vw;
+    /* background-color: blue; */
+    padding: 0px 16px 1px 16px;
+}
+.cajadatos {
+    border: 3px solid teal;
+    background-color: papayawhip;
+    padding: 1%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.botonesdatos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 17px;
+    margin-bottom: 7px;
+}
+
+.formLabel {
+    margin: 1px 0px 4px;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: smaller;
+}
+
+.form-control {
+  margin-top: 0px;
+  font-size: medium;
+  font-family: system-ui;
+}
+
+.h2datos{
+    text-align: center;
+    background-color: cornsilk;
+    border-radius: 25px;
+    padding: 1px;
+}
