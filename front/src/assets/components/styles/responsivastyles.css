@@ -1,105 +1,148 @@
 body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  margin: 10px; /* Reduzco los márgenes */
+  margin: 0;
+  padding: 0;
   background-color: white;
 }
 
-hr {
-  border: 2px solid lightseagreen;
-  
+.cajaprincipal {
+  margin-top: 1%;
+  padding: 5px;
+  font-size: smaller;
 }
 
-h2 {
-  text-align: center;
-  font-size: larger;
-}
-
-form {
-  margin-top: 10px;
-}
-
-label {
-  display: block;
-  text-align: center;
-  height: 21PX;
-  margin: 18px 0px 11px;
-}
-
-input,
-textarea {
-  width: 100%;
-  padding: 8px;
-  height: 21px; /* Reduzco la altura de los inputs */
-  box-sizing: border-box;
-  height: 3rem;
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-}
-
-.table,
-th,
-td {
-  border: 1px solid black;
-}
-
-.th,
-.td {
-  padding: 8px; /* Reduzco el espacio en las celdas de la tabla */
-  text-align: left;
-}
-
-.fondo {
-  
-  background-color: aqua;
-  border: 1px solid black;
-  width: 33%;
-  display: flex;
-  line-height: initial;
-  align-items: end;
-}
-
-.signature {
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  font-size: small;
-}
-
-.datosempleado,
-.noinventarioserie,
-.tiporow {
-  display: flex;
-  
-}
-
+/*--------Fecha y num empleado------------------------------------------*/
 .datosempleadoid {
   display: flex;
-  flex-direction: row;
-  margin-left: 50%;
+  justify-content: end;
 }
 
-#numEmpleado {
-  width: 62%;
+.datosempleadoid label {
+  background-color: aqua;
+  border: 1px solid black;
+  padding: 3px;
 }
 
-.textoimportante {
-  height: 20vh; /* Reduzco la altura del textarea */
-  font-size: x-small; /* Ajusto el tamaño de fuente */
-  font-family: inherit;
-  font-weight: 700;
+/*--------------datos empleado---------------------------------------------------*/
+.datosempleado {
+  display: flex;
+  width: 100%;
+  background-color: blue;
 }
 
-fieldset {
-  margin-bottom: 5px;
+.datosempleado label {
+  background-color: aqua;
+  width: 30%;
+  border: 1px solid black;
+}
+
+.datosempleado input {
+  width: 70%;
+}
+
+/*-----------datos del equipo--------------------------------------------------*/
+
+.noinventarioserie {
+  display: flex;
+  width: 100%;
 }
 
 .invserproram {
-  display: flex;
   width: 50%;
+}
+
+.invserproram label {
+  background-color: aqua;
+  width: 30%;
+  border: 1px solid black;
+}
+
+.invserproram input {
+  width: 70%;
+}
+
+.datosequipo {
+  width: 100%;
+}
+
+.datosequipo label {
+  background-color: aqua;
+  width: 30%;
+  border: 1px solid black;
+}
+
+.datosequipo input {
+  width: 70%;
+}
+
+.datoprocesador{
+  width: 50%;
+}
+.datoprocesador label{
+  background-color: aqua;
+  width: 40%;
+  border: 1px solid black;
+}
+.datoprocesador input{
+  width: 59%;
+}
+
+.datoram{
+  width: 50%;
+}
+
+.datoram label{
+background-color: aqua;
+width: 70%;
+border: 1px solid black;
+}
+
+.datoram input{
+  width: 30%;
+}
+
+/*---------observaciones---------------------------------*/
+.cajaobservaciones {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+}
+
+.cajasecundariaobservaciones {
+  display: flex;
+}
+
+.cajasecundariaobservaciones label {
+  background-color: aqua;
+  border: 1px solid black;
+  width: 20%;
+}
+
+.cajasecundariaobservaciones input{
+  width: 80%;
+}
+
+
+/*---------importante---------------------------------------------------------*/
+
+.cajaimportante{
+  display: flex;
+  flex-direction: column;
+}
+
+.cajaimportante textarea{
+  height: 14rem;
+  font-size: smaller;
+}
+
+/*----------firmas--------------------*/
+.signature{
+  display: flex;
+    gap: 28px;
+    margin-top: 8px;
+}
+
+.signaturedatos{
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
 }

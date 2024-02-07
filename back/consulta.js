@@ -88,7 +88,8 @@ const verEquipos = async () => {
         SELECT pc_info.*, empleados.*
         FROM pc_info
         LEFT JOIN asignaciones ON pc_info.codigo_inventario = asignaciones.codigo_inventario
-        LEFT JOIN empleados ON asignaciones.numEmpleado = empleados.numEmpleado;
+        LEFT JOIN empleados ON asignaciones.numEmpleado = empleados.numEmpleado
+        ORDER BY pc_info.codigo_inventario ASC; -- Ordenar ascendente por codigo_inventario
         `;
     const { rows, command, rowCount, fields } = await pool.query(query);
 
@@ -108,6 +109,7 @@ const verEquipos = async () => {
     throw error;
   }
 };
+
 
 // Función para actualizar un equipo en la tabla
 const actualizarEquipo = async (id, newData) => {
