@@ -10,6 +10,13 @@ body {
   font-size: smaller;
 }
 
+h5{
+  text-align: left;
+}
+
+hr{
+  border: 2px solid darkblue;
+}
 /*--------Fecha y num empleado------------------------------------------*/
 .datosempleadoid {
   display: flex;
@@ -37,6 +44,7 @@ body {
 
 .datosempleado input {
   width: 70%;
+  text-transform: uppercase;
 }
 
 /*-----------datos del equipo--------------------------------------------------*/
@@ -54,10 +62,12 @@ body {
   background-color: aqua;
   width: 30%;
   border: 1px solid black;
+  font-size: initial;
 }
 
 .invserproram input {
   width: 70%;
+  text-transform: uppercase;
 }
 
 .datosequipo {
@@ -68,36 +78,43 @@ body {
   background-color: aqua;
   width: 30%;
   border: 1px solid black;
+  font-size: initial;
 }
 
 .datosequipo input {
   width: 70%;
+  text-transform: uppercase;
 }
 
 .datoprocesador{
-  width: 50%;
+  width: 60%;
 }
 .datoprocesador label{
   background-color: aqua;
-  width: 40%;
+  width: 41%;
   border: 1px solid black;
+  font-size: initial;
+  
 }
 .datoprocesador input{
   width: 59%;
+  text-transform: uppercase;
 }
 
 .datoram{
-  width: 50%;
+  width: 40%;
 }
 
 .datoram label{
 background-color: aqua;
 width: 70%;
 border: 1px solid black;
+font-size: initial;
 }
 
 .datoram input{
   width: 30%;
+  text-transform: uppercase;
 }
 
 /*---------observaciones---------------------------------*/
@@ -115,10 +132,12 @@ border: 1px solid black;
   background-color: aqua;
   border: 1px solid black;
   width: 20%;
+  font-size: initial;
 }
 
 .cajasecundariaobservaciones input{
   width: 80%;
+  text-transform: uppercase;
 }
 
 

@@ -20,6 +20,8 @@ function Responsiva() {
 
     // Reduzco el tamaño de fuente para intentar que todo quepa en una página
     document.body.style.fontSize = "10px";
+    window.alert("Recuerda imprimir solo la primera pag.");
+
 
     html2pdf(responsivaRef.current, pdfOptions);
 
@@ -108,7 +110,7 @@ function Responsiva() {
           </fieldset>
 
           <fieldset>
-            <h5>Datos del Equipo Asignado</h5>
+          <h5 style={{ marginTop: '21px' }}>Datos del Equipo Asignado</h5>
             <hr />
 
             <div>
@@ -329,6 +331,9 @@ nómina.
             </div>
           </div>
 
+                <br />
+                <br />
+                <br />
           <button type="button" onClick={generatePDF}>
             Generar Responsiva
           </button>
