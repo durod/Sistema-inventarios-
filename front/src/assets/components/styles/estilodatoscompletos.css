@@ -1,11 +1,5 @@
-.formagregarActualizarEquipo {
-    background-color: aqua;
-    border: 3px solid black;
-    padding: 2%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.containerform{
+    margin-top: 5%;
 }
 
 .cajaprincipaldatos {
@@ -14,6 +8,7 @@
     width: 100vw;
     /* background-color: blue; */
     padding: 0px 16px 1px 16px;
+    
 }
 .cajadatos {
     border: 3px solid teal;

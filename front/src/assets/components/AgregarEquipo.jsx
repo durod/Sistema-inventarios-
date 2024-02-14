@@ -258,9 +258,9 @@ export default function AgregarEquipo() {
               placeholder="Ingrese el teclado"
             />
           </Form.Group>
-        </Row>
+        
 
-        <Row className="mb-3">
+        
           <Form.Group as={Col} controlId="formGridMouse">
             <Form.Label className="formLabel">MOUSE</Form.Label>
             <Form.Control

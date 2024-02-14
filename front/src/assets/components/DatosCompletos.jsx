@@ -62,7 +62,7 @@ function DatosCompletos() {
     });
   };
   return (
-    <div className="containerform formagregarActualizarEquipo">
+    <div className="containerform ">
       <h2>Datos completos</h2>
       <Form>
       <div className="botonesdatos">
@@ -287,8 +287,8 @@ function DatosCompletos() {
                 value={equipoData.monitor || ""}
               />
             </Form.Group>
-
-            <Form.Group controlId="formGridKeyboard">
+            <Row className="mb-3">
+            <Form.Group as={Col} controlId="formGridKeyboard">
               <Form.Label className="formLabel">TECLADO</Form.Label>
               <Form.Control
                 className="text-center-input"
@@ -298,7 +298,7 @@ function DatosCompletos() {
               />
             </Form.Group>
 
-            <Form.Group controlId="formGridMouse">
+            <Form.Group as={Col} controlId="formGridMouse">
               <Form.Label className="formLabel">MOUSE</Form.Label>
               <Form.Control
                 className="text-center-input"
@@ -307,7 +307,7 @@ function DatosCompletos() {
                 value={equipoData.raton || ""}
               />
             </Form.Group>
-
+            </Row>
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridAccessories">
                 <Form.Label className="formLabel">ACCESORIOS</Form.Label>
