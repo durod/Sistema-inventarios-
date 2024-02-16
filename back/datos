@@ -84,3 +84,11 @@ CREATE TABLE pc_info (
     suscripcion_office VARCHAR(255),
 	numEmpleado INTEGER REFERENCES empleados(numEmpleado)
 );
+
+tabla perfiles
+
+CREATE TABLE perfiles (
+  id SERIAL PRIMARY KEY,
+  nombre VARCHAR(255) NOT NULL,
+  permisos JSON NOT NULL
+);
