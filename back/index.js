@@ -61,6 +61,8 @@ app.post("/equipos", async (req, res) => {
     raton,
     accesorios,
     suscripcion_office,
+    ubicacion,
+    foto,
   } = req.body;
 
   try {
@@ -81,6 +83,8 @@ app.post("/equipos", async (req, res) => {
       raton,
       accesorios,
       suscripcion_office,
+      ubicacion,
+    foto,
     });
     res.send("equipo agregado con éxito");
     console.log("valor req.body en la ruta /equipos: ", req.body);

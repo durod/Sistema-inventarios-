@@ -11,6 +11,7 @@ import BusquedaEquipos from "./assets/components/BusquedaEquipos";
 import DatosCompletos from "./assets/components/DatosCompletos";
 import Responsiva from "./assets/components/Responsiva";
 import Header from "./assets/components/Header";
+import VistaAuditor from "./assets/components/VistaAuditor";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/datoscompletos/:id" element={<DatosCompletos />} />
           <Route path="/buscarEquipo" element={<BusquedaEquipos />} />
           <Route path="//verResponsiva/:id" element={<Responsiva />} />
+          <Route path="//vistaauditor/" element={<VistaAuditor />} />
         </Routes>
       </BrowserRouter>
     </>

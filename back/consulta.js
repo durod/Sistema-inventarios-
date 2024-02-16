@@ -22,6 +22,8 @@ const agregarEquipo = async ({
   raton,
   accesorios,
   suscripcion_office,
+  ubicacion,
+  foto,
 }) => {
   try {
     console.log(
@@ -40,11 +42,13 @@ const agregarEquipo = async ({
       teclado,
       raton,
       accesorios,
-      suscripcion_office
+      suscripcion_office,
+      ubicacion,
+      foto,
     );
 
     const consulta =
-      "INSERT INTO pc_info VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING *";
+      "INSERT INTO pc_info VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING *";
     const values = [
       codigo_inventario,
       tipo_equipo,
@@ -61,6 +65,9 @@ const agregarEquipo = async ({
       raton,
       accesorios,
       suscripcion_office,
+      ubicacion,
+      foto,
+      
     ];
 
     const result = await pool.query(consulta, values);
