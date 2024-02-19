@@ -12,12 +12,14 @@ import {
   obtenerDetallesEquipoPorId,
   buscarEquiposPorParametro,
 } from "./consulta.js";
-
+import fs from 'fs';
 
 // importando express y cors
 import express from "express";
 const app = express();
 import cors from "cors";
+import multer from 'multer';
+
 
 // middleware para parsear body enviado al servidor
 app.use(express.json());
@@ -25,6 +27,21 @@ app.use(cors());
 
 //// levantando servidor USANDO UN PUERTO PREDETERMINADO EN .ENV
 const PORT = process.env.PORT || 3002;
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/') // Directorio donde se guardarán los archivos
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname) // Se mantiene el nombre original del archivo
+  }
+});
+
+const upload = multer({ storage: storage });
+
+
+
+
 app.listen(PORT, () => {
   console.log("servidor listo en http://localhost:" + PORT);
 });
@@ -61,8 +78,8 @@ app.post("/equipos", async (req, res) => {
     raton,
     accesorios,
     suscripcion_office,
-    ubicacion,
-    foto,
+    ubicacion
+    
   } = req.body;
 
   try {
@@ -83,8 +100,8 @@ app.post("/equipos", async (req, res) => {
       raton,
       accesorios,
       suscripcion_office,
-      ubicacion,
-    foto,
+      ubicacion
+    
     });
     res.send("equipo agregado con éxito");
     console.log("valor req.body en la ruta /equipos: ", req.body);
@@ -137,28 +154,66 @@ app.get("/buscarEquipo", async (req, res) => {
 
 
 //3. PUT para modificar el equipo
-app.put("/equipos/actualizar/:id", async (req, res) => {
+app.put("/equipos/actualizar/:id", upload.single('foto'), async (req, res) => {
   const equipoId = req.params.id;
   const equipoData = req.body;
 
   try {
-    const updatedEquipo = await actualizarEquipo(equipoId, equipoData);
+    // Obtener el código de inventario del equipo
+    const codigoInventario = equipoData.codigo_inventario;
 
-    return res.status(200).json({
-      ok: true,
-      message: "Equipo actualizado con éxito", // Cambiado el mensaje
-      result: updatedEquipo,
+    // Obtener el nombre del archivo original
+    const originalFileName = req.file.originalname;
+
+    // Construir el nuevo nombre del archivo utilizando el código de inventario
+    const newFileName = `${codigoInventario}-${originalFileName}`;
+
+    // Ruta original del archivo
+    const oldFilePath = req.file.path;
+
+    // Ruta nueva del archivo
+    const newFilePath = `uploads/${newFileName}`;
+
+    // Renombrar el archivo
+    fs.rename(oldFilePath, newFilePath, (err) => {
+      if (err) {
+        console.error("Error al renombrar el archivo:", err);
+        throw err; // Puedes manejar el error de acuerdo a tus necesidades
+      }
+
+      console.log("Archivo renombrado correctamente.");
+
+      // Actualizar equipo con los datos proporcionados
+      actualizarEquipo(equipoId, equipoData)
+        .then((updatedEquipo) => {
+          // Enviar respuesta de éxito
+          res.status(200).json({
+            ok: true,
+            message: "Equipo actualizado con éxito",
+            result: updatedEquipo,
+          });
+        })
+        .catch((error) => {
+          // Manejar errores
+          console.error("Error al actualizar equipo:", error.message);
+          const { status, message } = handleErrors(error.code);
+          res.status(status).json({
+            ok: false,
+            result: message + " : " + error.column,
+          });
+        });
     });
   } catch (error) {
+    // Manejar errores
     console.error("Error al actualizar equipo:", error.message);
     const { status, message } = handleErrors(error.code);
-
-    return res.status(status).json({
+    res.status(status).json({
       ok: false,
       result: message + " : " + error.column,
     });
   }
 });
+
 
 
 

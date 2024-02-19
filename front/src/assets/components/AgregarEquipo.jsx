@@ -36,7 +36,7 @@ export default function AgregarEquipo() {
     const suscripcionOffice =
       event.target.elements.formGridOfficeSubscription.value;
       const ubicacion = event.target.elements.formGridubicacion.value;
-      const foto = event.target.elements.formGridfoto.value;
+      
 
     // Verificar que al menos un campo esté lleno
     if (!(codigoInventario && tipoEquipo && numeroSerie)) {
@@ -61,8 +61,8 @@ export default function AgregarEquipo() {
       raton: raton,
       accesorios: accesorios,
       suscripcion_office: suscripcionOffice,
-      ubicacion,
-      foto,
+      ubicacion
+      
     };
 
     try {
@@ -311,19 +311,7 @@ export default function AgregarEquipo() {
             </Form.Control>
           </Form.Group>
 
-          <Form.Group as={Col} controlId="formGridfoto">
-            <Form.Label className="formLabel">Foto del Equipo</Form.Label>
-            <Form.Control
-              className="text-center-input"
-              type="file" // Cambia el tipo de entrada a "file"
-              accept="image/*" // Esto limita la selección de archivos solo a imágenes
-              placeholder="Seleccione una imagen"
-            />
-          </Form.Group>
-        </Row>
-
-
-
+          </Row>
 
 
 

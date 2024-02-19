@@ -23,7 +23,7 @@ const agregarEquipo = async ({
   accesorios,
   suscripcion_office,
   ubicacion,
-  foto,
+  
 }) => {
   try {
     console.log(
@@ -43,12 +43,12 @@ const agregarEquipo = async ({
       raton,
       accesorios,
       suscripcion_office,
-      ubicacion,
-      foto,
+      ubicacion
+     
     );
 
     const consulta =
-      "INSERT INTO pc_info VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING *";
+      "INSERT INTO pc_info VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING *";
     const values = [
       codigo_inventario,
       tipo_equipo,
@@ -66,7 +66,7 @@ const agregarEquipo = async ({
       accesorios,
       suscripcion_office,
       ubicacion,
-      foto,
+      
       
     ];
 
@@ -139,7 +139,9 @@ const actualizarEquipo = async (id, newData) => {
                 teclado = $13,
                 raton = $14,
                 accesorios = $15,
-                suscripcion_office = $16
+                suscripcion_office = $16,
+                ubicacion = $17
+                 
             WHERE id = $1
             RETURNING *`;
 
@@ -161,6 +163,8 @@ const actualizarEquipo = async (id, newData) => {
       newData.raton,
       newData.accesorios,
       newData.suscripcion_office,
+      newData.ubicacion
+      
     ];
 
     // Ejecutar la consulta y obtener el resultado

@@ -10,6 +10,7 @@ const URI = "http://localhost:3002/equipos";
 
 const ActualizarEquipo = () => {
   const { id } = useParams(); // Obtener el parámetro de la URL
+  const [fotoEquipo, setFotoEquipo] = useState(null);
   const [equipoData, setEquipoData] = useState({
     codigo_inventario: "",
     tipo_equipo: "",
@@ -26,6 +27,8 @@ const ActualizarEquipo = () => {
     raton: "",
     accesorios: "",
     suscripcion_office: "",
+    ubicacion: "",
+    
   });
 
   useEffect(() => {
@@ -46,11 +49,28 @@ const ActualizarEquipo = () => {
     setEquipoData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  const handleFileChange = (event) => {
+    setFotoEquipo(event.target.files[0]);
+  };
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     try {
-      await axios.put(`${URI}/actualizar/${id}`, equipoData); // Cambiado el llamado a la función
+      const formData = new FormData();
+      formData.append("foto", fotoEquipo); // Agregar la imagen al formData
+      // Agregar los datos del equipo al formData
+      Object.entries(equipoData).forEach(([key, value]) => {
+        formData.append(key, value);
+      });
+  
+      await axios.put(`${URI}/actualizar/${id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data", // Establecer el tipo de contenido como formData
+        },
+      });
+  
       alert("El equipo se ha actualizado correctamente.");
       // Puedes redirigir a la página de VerEquipos o a otra página según tus necesidades
     } catch (error) {
@@ -269,6 +289,38 @@ const ActualizarEquipo = () => {
             />
           </Form.Group>
         </Row>
+
+    <Row className="mb-3">
+          <Form.Group as={Col} controlId="formGridubicacion">
+            <Form.Label className="formLabel">Ubicación</Form.Label>
+            <Form.Control
+              className="text-center-input"
+              as="select"
+              aria-label="Default select example"
+              name="ubicacion" // Agrega el atributo name con el mismo nombre que el estado
+              value={equipoData.ubicacion} // Asigna el valor del estado al value del select
+              onChange={handleChange}
+            >
+              <option>Selecciona ubicación del equipo</option>
+              <option value="pbalmacen">PB - Almacén</option>
+              <option value="piso3">Economista P3</option>
+              <option value="piso4">Economista P4</option>
+              <option value="santander">Santander rotativa</option>
+            </Form.Control>
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridfoto">
+            <Form.Label className="formLabel">Foto del Equipo</Form.Label>
+            <Form.Control
+              className="text-center-input"
+              type="file" // Cambia el tipo de entrada a "file"
+              accept="image/*" // Esto limita la selección de archivos solo a imágenes
+              onChange={handleFileChange} 
+            />
+          </Form.Group>
+        </Row>
+
+
         <Row className="mb-3">
           <Col>
             <Button variant="primary" type="submit">
