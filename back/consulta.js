@@ -23,7 +23,6 @@ const agregarEquipo = async ({
   accesorios,
   suscripcion_office,
   ubicacion,
-  
 }) => {
   try {
     console.log(
@@ -44,7 +43,6 @@ const agregarEquipo = async ({
       accesorios,
       suscripcion_office,
       ubicacion
-     
     );
 
     const consulta =
@@ -66,8 +64,6 @@ const agregarEquipo = async ({
       accesorios,
       suscripcion_office,
       ubicacion,
-      
-      
     ];
 
     const result = await pool.query(consulta, values);
@@ -117,10 +113,11 @@ const verEquipos = async () => {
   }
 };
 
-
 // Función para actualizar un equipo en la tabla
 const actualizarEquipo = async (id, newData) => {
   try {
+    console.log("Iniciando actualización de equipo...");
+
     // Crear la consulta para actualizar los datos del equipo con el ID proporcionado
     const consulta = `
             UPDATE pc_info
@@ -163,12 +160,16 @@ const actualizarEquipo = async (id, newData) => {
       newData.raton,
       newData.accesorios,
       newData.suscripcion_office,
-      newData.ubicacion
-      
+      newData.ubicacion,
     ];
+
+    console.log("Consulta de actualización:", consulta);
+    console.log("Valores para la actualización:", values);
 
     // Ejecutar la consulta y obtener el resultado
     const result = await pool.query(consulta, values);
+
+    console.log("Equipo actualizado correctamente:", result.rows[0]);
 
     const asignacionConsulta = `
     INSERT INTO asignaciones (codigo_inventario, numEmpleado)

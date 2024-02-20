@@ -1,6 +1,8 @@
 // para manejar variables de ambiente
 import * as dotenv from "dotenv";
 dotenv.config();
+import path from 'path';
+
 
 // importando modulos personalizados
 import { handleErrors } from "./errors.js";
@@ -19,6 +21,8 @@ import express from "express";
 const app = express();
 import cors from "cors";
 import multer from 'multer';
+const currentFileUrl = import.meta.url;
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 
 // middleware para parsear body enviado al servidor
@@ -30,10 +34,11 @@ const PORT = process.env.PORT || 3002;
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/') // Directorio donde se guardarán los archivos
+    
+    cb(null, '../front/public/uploads/')
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname) // Se mantiene el nombre original del archivo
+    cb(null, file.originalname);
   }
 });
 
@@ -159,60 +164,54 @@ app.put("/equipos/actualizar/:id", upload.single('foto'), async (req, res) => {
   const equipoData = req.body;
 
   try {
-    // Obtener el código de inventario del equipo
-    const codigoInventario = equipoData.codigo_inventario;
+    console.log("Iniciando actualización de equipo...");
+    console.log("ID del equipo a actualizar:", equipoId);
+    console.log("Datos del equipo a actualizar:", equipoData);
 
-    // Obtener el nombre del archivo original
-    const originalFileName = req.file.originalname;
+    // Obtener el nombre del archivo original si existe
+    const originalFileName = req.file ? req.file.originalname : null;
+    console.log("Nombre del archivo original:", originalFileName);
 
-    // Construir el nuevo nombre del archivo utilizando el código de inventario
-    const newFileName = `${codigoInventario}-${originalFileName}`;
+    // Si existe el archivo original, procede a renombrarlo
+    if (originalFileName) {
+      const codigoInventario = equipoData.codigo_inventario;
+      const newFileName = `${codigoInventario}`;
+      console.log("Nuevo nombre del archivo:", newFileName);
 
-    // Ruta original del archivo
-    const oldFilePath = req.file.path;
+      const oldFilePath = req.file.path;
+      console.log("Ruta original del archivo:", oldFilePath);
 
-    // Ruta nueva del archivo
-    const newFilePath = `uploads/${newFileName}`;
+      const newFilePath = `../front/public/uploads//${newFileName}`;
+      console.log("Ruta nueva del archivo:", newFilePath);
 
-    // Renombrar el archivo
-    fs.rename(oldFilePath, newFilePath, (err) => {
-      if (err) {
+      try {
+        fs.renameSync(oldFilePath, newFilePath);
+        console.log("Archivo renombrado correctamente.");
+      } catch (err) {
         console.error("Error al renombrar el archivo:", err);
-        throw err; // Puedes manejar el error de acuerdo a tus necesidades
+        throw err;
       }
+    }
 
-      console.log("Archivo renombrado correctamente.");
-
-      // Actualizar equipo con los datos proporcionados
-      actualizarEquipo(equipoId, equipoData)
-        .then((updatedEquipo) => {
-          // Enviar respuesta de éxito
-          res.status(200).json({
-            ok: true,
-            message: "Equipo actualizado con éxito",
-            result: updatedEquipo,
-          });
-        })
-        .catch((error) => {
-          // Manejar errores
-          console.error("Error al actualizar equipo:", error.message);
-          const { status, message } = handleErrors(error.code);
-          res.status(status).json({
-            ok: false,
-            result: message + " : " + error.column,
-          });
-        });
+    // Actualizar equipo con los datos proporcionados
+    const updatedEquipo = await actualizarEquipo(equipoId, equipoData);
+    console.log("Equipo actualizado con éxito:", updatedEquipo);
+    
+    res.status(200).json({
+      ok: true,
+      message: "Equipo actualizado con éxito",
+      result: updatedEquipo,
     });
   } catch (error) {
-    // Manejar errores
     console.error("Error al actualizar equipo:", error.message);
     const { status, message } = handleErrors(error.code);
-    res.status(status).json({
+    res.status(status || 500).json({
       ok: false,
-      result: message + " : " + error.column,
+      result: message || "Error interno del servidor",
     });
   }
 });
+
 
 
 

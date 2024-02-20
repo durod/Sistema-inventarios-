@@ -59,7 +59,10 @@ const ActualizarEquipo = () => {
   
     try {
       const formData = new FormData();
-      formData.append("foto", fotoEquipo); // Agregar la imagen al formData
+      if (fotoEquipo !== null) {
+        formData.append("foto", fotoEquipo);
+      }
+  
       // Agregar los datos del equipo al formData
       Object.entries(equipoData).forEach(([key, value]) => {
         formData.append(key, value);
@@ -67,12 +70,11 @@ const ActualizarEquipo = () => {
   
       await axios.put(`${URI}/actualizar/${id}`, formData, {
         headers: {
-          "Content-Type": "multipart/form-data", // Establecer el tipo de contenido como formData
+          "Content-Type": "multipart/form-data",
         },
       });
   
       alert("El equipo se ha actualizado correctamente.");
-      // Puedes redirigir a la página de VerEquipos o a otra página según tus necesidades
     } catch (error) {
       console.error("Error al actualizar equipo:", error.message);
     }
