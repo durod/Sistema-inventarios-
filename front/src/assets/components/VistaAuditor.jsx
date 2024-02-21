@@ -1,6 +1,8 @@
-import Table from "react-bootstrap/Table";
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Table from "react-bootstrap/Table";
 
 const URI = "http://localhost:3002/equipos";
 
@@ -23,75 +25,93 @@ function VistaAuditor() {
     }
   };
 
-  const renderEquipos = () => {
-    return equipos.map((equipo) => (
-      <tr key={equipo.id}>
-        {/* Información de equipos */}
-        <td className="text-center align-middle">{equipo.codigo_inventario}</td>
+  // Función para dividir los equipos por ubicación
+  const dividirPorUbicacion = () => {
+    const equiposPorUbicacion = {
+      "PB - Almacén": [],
+      "Economista P3": [],
+      "Economista P4": [],
+      "Santander rotativa": [],
+    };
+    equipos.forEach((equipo) => {
+      switch (equipo.ubicacion) {
+        case "pbalmacen":
+          equiposPorUbicacion["PB - Almacén"].push(equipo);
+          break;
+        case "piso3":
+          equiposPorUbicacion["Economista P3"].push(equipo);
+          break;
+        case "piso4":
+          equiposPorUbicacion["Economista P4"].push(equipo);
+          break;
+        case "santander":
+          equiposPorUbicacion["Santander rotativa"].push(equipo);
+          break;
+        default:
+          break;
+      }
+    });
+    return equiposPorUbicacion;
+  };
 
-        <td className="text-center align-middle">1</td>
-        <td className="text-center align-middle">{`${equipo.tipo_equipo} ${
-          equipo.marca
-        } ${equipo.modelo} S/N ${equipo.numero_serie} ${
-          equipo.numero_serie_cargador
-            ? `Cargador: ${equipo.numero_serie_cargador}`
-            : ""
-        } ${equipo.teclado ? `Teclado: ${equipo.teclado}` : ""} ${
-          equipo.raton ? `Raton: ${equipo.raton}` : ""
-        } ${equipo.monitor ? `Monitor: ${equipo.monitor}` : ""}`}</td>
-
-        <td className="text-center align-middle">{equipo.ubicacion}</td>
-
-        <td className="text-center align-middle">{equipo.id_departamento}</td>
-        <td className="text-center align-middle">
-          <img
-            src={`../../../public/uploads/${equipo.codigo_inventario}.jpg`}
-            alt={equipo.codigo_inventario}
-             // Establece un tamaño máximo para la imagen
-          />
-        </td>
-      </tr>
+  // Función para renderizar las pestañas y tablas por ubicación
+  const renderTabs = () => {
+    const equiposPorUbicacion = dividirPorUbicacion();
+    return Object.entries(equiposPorUbicacion).map(([ubicacion, equipos]) => (
+      <Tab key={ubicacion} eventKey={ubicacion} title={ubicacion}>
+        <Table striped bordered hover variant="dark" className="custom-table">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Piezas</th>
+              <th>Descripción Específica</th>
+              <th>Ubicación</th>
+              <th>Departamento</th>
+              <th>Foto</th>
+            </tr>
+          </thead>
+          <tbody>
+            {equipos.map((equipo) => (
+              <tr key={equipo.id}>
+                <td>{equipo.codigo_inventario}</td>
+                <td>{equipo.piezas}</td>
+                <td>{`${equipo.tipo_equipo} ${equipo.marca} ${
+                  equipo.modelo
+                } S/N ${equipo.numero_serie} ${
+                  equipo.numero_serie_cargador
+                    ? `Cargador: ${equipo.numero_serie_cargador}`
+                    : ""
+                } ${equipo.teclado ? `Teclado: ${equipo.teclado}` : ""} ${
+                  equipo.raton ? `Raton: ${equipo.raton}` : ""
+                } ${equipo.monitor ? `Monitor: ${equipo.monitor}` : ""}`}</td>
+                <td>{equipo.ubicacion}</td>
+                <td>{equipo.id_departamento}</td>
+                <td>
+                  <img
+                    src={`../../../public/uploads/${equipo.codigo_inventario}.jpg`}
+                    alt={equipo.codigo_inventario}
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </Tab>
     ));
   };
 
   return (
-    <>
-      <div className="cajaprincipalauditor">
-        <h1>AUDITORES</h1>
-
-        <div>
-          <Table striped bordered hover variant="dark" className="custom-table">
-            <thead>
-              <tr>
-                <th colSpan={6} className="text-center align-middle">
-                  {" "}
-                  ANEXO A
-                </th>
-              </tr>
-              <tr>
-                <th className="text-center align-middle"> DOMICILIO:</th>
-                <th colSpan={5} className="text-center align-middle">
-                  Av. San Jerónimo 458, Col. Jardines del Pedregal, C.P. 01900,
-                  México CDMX{" "}
-                </th>
-              </tr>
-              <tr>
-                <th className="text-center align-middle">CÓDIGO</th>
-                <th className="text-center align-middle">PIEZAS</th>
-                <th className="text-center align-middle">
-                  DESCRIPCIÓN ESPECÍFICA
-                </th>
-                <th className="text-center align-middle">UBICACIÓN</th>
-
-                <th className="text-center align-middle">DEPARTAMENTO</th>
-                <th className="text-center align-middle">FOTO</th>
-              </tr>
-            </thead>
-            <tbody>{renderEquipos()}</tbody>
-          </Table>
-        </div>
-      </div>
-    </>
+    <div className="cajaprincipalauditor">
+      <h1>AUDITORES</h1>
+      <Tabs
+        defaultActiveKey="PB - Almacén"
+        id="ubicaciones-tabs"
+        className="mb-3"
+        justify
+      >
+        {renderTabs()}
+      </Tabs>
+    </div>
   );
 }
 

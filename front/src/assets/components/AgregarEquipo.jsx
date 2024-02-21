@@ -35,8 +35,7 @@ export default function AgregarEquipo() {
     const accesorios = event.target.elements.formGridAccessories.value;
     const suscripcionOffice =
       event.target.elements.formGridOfficeSubscription.value;
-      const ubicacion = event.target.elements.formGridubicacion.value;
-      
+    const ubicacion = event.target.elements.formGridubicacion.value;
 
     // Verificar que al menos un campo esté lleno
     if (!(codigoInventario && tipoEquipo && numeroSerie)) {
@@ -61,8 +60,7 @@ export default function AgregarEquipo() {
       raton: raton,
       accesorios: accesorios,
       suscripcion_office: suscripcionOffice,
-      ubicacion
-      
+      ubicacion,
     };
 
     try {
@@ -262,9 +260,7 @@ export default function AgregarEquipo() {
               placeholder="Ingrese el teclado"
             />
           </Form.Group>
-        
 
-        
           <Form.Group as={Col} controlId="formGridMouse">
             <Form.Label className="formLabel">MOUSE</Form.Label>
             <Form.Control
@@ -310,12 +306,7 @@ export default function AgregarEquipo() {
               <option value="santander">Santander rotativa</option>
             </Form.Control>
           </Form.Group>
-
-          </Row>
-
-
-
-
+        </Row>
 
         <Row className="mb-3">
           <Col>
