@@ -44,13 +44,12 @@ function VistaAuditor() {
 
         <td className="text-center align-middle">{equipo.id_departamento}</td>
         <td className="text-center align-middle">
-    <img
-      src={`../../../public/uploads/.split('-')[0]}.jpg`}
-
-        alt={equipo.codigo_inventario}
-        style={{ maxWidth: "100px", maxHeight: "100px" }} // Establece un tamaño máximo para la imagen
-    />
-</td>
+          <img
+            src={`../../../public/uploads/${equipo.codigo_inventario}.jpg`}
+            alt={equipo.codigo_inventario}
+             // Establece un tamaño máximo para la imagen
+          />
+        </td>
       </tr>
     ));
   };

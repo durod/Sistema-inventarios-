@@ -1,8 +1,7 @@
 // para manejar variables de ambiente
 import * as dotenv from "dotenv";
 dotenv.config();
-import path from 'path';
-
+import path from "path";
 
 // importando modulos personalizados
 import { handleErrors } from "./errors.js";
@@ -14,16 +13,15 @@ import {
   obtenerDetallesEquipoPorId,
   buscarEquiposPorParametro,
 } from "./consulta.js";
-import fs from 'fs';
+import fs from "fs";
 
 // importando express y cors
 import express from "express";
 const app = express();
 import cors from "cors";
-import multer from 'multer';
-const currentFileUrl = import.meta.url;
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
-
+import multer from "multer";
+//const currentFileUrl = import.meta.url;
+//const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 // middleware para parsear body enviado al servidor
 app.use(express.json());
@@ -34,18 +32,14 @@ const PORT = process.env.PORT || 3002;
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    
-    cb(null, '../front/public/uploads/')
+    cb(null, "../front/public/uploads/");
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
-  }
+  },
 });
 
 const upload = multer({ storage: storage });
-
-
-
 
 app.listen(PORT, () => {
   console.log("servidor listo en http://localhost:" + PORT);
@@ -83,8 +77,7 @@ app.post("/equipos", async (req, res) => {
     raton,
     accesorios,
     suscripcion_office,
-    ubicacion
-    
+    ubicacion,
   } = req.body;
 
   try {
@@ -105,12 +98,10 @@ app.post("/equipos", async (req, res) => {
       raton,
       accesorios,
       suscripcion_office,
-      ubicacion
-    
+      ubicacion,
     });
     res.send("equipo agregado con éxito");
     console.log("valor req.body en la ruta /equipos: ", req.body);
-
   } catch (error) {
     console.error("Error en la ruta /equipos (agregarEquipo): ", error);
     const { status, message } = handleErrors(error.code);
@@ -156,10 +147,8 @@ app.get("/buscarEquipo", async (req, res) => {
   }
 });
 
-
-
 //3. PUT para modificar el equipo
-app.put("/equipos/actualizar/:id", upload.single('foto'), async (req, res) => {
+app.put("/equipos/actualizar/:id", upload.single("foto"), async (req, res) => {
   const equipoId = req.params.id;
   const equipoData = req.body;
 
@@ -175,13 +164,13 @@ app.put("/equipos/actualizar/:id", upload.single('foto'), async (req, res) => {
     // Si existe el archivo original, procede a renombrarlo
     if (originalFileName) {
       const codigoInventario = equipoData.codigo_inventario;
-      const newFileName = `${codigoInventario}`;
+      const newFileName = `${codigoInventario}-${originalFileName}`;
       console.log("Nuevo nombre del archivo:", newFileName);
 
       const oldFilePath = req.file.path;
       console.log("Ruta original del archivo:", oldFilePath);
 
-      const newFilePath = `../front/public/uploads//${newFileName}`;
+      const newFilePath = `../front/public/uploads/${codigoInventario}.jpg`;
       console.log("Ruta nueva del archivo:", newFilePath);
 
       try {
@@ -196,7 +185,7 @@ app.put("/equipos/actualizar/:id", upload.single('foto'), async (req, res) => {
     // Actualizar equipo con los datos proporcionados
     const updatedEquipo = await actualizarEquipo(equipoId, equipoData);
     console.log("Equipo actualizado con éxito:", updatedEquipo);
-    
+
     res.status(200).json({
       ok: true,
       message: "Equipo actualizado con éxito",
@@ -211,11 +200,6 @@ app.put("/equipos/actualizar/:id", upload.single('foto'), async (req, res) => {
     });
   }
 });
-
-
-
-
-
 
 //5. DELETE para eliminar un registro de la tabla segun ID
 app.delete("/equipos/:id", async (req, res) => {

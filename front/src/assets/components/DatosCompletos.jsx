@@ -30,6 +30,7 @@ function DatosCompletos() {
     raton: "",
     accesorios: "",
     suscripcion_office: "",
+    ubicacion: "",
     numempleado: "",
     nombre: "",
     appaterno: "",
@@ -169,10 +170,8 @@ function DatosCompletos() {
                   name="tipo_equipo"
                   value={equipoData.tipo_equipo || ""}
                 >
-                  <option>Selecciona el tipo de equipo</option>
-                  <option value="Desktop">Desktop</option>
-                  <option value="Laptop">Laptop</option>
-                  <option value="AllInOne">All in One</option>
+                  <option>{equipoData.tipo_equipo || ""}</option>
+                  
                 </Form.Control>
               </Form.Group>
 
@@ -194,11 +193,8 @@ function DatosCompletos() {
                   name="marca"
                   value={equipoData.marca || ""}
                 >
-                  <option>Selecciona la marca</option>
-                  <option value="">Selecciona la marca</option>
-                  <option value="Dell">Dell</option>
-                  <option value="HP">HP</option>
-                  <option value="Apple">Apple</option>
+                  <option>{equipoData.marca || ""}</option>
+                 
                 </Form.Control>
               </Form.Group>
             </Row>
@@ -222,10 +218,8 @@ function DatosCompletos() {
                   name="sistema_operativo"
                   value={equipoData.sistema_operativo || ""}
                 >
-                  <option>Selecciona el sistema operativo</option>
-                  <option value="Windows 11">Windows 11</option>
-                  <option value="Windows 10">Windows 10</option>
-                  {/* Agrega más opciones según sea necesario */}
+                  <option>{equipoData.sistema_operativo || ""}</option>
+                 
                 </Form.Control>
               </Form.Group>
 
@@ -237,11 +231,8 @@ function DatosCompletos() {
                   name="memoria_ram"
                   value={equipoData.memoria_ram || ""}
                 >
-                  <option>Selecciona la cantidad de memoria RAM</option>
-                  <option value="4GB">4 GB</option>
-                  <option value="8GB">8 GB</option>
-                  <option value="16GB">16 GB</option>
-                  <option value="32GB">32 GB</option>
+                  <option>{equipoData.memoria_ram || ""}</option>
+                 
                 </Form.Control>
               </Form.Group>
 
@@ -330,6 +321,21 @@ function DatosCompletos() {
                   value={equipoData.suscripcion_office || ""}
                 />
               </Form.Group>
+
+              <Form.Group as={Col} controlId="formGridubicacion">
+            <Form.Label className="formLabel">Ubicación</Form.Label>
+            <Form.Control
+              className="text-center-input"
+              as="select"
+              aria-label="Default select example"
+              name="ubicacion" // Agrega el atributo name con el mismo nombre que el estado
+              value={equipoData.ubicacion} // Asigna el valor del estado al value del select
+              
+            >
+              <option>{equipoData.ubicacion}</option>
+              
+            </Form.Control>
+          </Form.Group>
             </Row>
           </div>
         </div>
