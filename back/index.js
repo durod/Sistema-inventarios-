@@ -231,6 +231,10 @@ app.delete("/equipos/:id", async (req, res) => {
   }
 });
 
+
+
+
+
 //0. GET para ver ruta raiz
 app.use("*", (req, res) => {
   res.json({ ok: false, result: "404 Pagina no Encontrada" });

@@ -88,15 +88,15 @@ const agregarEquipo = async ({
 const verEquipos = async () => {
   try {
     const query = `
-        SELECT pc_info.*, empleados.*
-        FROM pc_info
-        LEFT JOIN asignaciones ON pc_info.codigo_inventario = asignaciones.codigo_inventario
-        LEFT JOIN empleados ON asignaciones.numEmpleado = empleados.numEmpleado
-        ORDER BY pc_info.codigo_inventario ASC; -- Ordenar ascendente por codigo_inventario
-        `;
-    const { rows, command, rowCount, fields } = await pool.query(query);
+    SELECT pc_info.*, empleados.numEmpleado, empleados.direccion, empleados.id_departamento, empleados.nombre, empleados.appaterno, empleados.apmaterno, empleados.puesto
+    FROM pc_info
+    LEFT JOIN asignaciones ON pc_info.codigo_inventario = asignaciones.codigo_inventario
+    LEFT JOIN empleados ON asignaciones.numEmpleado = empleados.numEmpleado
+    ORDER BY pc_info.codigo_inventario ASC; 
+    `;
+const { rows, command, rowCount, fields } = await pool.query(query);
 
-    /*
+    
         console.log("----------------------------------------------")
         console.log("ver equipos registrados en la tabla")
         console.log("Instrucción procesada: ", command)
@@ -104,7 +104,7 @@ const verEquipos = async () => {
         console.log("Contenido procesado: ", rows)
         console.log("Campos procesados: ", fields)
         console.log("----------------------------------------------")
-        */
+       
 
     return rows;
   } catch (error) {
