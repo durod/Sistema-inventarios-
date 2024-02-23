@@ -88,7 +88,7 @@ const agregarEquipo = async ({
 const verEquipos = async () => {
   try {
     const query = `
-    SELECT pc_info.*, empleados.numEmpleado, empleados.direccion, empleados.id_departamento, empleados.nombre, empleados.appaterno, empleados.apmaterno, empleados.puesto
+    SELECT pc_info.*, empleados.numEmpleado, empleados.id_direccion, empleados.id_departamento, empleados.nombre, empleados.appaterno, empleados.apmaterno, empleados.puesto
     FROM pc_info
     LEFT JOIN asignaciones ON pc_info.codigo_inventario = asignaciones.codigo_inventario
     LEFT JOIN empleados ON asignaciones.numEmpleado = empleados.numEmpleado

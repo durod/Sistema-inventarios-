@@ -90,6 +90,7 @@ function DatosCompletos() {
           
         </div>
         <div className="cajaprincipaldatos">
+          <div className="cajadatosmepleadoimagen">
           <div className="cajadatos">
             <h2 className="h2datos">Datos del empleado:</h2>
             <Row className="mb-3">
@@ -148,7 +149,23 @@ function DatosCompletos() {
             </Row>
           </div>
 
-          <div className="cajadatos">
+                  <div className="cajadatos">
+            <div className="cajaprincipalimgequipo">
+              <h2 className="h2datos">Imagen del equipo:</h2>
+              <div className="cajaimgequipo">
+              <img className="imgequipo"
+                src={`../../../public/uploads/${equipoData.codigo_inventario}.jpg`}
+                alt={equipoData.codigo_inventario}
+              />
+              </div>
+            </div>
+          </div>
+          </div>
+
+
+
+
+          <div className="cajadatosequipo">
             <h2 className="h2datos">Datos del equipo:</h2>
 
             <Row className="mb-3">
