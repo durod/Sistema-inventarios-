@@ -25,7 +25,7 @@ const agregarEquipo = async ({
   ubicacion,
 }) => {
   try {
-    console.log(
+   /* console.log(
       "Entro agregarEquipo: ",
       codigo_inventario,
       tipo_equipo,
@@ -43,7 +43,7 @@ const agregarEquipo = async ({
       accesorios,
       suscripcion_office,
       ubicacion
-    );
+    );*/
 
     const consulta =
       "INSERT INTO pc_info VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING *";
@@ -68,7 +68,7 @@ const agregarEquipo = async ({
 
     const result = await pool.query(consulta, values);
 
-    console.log(
+    /*console.log(
       "---------------------------------------------------------------"
     );
     console.log("Equipo agregado");
@@ -77,7 +77,7 @@ const agregarEquipo = async ({
     console.log("Información ingresada: ", result.rows[0]);
     console.log(
       "----------------------------------------------------------------"
-    );
+    );*/
   } catch (error) {
     console.error("Error al agregar el equipo: ", error);
     throw error; // Agrega esto para propagar el error
@@ -97,14 +97,14 @@ const verEquipos = async () => {
 const { rows, command, rowCount, fields } = await pool.query(query);
 
     
-        console.log("----------------------------------------------")
+       /* console.log("----------------------------------------------")
         console.log("ver equipos registrados en la tabla")
         console.log("Instrucción procesada: ", command)
         console.log("Filas procesadas: ", rowCount)
         console.log("Contenido procesado: ", rows)
         console.log("Campos procesados: ", fields)
         console.log("----------------------------------------------")
-       
+       */
 
     return rows;
   } catch (error) {
@@ -116,7 +116,7 @@ const { rows, command, rowCount, fields } = await pool.query(query);
 // Función para actualizar un equipo en la tabla
 const actualizarEquipo = async (id, newData) => {
   try {
-    console.log("Iniciando actualización de equipo...");
+  //  console.log("Iniciando actualización de equipo...");
 
     // Crear la consulta para actualizar los datos del equipo con el ID proporcionado
     const consulta = `
@@ -163,13 +163,13 @@ const actualizarEquipo = async (id, newData) => {
       newData.ubicacion,
     ];
 
-    console.log("Consulta de actualización:", consulta);
-    console.log("Valores para la actualización:", values);
+    /*console.log("Consulta de actualización:", consulta);
+    console.log("Valores para la actualización:", values);*/
 
     // Ejecutar la consulta y obtener el resultado
     const result = await pool.query(consulta, values);
 
-    console.log("Equipo actualizado correctamente:", result.rows[0]);
+   // console.log("Equipo actualizado correctamente:", result.rows[0]);
 
     const asignacionConsulta = `
     INSERT INTO asignaciones (codigo_inventario, numEmpleado)
@@ -276,7 +276,7 @@ const eliminarEquipo = async (id) => {
       [id]
     );
 
-    console.log("Equipo eliminado:", result.rows[0]); // Imprime los datos del equipo eliminado
+   /* console.log("Equipo eliminado:", result.rows[0]); // Imprime los datos del equipo eliminado*/
 
     verEquipos(); // Actualizar la lista de equipos después de la eliminación
   } catch (error) {

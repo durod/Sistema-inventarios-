@@ -81,7 +81,7 @@ app.post("/equipos", async (req, res) => {
   } = req.body;
 
   try {
-    console.log("valor req.body en la ruta /equipos: ", req.body);
+    /*console.log("valor req.body en la ruta /equipos: ", req.body);*/
     await agregarEquipo({
       codigo_inventario,
       tipo_equipo,
@@ -101,7 +101,7 @@ app.post("/equipos", async (req, res) => {
       ubicacion,
     });
     res.send("equipo agregado con éxito");
-    console.log("valor req.body en la ruta /equipos: ", req.body);
+    /*console.log("valor req.body en la ruta /equipos: ", req.body);*/
   } catch (error) {
     console.error("Error en la ruta /equipos (agregarEquipo): ", error);
     const { status, message } = handleErrors(error.code);
@@ -126,7 +126,7 @@ app.get("/equipos/:id", async (req, res) => {
 
 app.get("/buscarEquipo", async (req, res) => {
   const parametro = req.query.parametro;
-  console.log("Parámetro de búsqueda:", parametro);
+  /*console.log("Parámetro de búsqueda:", parametro);*/
 
   if (!parametro) {
     return res
@@ -153,9 +153,9 @@ app.put("/equipos/actualizar/:id", upload.single("foto"), async (req, res) => {
   const equipoData = req.body;
 
   try {
-    console.log("Iniciando actualización de equipo...");
+   /* console.log("Iniciando actualización de equipo...");
     console.log("ID del equipo a actualizar:", equipoId);
-    console.log("Datos del equipo a actualizar:", equipoData);
+    console.log("Datos del equipo a actualizar:", equipoData);*/
 
     // Obtener el nombre del archivo original si existe
     const originalFileName = req.file ? req.file.originalname : null;
