@@ -1,67 +1,41 @@
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
-import { useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-//import Table from "react-bootstrap/Table";
+import { useEquiposContext } from "../context/EquiposContext";
 import "../components/styles/estilodatoscompletos.css";
-const URI = "http://localhost:3002/equipos";
 
 function DatosCompletos() {
+  const { obtenerDatosEquipoPorId } = useEquiposContext();
+  const { id } = useParams();
   const navigate = useNavigate();
-  const { id } = useParams(); // Obtener el parámetro de la URL
-  const [equipoData, setEquipoData] = useState({
-    codigo_inventario: "",
-    tipo_equipo: "",
-    numero_serie: "",
-    marca: "",
-    modelo: "",
-    sistema_operativo: "",
-    memoria_ram: "",
-    procesador: "",
-    almacenamiento: "",
-    numero_serie_cargador: "",
-    monitor: "",
-    teclado: "",
-    raton: "",
-    accesorios: "",
-    suscripcion_office: "",
-    ubicacion: "",
-    numempleado: "",
-    nombre: "",
-    appaterno: "",
-    apmaterno: "",
-    id_direccion: "",
-    id_departamento: "",
-    puesto: "",
-  });
+  const [equipoData, setEquipoData] = useState({});
+  const [loading, setLoading] = useState(true);
 
-  console.log("Equipo Data en DatosCompletos:", equipoData);
+ 
 
   useEffect(() => {
     const cargarDatosEquipo = async () => {
       try {
-        const response = await axios.get(`${URI}/${id}`);
-        setEquipoData(response.data);
-        console.log("equipoData:", response.data);
+        const data = await obtenerDatosEquipoPorId(id);
+        setEquipoData(data);
+        setLoading(false);
       } catch (error) {
         console.error("Error al cargar datos del equipo:", error.message);
       }
     };
 
     cargarDatosEquipo();
-  }, [id]);
+  }, [id, obtenerDatosEquipoPorId]);
 
   const handleVerResponsivaClick = () => {
-    // Cambia history.push a navigate
     navigate(`/verResponsiva/${equipoData.id}`, {
       state: { equipoData: equipoData },
     });
   };
+
   return (
     <div className="containerform ">
       <h2>Datos completos</h2>
@@ -86,75 +60,80 @@ function DatosCompletos() {
         </div>
         <div className="cajaprincipaldatos">
           <div className="cajadatosmepleadoimagen">
-          <div className="cajadatos">
-            <h2 className="h2datos">Datos del empleado:</h2>
-            <Row className="mb-3">
-              <Form.Group controlId="formGridEmployeeName">
-                <Form.Label className="formLabel">Nombre Empleado:</Form.Label>
-                <Form.Control
-                  className="text-center-input"
-                  type="text"
-                  name="nombre"
-                  value={`${equipoData.nombre || ""} ${
-                    equipoData.appaterno || ""
-                  } ${equipoData.apmaterno || ""}`}
-                />
-              </Form.Group>
+            <div className="cajadatos">
+              <h2 className="h2datos">Datos del empleado:</h2>
+              <Row className="mb-3">
+                <Form.Group controlId="formGridEmployeeName">
+                  <Form.Label className="formLabel">
+                    Nombre Empleado:
+                  </Form.Label>
+                  <Form.Control
+                    className="text-center-input"
+                    type="text"
+                    name="nombre"
+                    value={`${equipoData.nombre || ""} ${
+                      equipoData.appaterno || ""
+                    } ${equipoData.apmaterno || ""}`}
+                  />
+                </Form.Group>
 
-              <Form.Group as={Col} controlId="formGridEmployeeNumber">
-                <Form.Label className="formLabel">DIRECCIÓN</Form.Label>
-                <Form.Control
-                  className="text-center-input"
-                  type="text"
-                  name="numEmpleado"
-                  value={equipoData.id_direccion || ""}
-                />
-              </Form.Group>
+                <Form.Group as={Col} controlId="formGridEmployeeNumber">
+                  <Form.Label className="formLabel">DIRECCIÓN</Form.Label>
+                  <Form.Control
+                    className="text-center-input"
+                    type="text"
+                    name="numEmpleado"
+                    value={equipoData.id_direccion || ""}
+                  />
+                </Form.Group>
 
-              <Form.Group as={Col} controlId="formGridEmployeePuesto">
-                <Form.Label className="formLabel">DEPARTAMENTO:</Form.Label>
-                <Form.Control
-                  className="text-center-input"
-                  type="text"
-                  name="id_direccion"
-                  value={`${equipoData.id_departamento || ""} `}
-                />
-              </Form.Group>
-            </Row>
-            <Row className="mb-3">
-              <Form.Group as={Col} controlId="formGridEmployeedireccion">
-                <Form.Label className="formLabel">PUESTO:</Form.Label>
-                <Form.Control
-                  className="text-center-input"
-                  type="text"
-                  name="numEmpleado"
-                  value={equipoData.puesto || ""}
-                />
-              </Form.Group>
+                <Form.Group as={Col} controlId="formGridEmployeePuesto">
+                  <Form.Label className="formLabel">DEPARTAMENTO:</Form.Label>
+                  <Form.Control
+                    className="text-center-input"
+                    type="text"
+                    name="id_direccion"
+                    value={`${equipoData.id_departamento || ""} `}
+                  />
+                </Form.Group>
+              </Row>
+              <Row className="mb-3">
+                <Form.Group as={Col} controlId="formGridEmployeedireccion">
+                  <Form.Label className="formLabel">PUESTO:</Form.Label>
+                  <Form.Control
+                    className="text-center-input"
+                    type="text"
+                    name="numEmpleado"
+                    value={equipoData.puesto || ""}
+                  />
+                </Form.Group>
 
-              <Form.Group as={Col} controlId="formGridEmployeeNumber">
-                <Form.Label className="formLabel">NÚMERO EMPLEADO:</Form.Label>
-                <Form.Control
-                  className="text-center-input"
-                  type="text"
-                  name="numEmpleado"
-                  value={equipoData.numempleado || ""}
-                />
-              </Form.Group>
-            </Row>
-          </div>
+                <Form.Group as={Col} controlId="formGridEmployeeNumber">
+                  <Form.Label className="formLabel">
+                    NÚMERO EMPLEADO:
+                  </Form.Label>
+                  <Form.Control
+                    className="text-center-input"
+                    type="text"
+                    name="numEmpleado"
+                    value={equipoData.numempleado || ""}
+                  />
+                </Form.Group>
+              </Row>
+            </div>
 
-          <div className="cajadatos">
-            <div className="cajaprincipalimgequipo">
-              <h2 className="h2datos">Imagen del equipo:</h2>
-              <div className="cajaimgequipo">
-              <img className="imgequipo"
-                src={`../../../public/uploads/${equipoData.codigo_inventario}.jpg`}
-                alt={equipoData.codigo_inventario}
-              />
+            <div className="cajadatos">
+              <div className="cajaprincipalimgequipo">
+                <h2 className="h2datos">Imagen del equipo:</h2>
+                <div className="cajaimgequipo">
+                  <img
+                    className="imgequipo"
+                    src={`../../../public/uploads/${equipoData.codigo_inventario}.jpg`}
+                    alt={equipoData.codigo_inventario}
+                  />
+                </div>
               </div>
             </div>
-          </div>
           </div>
           <div className="cajadatosequipo">
             <h2 className="h2datos">Datos del equipo:</h2>
