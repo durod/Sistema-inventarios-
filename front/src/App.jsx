@@ -12,6 +12,7 @@ import VistaAuditor from "./assets/components/VistaAuditor";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import AdminEquipos from "./assets/components/AdminEquipos.jsx";
+import Dashboardequipos from "./assets/components/Dashboardequipos.jsx";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/buscarEquipo" element={<BusquedaEquipos />} />
             <Route path="/verResponsiva/:id" element={<Responsiva />} />
             <Route path="/vistaauditor" element={<VistaAuditor />} />
+            <Route path="/dashboardequipos" element={<Dashboardequipos />} />
           </Routes>
         </BrowserRouter>
       </>
