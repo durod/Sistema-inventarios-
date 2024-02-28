@@ -1,14 +1,25 @@
-import  { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Table, Dropdown } from "react-bootstrap";
+import { Table, Dropdown, Button } from "react-bootstrap";
+import Card from 'react-bootstrap/Card';
 import { useEquiposContext } from "../context/EquiposContext";
 
-function VerEquipos() {
-  const { equipos, error, obtenerEquipos,  confirmarEliminarEquipo } = useEquiposContext();
+import "../components/styles/estiloverequipos.css";
 
+
+function VerEquipos() {
+  const { equipos, error, obtenerEquipos, confirmarEliminarEquipo } = useEquiposContext();
+  const [viewStyle, setViewStyle] = useState("table"); // Estado para controlar el estilo de visualización
+  
   useEffect(() => {
     obtenerEquipos();
   }, [obtenerEquipos]);
+
+  const toggleViewStyle = () => {
+    // Función para cambiar el estilo de visualización
+    setViewStyle((prevStyle) => (prevStyle === "table" ? "cards" : "table"));
+  };
+
 
   const renderEquipos = () => {
     return equipos.map((equipo) => (
@@ -56,6 +67,30 @@ function VerEquipos() {
     ));
   };
 
+  const renderEquiposAsCards = () => {
+    // Función para renderizar los equipos como tarjetas
+    return equipos.map((equipo) => (
+      <Card key={equipo.id} style={{ width: '18rem' }}>
+         <Card.Img variant="top"  src={`../../../public/uploads/${equipo.codigo_inventario}.jpg`}
+                    alt={equipo.codigo_inventario} />
+        <Card.Body>
+          <Card.Title>{equipo.codigo_inventario}</Card.Title>
+          <Card.Text>
+            Número de Empleado: {equipo.numempleado}<br />
+            Dirección: {equipo.id_direccion}<br />           
+            Puesto: {equipo.puesto}<br />            
+            Número de Serie: {equipo.numero_serie}<br />
+            Marca: {equipo.marca}<br />
+            Modelo: {equipo.modelo}<br />
+            Monitor: {equipo.monitor}
+          </Card.Text>
+          <Button variant="primary" >Ver Más</Button>
+          <Button variant="danger" onClick={() => confirmarEliminarEquipo(equipo.id, equipo.codigo_inventario)}>Eliminar</Button>
+        </Card.Body>
+      </Card>
+    ));
+  };
+
   return (
     <div className="container">
       <div className="row">
@@ -69,29 +104,41 @@ function VerEquipos() {
             <Link to="/buscarEquipo" className="btn btn-primary mt-2 mb-2">
               Buscar Equipo
             </Link>
+            <Button variant="info" className="mt-2 mb-2" onClick={toggleViewStyle}>
+              {/* Botón para cambiar el estilo de visualización */}
+              {viewStyle === "table" ? "Ver como Tarjetas" : "Ver como Tabla"}
+            </Button>
           </div>
-          <Table striped bordered hover variant="dark" className="custom-table">
-            <thead>
-              <tr>
-                <th className="text-center align-middle">Número de Empleado</th>
-                <th className="text-center align-middle">Empleado </th>
-                <th className="text-center align-middle">Dirección</th>
-                <th className="text-center align-middle">Departamento</th>
-                <th className="text-center align-middle">Puesto</th>
-                <th className="text-center align-middle">Código de Inventario</th>
-                <th className="text-center align-middle">Número de Serie</th>
-                <th className="text-center align-middle">Marca</th>
-                <th className="text-center align-middle">Modelo</th>
-                <th className="text-center align-middle">Monitor</th>
-                <th className="text-center align-middle"></th>
-              </tr>
-            </thead>
-            <tbody>{renderEquipos()}</tbody>
-          </Table>
+          {/* Renderizado condicional según el estilo de visualización */}
+          {viewStyle === "table" ? (
+            <Table striped bordered hover variant="dark" className="custom-table">
+              <thead>
+                <tr>
+                  <th className="text-center align-middle">Número de Empleado</th>
+                  <th className="text-center align-middle">Empleado </th>
+                  <th className="text-center align-middle">Dirección</th>
+                  <th className="text-center align-middle">Departamento</th>
+                  <th className="text-center align-middle">Puesto</th>
+                  <th className="text-center align-middle">Código de Inventario</th>
+                  <th className="text-center align-middle">Número de Serie</th>
+                  <th className="text-center align-middle">Marca</th>
+                  <th className="text-center align-middle">Modelo</th>
+                  <th className="text-center align-middle">Monitor</th>
+                  <th className="text-center align-middle"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {renderEquipos()}
+              </tbody>
+            </Table>
+          ) : (
+            <div className="d-flex flex-wrap">
+              {renderEquiposAsCards()}
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
-}
-
+          }
 export default VerEquipos;
