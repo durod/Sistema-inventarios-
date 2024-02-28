@@ -11,6 +11,7 @@ import Header from "./assets/components/Header";
 import VistaAuditor from "./assets/components/VistaAuditor";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import AdminEquipos from "./assets/components/AdminEquipos.jsx";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<VerEquipos />} />
+            <Route path="/adminequipos" element={<AdminEquipos />} />
             <Route path="/agregarequipo" element={<AgregarEquipo />} />
             <Route path="/actualizarequipo/:id" element={<ActualizarEquipo />} />
             <Route path="/datoscompletos/:id" element={<DatosCompletos />} />
