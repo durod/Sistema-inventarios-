@@ -12,6 +12,7 @@ import {
   eliminarEquipo,
   obtenerDetallesEquipoPorId,
   buscarEquiposPorParametro,
+  quitarAsignacionEquipo
 } from "./consulta.js";
 import fs from "fs";
 
@@ -58,6 +59,28 @@ app.get("/equipos", async (req, res) => {
     res.status(status).send("Error al obtener los equipos: " + message);
   }
 });
+
+//Agregar la ruta para desasignar un equipo
+app.put("/equipos/desasignar/:id", async (req, res) => {
+  const equipoId = req.params.id;
+
+  try {
+    // Llamar a la función para quitar la asignación de un empleado del equipo
+    await quitarAsignacionEquipo(equipoId);
+
+    res.status(200).json({
+      ok: true,
+      message: "Asignación de empleado al equipo eliminada exitosamente",
+    });
+  } catch (error) {
+    console.error("Error al desasignar equipo:", error.message);
+    res.status(500).json({
+      ok: false,
+      message: "Error interno del servidor al desasignar equipo",
+    });
+  }
+});
+
 
 //2. POST para ingresar un equipo en la tabla
 app.post("/equipos", async (req, res) => {

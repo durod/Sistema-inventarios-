@@ -12,7 +12,8 @@ function VerEquipos() {
 
   const renderEquipos = () => {
     return equipos.map((equipo) => (
-      <tr key={equipo.id}>
+      <tr key={`${equipo.id}-${equipo.numempleado}`}>
+
         {/* Información de empleados */}
         <td className="text-center align-middle">{equipo.numempleado}</td>
         <td className="text-center align-middle">{`${equipo.nombre} ${equipo.appaterno} ${equipo.apmaterno}`}</td>
@@ -49,12 +50,44 @@ function VerEquipos() {
                   Eliminar
                 </button>
               </Dropdown.Item>
+              <Dropdown.Item>
+                <button
+                  className="btn btn-danger mx-auto"
+                  onClick={() => handleQuitarAsignacion(equipo.id)}
+                >
+                  Quitar Asignación
+                </button>
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </td>
+        
       </tr>
     ));
   };
+
+
+
+
+  const handleQuitarAsignacion = async (idEquipo) => {
+    try {
+      const response = await fetch(`/equipos/desasignar/${idEquipo}`, {
+        method: "PUT",
+      });
+      const data = await response.json();
+      if (response.ok) {
+        // Si la respuesta es exitosa, vuelve a obtener la lista de equipos
+        obtenerEquipos();
+      } else {
+        console.error("Error al quitar asignación:", data.message);
+        // Manejar el error adecuadamente en el frontend
+      }
+    } catch (error) {
+      console.error("Error al quitar asignación:", error.message);
+      // Manejar el error adecuadamente en el frontend
+    }
+  };
+
 
   return (
     <div className="container">

@@ -113,6 +113,31 @@ const { rows, command, rowCount, fields } = await pool.query(query);
   }
 };
 
+
+// Agregar esta función en consulta.js para quitar la asignación de un empleado de un equipo
+const quitarAsignacionEquipo = async (equipoId) => {
+  try {
+    // Aquí ejecuta la consulta SQL para actualizar la asignación estableciendo numEmpleado en NULL
+    const consulta = `
+      UPDATE asignaciones
+      SET numEmpleado = NULL
+      WHERE codigo_inventario = (
+        SELECT codigo_inventario
+        FROM pc_info
+        WHERE id = $1
+      )
+    `;
+    const values = [equipoId];
+    await pool.query(consulta, values);
+  } catch (error) {
+    console.error("Error al quitar la asignación de equipo:", error);
+    throw error;
+  }
+};
+
+
+
+
 // Función para actualizar un equipo en la tabla
 const actualizarEquipo = async (id, newData) => {
   try {
@@ -291,4 +316,5 @@ export {
   eliminarEquipo,
   buscarEquiposPorParametro,
   obtenerDetallesEquipoPorId,
+  quitarAsignacionEquipo
 };
