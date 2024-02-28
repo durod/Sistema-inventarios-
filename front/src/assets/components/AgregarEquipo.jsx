@@ -285,9 +285,12 @@ export default function AgregarEquipo() {
             <Form.Label className="formLabel">SUSCRIPCIÓN OFFICE</Form.Label>
             <Form.Control
               className="text-center-input"
-              type="text"
-              placeholder="Ingrese la suscripción de Office"
-            />
+              as="select"
+              aria-label="Default select example"
+            >
+            <option value="no">no</option>
+              <option value="si">si</option>
+              </Form.Control>
           </Form.Group>
         </Row>
 

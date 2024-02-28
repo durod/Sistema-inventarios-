@@ -284,11 +284,15 @@ const ActualizarEquipo = () => {
             <Form.Label className="formLabel">SUSCRIPCIÓN OFFICE</Form.Label>
             <Form.Control
               className="text-center-input"
-              type="text"
+              as="select"
+              aria-label="Default select example"
               name="suscripcion_office"
               value={equipoData.suscripcion_office || ""}
               onChange={handleChange}
-            />
+            >
+                <option value="no">no</option>
+              <option value="si">si</option>
+              </Form.Control>
           </Form.Group>
         </Row>
 
