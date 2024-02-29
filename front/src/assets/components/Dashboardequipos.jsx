@@ -34,7 +34,10 @@ function Dashboardequipos() {
     // Establecer los datos para la gráfica de ubicaciones
     setUbicacionesData([
       ["Ubicación", "Cantidad de Equipos"],
-      ...ubicacionesChartData,
+      ...ubicacionesChartData.map(([ubicacion, cantidad]) => [
+        `${ubicacion} (${cantidad})`, // Agregar la cantidad de equipos al nombre de la ubicación
+        cantidad, // Pasar la cantidad como segundo valor
+      ]),
     ]);
 
     // Contar equipos con y sin suscripción a Office
@@ -46,31 +49,34 @@ function Dashboardequipos() {
     // Establecer los datos para la gráfica de suscripción a Office
     setSuscripcionOfficeData([
       ["Suscripción Office", "Cantidad de Equipos"],
-      ["Con Suscripción", equiposConSuscripcion],
-      ["Sin Suscripción", equiposSinSuscripcion],
+      [`Con Suscripción (${equiposConSuscripcion})`, equiposConSuscripcion], // Agregar la cantidad de equipos con suscripción
+      [`Sin Suscripción (${equiposSinSuscripcion})`, equiposSinSuscripcion], // Agregar la cantidad de equipos sin suscripción
     ]);
 
-    // Agrupar equipos por tipo y contar cuántos equipos hay de cada tipo
-    const equiposPorTipo = equipos.reduce((acc, equipo) => {
-      if (acc[equipo.tipo_equipo]) {
-        acc[equipo.tipo_equipo] += 1;
-      } else {
-        acc[equipo.tipo_equipo] = 1;
-      }
-      return acc;
-    }, {});
+     const equiposPorTipo = equipos.reduce((acc, equipo) => {
+    if (acc[equipo.tipo_equipo]) {
+      acc[equipo.tipo_equipo] += 1;
+    } else {
+      acc[equipo.tipo_equipo] = 1;
+    }
+    return acc;
+  }, {});
 
-    // Convertir los datos en el formato requerido por Google Charts
-    const tiposEquiposChartData = Object.entries(equiposPorTipo).map(
-      ([tipo, cantidad]) => [tipo, cantidad]
-    );
+  // Convertir los datos en el formato requerido por Google Charts
+  const tiposEquiposChartData = Object.entries(equiposPorTipo).map(
+    ([tipo, cantidad]) => [tipo, cantidad]
+  );
 
-    // Establecer los datos para la gráfica de tipos de equipos
-    setTiposEquiposData([
-      ["Tipo de Equipo", "Cantidad de Equipos"],
-      ...tiposEquiposChartData,
-    ]);
-  }, [equipos]);
+  // Establecer los datos para la gráfica de tipos de equipos
+  setTiposEquiposData([
+    ["Tipo de Equipo", "Cantidad de Equipos"],
+    ...tiposEquiposChartData.map(([tipo, cantidad]) => [
+      `${tipo} (${cantidad})`, // Agregar la cantidad de equipos al nombre del tipo de equipo
+      cantidad, // Pasar la cantidad como segundo valor
+    ]),
+  ]);
+}, [equipos]);
+    
 
   return (
     <div className="principalcontainer">
