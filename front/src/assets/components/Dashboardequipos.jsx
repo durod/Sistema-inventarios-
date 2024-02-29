@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
 
 import { useEquiposContext } from "../context/EquiposContext";
+import "../components/styles/estilodashboardequipo.css";
 import AdminEquipos from "./AdminEquipos";
 
 function Dashboardequipos() {
@@ -72,8 +73,8 @@ function Dashboardequipos() {
   }, [equipos]);
 
   return (
-    <div className="cajaprincipal">
-      <div>
+    <div className="principalcontainer">
+      <div className="cajaadminequipos">
         <AdminEquipos />
       </div>
 
@@ -88,6 +89,7 @@ function Dashboardequipos() {
             data={ubicacionesData}
             options={{
               title: "Distribución de Equipos por Ubicación",
+              pieSliceText: "value",
             }}
           />
           <p>Total de Equipos: {equipos.length}</p>
@@ -102,6 +104,7 @@ function Dashboardequipos() {
             data={suscripcionOfficeData}
             options={{
               title: "Distribución de Equipos por Suscripción Office",
+              pieSliceText: "value",
             }}
           />
           <p>Total de Equipos: {equipos.length}</p>
@@ -116,6 +119,7 @@ function Dashboardequipos() {
             data={tiposEquiposData}
             options={{
               title: "Distribución de Tipos de Equipos",
+              pieSliceText: "value",
             }}
           />
           <p>Total de Equipos: {equipos.length}</p>

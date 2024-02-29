@@ -1,0 +1,31 @@
+#root{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+
+.principalcontainer{
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    justify-content: center;
+    gap: 1%;
+}
+
+.cajaadminequipos{
+
+}
+
+.cajasecundaria{
+    margin-top: 10rem;
+}
+
+
+.cajaagregarEquipo{
+  color: white;
+}
+
+.formagregarequipo{
+    color: yellow;
+    font-size: larger;
+}
