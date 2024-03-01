@@ -108,7 +108,7 @@ export default function AgregarEquipo() {
       </div>
       <div className="cajasecundaria">
         <div className="cajaagregarEquipo">
-          <h2> Agregar Equipo</h2>
+          <h1> Agregar Equipo</h1>
           <Form onSubmit={handleSubmit} className="formagregarequipo">
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridInventoryCode">

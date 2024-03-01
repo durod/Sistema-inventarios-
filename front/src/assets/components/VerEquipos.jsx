@@ -2,6 +2,8 @@ import  { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Table, Dropdown } from "react-bootstrap";
 import { useEquiposContext } from "../context/EquiposContext";
+import "../components/styles/estiloverequipos.css";
+import AdminEquipos from "./AdminEquipos";
 
 function VerEquipos() {
   const { equipos, error, obtenerEquipos,  confirmarEliminarEquipo } = useEquiposContext();
@@ -95,14 +97,10 @@ function VerEquipos() {
         <div className="col">
           <h1>Lista de Equipos</h1>
           {error && <div className="alert alert-danger">{error}</div>}
-          <div className="botonesAgregarBuscar">
-            <Link to="/agregarequipo" className="btn btn-primary mt-2 mb-2">
-              Agregar Equipo
-            </Link>
-            <Link to="/buscarEquipo" className="btn btn-primary mt-2 mb-2">
-              Buscar Equipo
-            </Link>
-          </div>
+         <div className="cajaprincipalverequipos">
+          <div className="cajaadminequipos">
+        <AdminEquipos />
+      </div>
           <Table striped bordered hover variant="dark" className="custom-table">
             <thead>
               <tr>
@@ -122,6 +120,8 @@ function VerEquipos() {
             <tbody>{renderEquipos()}</tbody>
           </Table>
         </div>
+        </div>
+
       </div>
     </div>
   );

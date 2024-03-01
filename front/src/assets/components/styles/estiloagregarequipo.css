@@ -1,31 +1,59 @@
-#root{
-    margin: 0px;
-    padding: 0px;
-    width: 100%;
+#root {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
 }
 
-.principalcontainer{
-    display: flex;
-    width: 100%;
-    align-items: baseline;
-    justify-content: center;
-    gap: 1%;
+.principalcontainer {
+  display: flex;
+  width: 100%;
+  align-items: baseline;
+  justify-content: center;
+  gap: 1%;
 }
 
-.cajaadminequipos{
-
+.cajasecundaria {
+  margin-top: 10rem;
+  width: 70%;
 }
 
-.cajasecundaria{
-    margin-top: 10rem;
-}
-
-
-.cajaagregarEquipo{
+.cajaagregarEquipo {
   color: white;
 }
 
-.formagregarequipo{
-    color: yellow;
-    font-size: larger;
+.formagregarequipo {
+  color: yellow;
+  font-size: xx-large;
+}
+
+.formagregarequipo .formLabel {
+  font-weight: bold;
+  font-family: monospace;
+  background-color: black;
+}
+
+.cajaadminequipos{
+  
+    width: 20%;
+
+}
+
+.menuasideadminequipos{
+  width: 84%;
+}
+
+.menuasideinterioradminequipos{
+
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  width: 347px;
+  background-color: #0d1117;
+  justify-content: center;
+  border-radius: 10px;
+  transition: 1s;
+  padding: 10px;
+  overflow: hidden;
 }

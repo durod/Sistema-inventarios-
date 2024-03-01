@@ -1,8 +1,12 @@
-.container{
-
+.cajaprincipalverequipos{
+    display: flex;
+    
 }
 
+.container{
+    margin-top: 8%;
+}
 
-.card{
-    
+h1{
+    color: white;
 }

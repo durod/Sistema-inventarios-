@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
-
+import "../components/styles/estilobuscadeequipo.css";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
-import { useEquiposContext } from "../context/EquiposContext";
+
 
 import "../components/styles/estilosadminequipos.css";
 
 function AdminEquipos() {
   return (
-    <div className="cajaprincipal">
-      <div className="menuaside">
-        <div className="menuasideinterior">
+    <div className="cajaprincipaladminequipos">
+      <div className="menuasideadminequipos">
+        <div className="menuasideinterioradminequipos">
           <div className="input">
             <button className="value">
               <svg
