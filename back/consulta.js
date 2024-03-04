@@ -23,6 +23,7 @@ const agregarEquipo = async ({
   accesorios,
   suscripcion_office,
   ubicacion,
+  status,
 }) => {
   try {
    /* console.log(
@@ -46,7 +47,7 @@ const agregarEquipo = async ({
     );*/
 
     const consulta =
-      "INSERT INTO pc_info VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING *";
+      "INSERT INTO pc_info VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING *";
     const values = [
       codigo_inventario,
       tipo_equipo,
@@ -64,6 +65,7 @@ const agregarEquipo = async ({
       accesorios,
       suscripcion_office,
       ubicacion,
+      status,
     ];
 
     const result = await pool.query(consulta, values);
@@ -92,6 +94,7 @@ const verEquipos = async () => {
     FROM pc_info
     LEFT JOIN asignaciones ON pc_info.codigo_inventario = asignaciones.codigo_inventario
     LEFT JOIN empleados ON asignaciones.numEmpleado = empleados.numEmpleado
+    WHERE pc_info.status = 1
     ORDER BY pc_info.codigo_inventario ASC; 
     `;
 const { rows, command, rowCount, fields } = await pool.query(query);
@@ -112,30 +115,6 @@ const { rows, command, rowCount, fields } = await pool.query(query);
     throw error;
   }
 };
-
-
-// Agregar esta función en consulta.js para quitar la asignación de un empleado de un equipo
-const quitarAsignacionEquipo = async (equipoId) => {
-  try {
-    // Aquí ejecuta la consulta SQL para actualizar la asignación estableciendo numEmpleado en NULL
-    const consulta = `
-      UPDATE asignaciones
-      SET numEmpleado = NULL
-      WHERE codigo_inventario = (
-        SELECT codigo_inventario
-        FROM pc_info
-        WHERE id = $1
-      )
-    `;
-    const values = [equipoId];
-    await pool.query(consulta, values);
-  } catch (error) {
-    console.error("Error al quitar la asignación de equipo:", error);
-    throw error;
-  }
-};
-
-
 
 
 // Función para actualizar un equipo en la tabla
@@ -162,7 +141,8 @@ const actualizarEquipo = async (id, newData) => {
                 raton = $14,
                 accesorios = $15,
                 suscripcion_office = $16,
-                ubicacion = $17
+                ubicacion = $17,
+                status = $18
                  
             WHERE id = $1
             RETURNING *`;
@@ -186,6 +166,7 @@ const actualizarEquipo = async (id, newData) => {
       newData.accesorios,
       newData.suscripcion_office,
       newData.ubicacion,
+      newData.status,
     ];
 
     /*console.log("Consulta de actualización:", consulta);
@@ -270,6 +251,8 @@ const buscarEquiposPorParametro = async (parametro) => {
           raton ILIKE $1 OR
           accesorios ILIKE $1 OR
           suscripcion_office ILIKE $1
+          ubicacion ILIKE $1
+          status ILIKE $1
       `;
     const values = [`%${parametro}%`];
 
@@ -316,5 +299,5 @@ export {
   eliminarEquipo,
   buscarEquiposPorParametro,
   obtenerDetallesEquipoPorId,
-  quitarAsignacionEquipo
+  
 };

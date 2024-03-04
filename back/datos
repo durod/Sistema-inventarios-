@@ -83,10 +83,14 @@ CREATE TABLE pc_info (
     accesorios TEXT,
     suscripcion_office VARCHAR(255),    
     ubicacion VARCHAR(255),
-    foto BYTEA,
-    pdf BYTEA,
+    status INTEGER(1)
 	numEmpleado INTEGER REFERENCES empleados(numEmpleado)
 );
+
+
+
+
+
 
 tabla perfiles
 

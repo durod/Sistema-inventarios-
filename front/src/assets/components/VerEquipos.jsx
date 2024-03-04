@@ -1,4 +1,4 @@
-import  { useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Table, Dropdown } from "react-bootstrap";
 import { useEquiposContext } from "../context/EquiposContext";
@@ -6,7 +6,8 @@ import "../components/styles/estiloverequipos.css";
 import AdminEquipos from "./AdminEquipos";
 
 function VerEquipos() {
-  const { equipos, error, obtenerEquipos,  confirmarEliminarEquipo } = useEquiposContext();
+  const { equipos, error, obtenerEquipos, confirmarEliminarEquipo } =
+    useEquiposContext();
 
   useEffect(() => {
     obtenerEquipos();
@@ -15,7 +16,6 @@ function VerEquipos() {
   const renderEquipos = () => {
     return equipos.map((equipo) => (
       <tr key={`${equipo.id}-${equipo.numempleado}`}>
-
         {/* Información de empleados */}
         <td className="text-center align-middle">{equipo.numempleado}</td>
         <td className="text-center align-middle">{`${equipo.nombre} ${equipo.appaterno} ${equipo.apmaterno}`}</td>
@@ -40,56 +40,29 @@ function VerEquipos() {
 
             <Dropdown.Menu>
               <Dropdown.Item>
-                <Link to={`/datoscompletos/${equipo.id}`} className="btn btn-info mb-2">
+                <Link
+                  to={`/datoscompletos/${equipo.id}`}
+                  className="btn btn-info mb-2"
+                >
                   Ver Más
                 </Link>
               </Dropdown.Item>
               <Dropdown.Item>
                 <button
                   className="btn btn-danger mx-auto"
-                  onClick={() => confirmarEliminarEquipo(equipo.id, equipo.codigo_inventario)}
+                  onClick={() =>
+                    confirmarEliminarEquipo(equipo.id, equipo.codigo_inventario)
+                  }
                 >
                   Eliminar
-                </button>
-              </Dropdown.Item>
-              <Dropdown.Item>
-                <button
-                  className="btn btn-danger mx-auto"
-                  onClick={() => handleQuitarAsignacion(equipo.id)}
-                >
-                  Quitar Asignación
                 </button>
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </td>
-        
       </tr>
     ));
   };
-
-
-
-
-  const handleQuitarAsignacion = async (idEquipo) => {
-    try {
-      const response = await fetch(`/equipos/desasignar/${idEquipo}`, {
-        method: "PUT",
-      });
-      const data = await response.json();
-      if (response.ok) {
-        // Si la respuesta es exitosa, vuelve a obtener la lista de equipos
-        obtenerEquipos();
-      } else {
-        console.error("Error al quitar asignación:", data.message);
-        // Manejar el error adecuadamente en el frontend
-      }
-    } catch (error) {
-      console.error("Error al quitar asignación:", error.message);
-      // Manejar el error adecuadamente en el frontend
-    }
-  };
-
 
   return (
     <div className="container">
@@ -97,31 +70,40 @@ function VerEquipos() {
         <div className="col">
           <h1>Lista de Equipos</h1>
           {error && <div className="alert alert-danger">{error}</div>}
-         <div className="cajaprincipalverequipos">
-          <div className="cajaadminequipos">
-        <AdminEquipos />
-      </div>
-          <Table striped bordered hover variant="dark" className="custom-table">
-            <thead>
-              <tr>
-                <th className="text-center align-middle">Número de Empleado</th>
-                <th className="text-center align-middle">Empleado </th>
-                <th className="text-center align-middle">Dirección</th>
-                <th className="text-center align-middle">Departamento</th>
-                <th className="text-center align-middle">Puesto</th>
-                <th className="text-center align-middle">Código de Inventario</th>
-                <th className="text-center align-middle">Número de Serie</th>
-                <th className="text-center align-middle">Marca</th>
-                <th className="text-center align-middle">Modelo</th>
-                <th className="text-center align-middle">Monitor</th>
-                <th className="text-center align-middle"></th>
-              </tr>
-            </thead>
-            <tbody>{renderEquipos()}</tbody>
-          </Table>
+          <div className="cajaprincipalverequipos">
+            <div className="cajaadminequipos">
+              <AdminEquipos />
+            </div>
+            <Table
+              striped
+              bordered
+              hover
+              variant="dark"
+              className="custom-table"
+            >
+              <thead>
+                <tr>
+                  <th className="text-center align-middle">
+                    Número de Empleado
+                  </th>
+                  <th className="text-center align-middle">Empleado </th>
+                  <th className="text-center align-middle">Dirección</th>
+                  <th className="text-center align-middle">Departamento</th>
+                  <th className="text-center align-middle">Puesto</th>
+                  <th className="text-center align-middle">
+                    Código de Inventario
+                  </th>
+                  <th className="text-center align-middle">Número de Serie</th>
+                  <th className="text-center align-middle">Marca</th>
+                  <th className="text-center align-middle">Modelo</th>
+                  <th className="text-center align-middle">Monitor</th>
+                  <th className="text-center align-middle"></th>
+                </tr>
+              </thead>
+              <tbody>{renderEquipos()}</tbody>
+            </Table>
+          </div>
         </div>
-        </div>
-
       </div>
     </div>
   );

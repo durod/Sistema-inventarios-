@@ -28,7 +28,7 @@ const ActualizarEquipo = () => {
     accesorios: "",
     suscripcion_office: "",
     ubicacion: "",
-    
+    status: "",
   });
 
   useEffect(() => {
@@ -53,27 +53,26 @@ const ActualizarEquipo = () => {
     setFotoEquipo(event.target.files[0]);
   };
 
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     try {
       const formData = new FormData();
       if (fotoEquipo !== null) {
         formData.append("foto", fotoEquipo);
       }
-  
+
       // Agregar los datos del equipo al formData
       Object.entries(equipoData).forEach(([key, value]) => {
         formData.append(key, value);
       });
-  
+
       await axios.put(`${URI}/actualizar/${id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-  
+
       alert("El equipo se ha actualizado correctamente.");
     } catch (error) {
       console.error("Error al actualizar equipo:", error.message);
@@ -290,13 +289,13 @@ const ActualizarEquipo = () => {
               value={equipoData.suscripcion_office || ""}
               onChange={handleChange}
             >
-                <option value="no">no</option>
+              <option value="no">no</option>
               <option value="si">si</option>
-              </Form.Control>
+            </Form.Control>
           </Form.Group>
         </Row>
 
-    <Row className="mb-3">
+        <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridubicacion">
             <Form.Label className="formLabel">Ubicación</Form.Label>
             <Form.Control
@@ -321,11 +320,29 @@ const ActualizarEquipo = () => {
               className="text-center-input"
               type="file" // Cambia el tipo de entrada a "file"
               accept="image/*" // Esto limita la selección de archivos solo a imágenes
-              onChange={handleFileChange} 
+              onChange={handleFileChange}
             />
           </Form.Group>
-        </Row>
 
+
+          <Form.Group as={Col} controlId="formGridstatus">
+            <Form.Label className="formLabel">Estado del Equipo</Form.Label>
+            <Form.Control
+              className="text-center-input"
+              as="select"
+              aria-label="Default select example"
+              name="status" // Agrega el atributo name con el mismo nombre que el estado
+              value={equipoData.status} // Asigna el valor del estado al value del select
+              onChange={handleChange}
+            >
+              <option>Selecciona estado del equipo</option>
+              <option value="1">Activo</option>
+              <option value="0">Inactivo </option>
+              
+            </Form.Control>
+          </Form.Group>
+
+        </Row>
 
         <Row className="mb-3">
           <Col>

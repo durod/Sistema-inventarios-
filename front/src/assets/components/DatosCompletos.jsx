@@ -14,8 +14,6 @@ function DatosCompletos() {
   const [equipoData, setEquipoData] = useState({});
   const [loading, setLoading] = useState(true);
 
- 
-
   useEffect(() => {
     const cargarDatosEquipo = async () => {
       try {
@@ -40,28 +38,23 @@ function DatosCompletos() {
     <div className="containerform ">
       <h2>Datos completos</h2>
       <Form>
-      <div className="botonesdatos">
-         
-            
-              <Link
-                to={`/actualizarequipo/${equipoData.id}`}
-                className="btn btn-info mb-2"
-              >
-                Actualizar Datos
-              </Link>
-            
-            
-              <Button
-                variant="secondary"
-                onClick={() => (window.location.href = "/")}
-              >
-                Ir a Home
-              </Button>
-              <Button variant="info" onClick={handleVerResponsivaClick}>
-                Ver Responsiva
-              </Button>
-            
-          
+        <div className="botonesdatos">
+          <Link
+            to={`/actualizarequipo/${equipoData.id}`}
+            className="btn btn-info mb-2"
+          >
+            Actualizar Datos
+          </Link>
+
+          <Button
+            variant="secondary"
+            onClick={() => (window.location.href = "/")}
+          >
+            Ir a Home
+          </Button>
+          <Button variant="info" onClick={handleVerResponsivaClick}>
+            Ver Responsiva
+          </Button>
         </div>
         <div className="cajaprincipaldatos">
           <div className="cajadatosmepleadoimagen">
@@ -127,21 +120,19 @@ function DatosCompletos() {
               </Row>
             </div>
 
-          <div className="cajadatos">
-            <div className="cajaprincipalimgequipo">
-              <h2 className="h2datos">Imagen del equipo:</h2>
-              <div className="cajaimgequipo">
-              <img className="imgequipo"
-                src={`../../../public/uploads/${equipoData.codigo_inventario}.jpg`}
-                alt={equipoData.codigo_inventario}
-              />
+            <div className="cajadatos">
+              <div className="cajaprincipalimgequipo">
+                <h2 className="h2datos">Imagen del equipo:</h2>
+                <div className="cajaimgequipo">
+                  <img
+                    className="imgequipo"
+                    src={`../../../public/uploads/${equipoData.codigo_inventario}.jpg`}
+                    alt={equipoData.codigo_inventario}
+                  />
+                </div>
               </div>
             </div>
           </div>
-          </div>
-
-
-
 
           <div className="cajadatosequipo">
             <h2 className="h2datos">Datos del equipo:</h2>
@@ -166,7 +157,6 @@ function DatosCompletos() {
                   value={equipoData.tipo_equipo || ""}
                 >
                   <option>{equipoData.tipo_equipo || ""}</option>
-                  
                 </Form.Control>
               </Form.Group>
 
@@ -189,7 +179,6 @@ function DatosCompletos() {
                   value={equipoData.marca || ""}
                 >
                   <option>{equipoData.marca || ""}</option>
-                 
                 </Form.Control>
               </Form.Group>
             </Row>
@@ -214,7 +203,6 @@ function DatosCompletos() {
                   value={equipoData.sistema_operativo || ""}
                 >
                   <option>{equipoData.sistema_operativo || ""}</option>
-                 
                 </Form.Control>
               </Form.Group>
 
@@ -227,7 +215,6 @@ function DatosCompletos() {
                   value={equipoData.memoria_ram || ""}
                 >
                   <option>{equipoData.memoria_ram || ""}</option>
-                 
                 </Form.Control>
               </Form.Group>
 
@@ -274,25 +261,25 @@ function DatosCompletos() {
               />
             </Form.Group>
             <Row className="mb-3">
-            <Form.Group as={Col} controlId="formGridKeyboard">
-              <Form.Label className="formLabel">TECLADO</Form.Label>
-              <Form.Control
-                className="text-center-input"
-                type="text"
-                name="teclado"
-                value={equipoData.teclado || ""}
-              />
-            </Form.Group>
+              <Form.Group as={Col} controlId="formGridKeyboard">
+                <Form.Label className="formLabel">TECLADO</Form.Label>
+                <Form.Control
+                  className="text-center-input"
+                  type="text"
+                  name="teclado"
+                  value={equipoData.teclado || ""}
+                />
+              </Form.Group>
 
-            <Form.Group as={Col} controlId="formGridMouse">
-              <Form.Label className="formLabel">MOUSE</Form.Label>
-              <Form.Control
-                className="text-center-input"
-                type="text"
-                name="raton"
-                value={equipoData.raton || ""}
-              />
-            </Form.Group>
+              <Form.Group as={Col} controlId="formGridMouse">
+                <Form.Label className="formLabel">MOUSE</Form.Label>
+                <Form.Control
+                  className="text-center-input"
+                  type="text"
+                  name="raton"
+                  value={equipoData.raton || ""}
+                />
+              </Form.Group>
             </Row>
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridAccessories">
@@ -318,23 +305,33 @@ function DatosCompletos() {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridubicacion">
-            <Form.Label className="formLabel">Ubicación</Form.Label>
-            <Form.Control
-              className="text-center-input"
-              as="select"
-              aria-label="Default select example"
-              name="ubicacion" // Agrega el atributo name con el mismo nombre que el estado
-              value={equipoData.ubicacion} // Asigna el valor del estado al value del select
-              
-            >
-              <option>{equipoData.ubicacion}</option>
-              
-            </Form.Control>
-          </Form.Group>
+                <Form.Label className="formLabel">Ubicación</Form.Label>
+                <Form.Control
+                  className="text-center-input"
+                  as="select"
+                  aria-label="Default select example"
+                  name="ubicacion" // Agrega el atributo name con el mismo nombre que el estado
+                  value={equipoData.ubicacion} // Asigna el valor del estado al value del select
+                >
+                  <option>{equipoData.ubicacion}</option>
+                </Form.Control>
+              </Form.Group>
+
+              <Form.Group as={Col} controlId="formGridstatus">
+                <Form.Label className="formLabel">Estado del equipo</Form.Label>
+                <Form.Control
+                  className="text-center-input"
+                  as="select"
+                  aria-label="Default select example"
+                  name="status" // Agrega el atributo name con el mismo nombre que el estado
+                  value={equipoData.status} // Asigna el valor del estado al value del select
+                >
+                  <option>{equipoData.status}</option>
+                </Form.Control>
+              </Form.Group>
             </Row>
           </div>
         </div>
-        
       </Form>
     </div>
   );
