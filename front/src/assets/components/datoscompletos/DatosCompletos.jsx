@@ -7,7 +7,7 @@ import Row from "react-bootstrap/Row";
 
 import { useEquiposContext } from "../../context/EquiposContext";
 
-import "../busquedaequipos/estilodashboardequipo.css";
+import "../datoscompletos/estilodatoscompletos.css";
 
 function DatosCompletos() {
   const { obtenerDatosEquipoPorId } = useEquiposContext();
