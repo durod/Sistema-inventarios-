@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
 
-import { useEquiposContext } from "../context/EquiposContext";
-import "../components/styles/estilodashboardequipo.css";
-import AdminEquipos from "./AdminEquipos";
+import { useEquiposContext } from "../../context/EquiposContext";
+import "../dashboardequipos/estilodashboardequipo.css";
+import AdminEquipos from "../adminequipos/AdminEquipos";
 
 function Dashboardequipos() {
   const { equipos, obtenerEquipos } = useEquiposContext();

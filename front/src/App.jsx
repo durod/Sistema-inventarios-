@@ -1,18 +1,18 @@
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { EquiposProvider } from "./assets/context/EquiposContext.jsx"; // Importamos el proveedor del contexto
-import VerEquipos from "./assets/components/VerEquipos";
-import AgregarEquipo from "./assets/components/AgregarEquipo";
-import ActualizarEquipo from "./assets/components/ActualizarEquipo";
-import BusquedaEquipos from "./assets/components/BusquedaEquipos";
-import DatosCompletos from "./assets/components/DatosCompletos";
-import Responsiva from "./assets/components/Responsiva";
-import Header from "./assets/components/Header";
-import VistaAuditor from "./assets/components/VistaAuditor";
+import VerEquipos from "./assets/components/verequipos/VerEquipos";
+import AgregarEquipo from "./assets/components/agregarequipo/AgregarEquipo";
+import ActualizarEquipo from "./assets/components/actualizarequipos/ActualizarEquipo";
+import BusquedaEquipos from "./assets/components/busquedaequipos/BusquedaEquipos";
+import DatosCompletos from "./assets/components/datoscompletos/DatosCompletos";
+import Responsiva from "./assets/components/responsiva/Responsiva";
+import Header from "./assets/components/header/Header";
+import VistaAuditor from "./assets/components/vistaauditor/VistaAuditor";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import AdminEquipos from "./assets/components/AdminEquipos.jsx";
-import Dashboardequipos from "./assets/components/Dashboardequipos.jsx";
+import AdminEquipos from "./assets/components/adminequipos/AdminEquipos.jsx";
+import Dashboardequipos from "./assets/components/dashboardequipos/Dashboardequipos.jsx";
 
 function App() {
   return (

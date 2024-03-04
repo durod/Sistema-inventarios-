@@ -1,5 +1,5 @@
 import React from 'react'
-import "../components/styles/estiloheader.css";
+import "../header/estiloheader.css";
 
 function Header() {
   return (

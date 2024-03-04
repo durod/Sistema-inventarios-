@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 
-import "../components/styles/estilosadminequipos.css";
+import "../adminequipos/AdminEquipos";
 
 function AdminEquipos() {
   return (

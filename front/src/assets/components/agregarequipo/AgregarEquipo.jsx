@@ -4,10 +4,10 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import axios from "axios";
-import "../components/styles/estiloagregarequipo.css";
+import "../agregarequipo/estiloagregarequipo.css";
 
-import { dellModels, appleModels } from "../modelsData";
-import AdminEquipos from "./AdminEquipos";
+import { dellModels, appleModels } from "../../modelsData";
+import AdminEquipos from "../adminequipos/AdminEquipos";
 
 const URI = "http://localhost:3002/equipos";
 

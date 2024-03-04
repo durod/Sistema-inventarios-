@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useLocation } from "react-router-dom";
 import html2pdf from "html2pdf.js";
-import "../components/styles/responsivastyles.css";
+import "../responsiva/responsivastyles.css";
 
 function Responsiva() {
   const location = useLocation();
