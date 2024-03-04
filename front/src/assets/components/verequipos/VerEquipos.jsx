@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Table, Dropdown } from "react-bootstrap";
+
 import { useEquiposContext } from "../../context/EquiposContext";
-import "../verequipos/estiloverequipos.css";
 import AdminEquipos from "../adminequipos/AdminEquipos";
+
+import "../verequipos/estiloverequipos.css";
 
 function VerEquipos() {
   const { equipos, error, obtenerEquipos, confirmarEliminarEquipo } =

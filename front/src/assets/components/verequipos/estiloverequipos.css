@@ -1,12 +1,11 @@
-.cajaprincipalverequipos{
-    display: flex;
-    
+.cajaprincipalverequipos {
+  display: flex;
 }
 
-.container{
-    margin-top: 8%;
+.container {
+  margin-top: 8%;
 }
 
-h1{
-    color: white;
+h1 {
+  color: white;
 }

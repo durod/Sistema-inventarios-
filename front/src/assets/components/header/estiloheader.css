@@ -8,17 +8,12 @@ img {
   left: 0;
   width: 100%;
   padding: 10px;
-
   box-shadow: 0 20px 4px rgba(0, 0, 0, 0.1);
-
   z-index: 1000;
-
   background-color: black;
-
   margin: 0 auto;
 }
 
-
-a{
+a {
   display: flex;
 }

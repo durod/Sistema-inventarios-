@@ -1,36 +1,35 @@
-.containerform{
-    margin-top: 5%;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+.containerform {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .cajaprincipaldatos {
-    display: flex;
-    gap: 16px;
-    width: 100%;
-    padding: 0px 16px 1px 16px;
-    justify-content: center;
-    
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  padding: 0px 16px 1px 16px;
+  justify-content: center;
 }
 .cajadatos {
-    border: 3px solid teal;
-    background-color: papayawhip;
-    padding: 1%;
-    height: 100%;
-    border-radius: 8px;
+  border: 3px solid teal;
+  background-color: papayawhip;
+  padding: 1%;
+  height: 100%;
+  border-radius: 8px;
 }
 
 .botonesdatos {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 17px;
-    margin-bottom: 7px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 17px;
+  margin-bottom: 7px;
 }
 
 .formLabel {
-    margin: 1px 0px 4px;
+  margin: 1px 0px 4px;
   font-weight: bold;
   font-family: monospace;
   font-size: smaller;
@@ -42,43 +41,39 @@
   font-family: system-ui;
 }
 
-.h2datos{
-    text-align: center;
-    background-color: cornsilk;
-    border-radius: 25px;
-    padding: 1px;
+.h2datos {
+  text-align: center;
+  background-color: cornsilk;
+  border-radius: 25px;
+  padding: 1px;
 }
 
-.cajadatosequipo{
-    border: 3px solid teal;
-    background-color: papayawhip;
-    padding: 1%;
-    height: 100%;
-    border-radius: 8px
+.cajadatosequipo {
+  border: 3px solid teal;
+  background-color: papayawhip;
+  padding: 1%;
+  height: 100%;
+  border-radius: 8px;
 }
 
-.cajadatosmepleadoimagen{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 50%;
-    gap: 10px;
+.cajadatosmepleadoimagen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 50%;
+  gap: 10px;
 }
 
-
-
-.cajaprincipalimgequipo{
-    width: 100%;
-    height: 50%;
+.cajaprincipalimgequipo {
+  width: 100%;
+  height: 50%;
 }
 
-.cajaimgequipo{
-       /* width: 100%; */
-       height: 15rem;
+.cajaimgequipo {
+  height: 15rem;
 }
 
-.imgequipo{
-    width: 48%;
-    height: 94%;
-   
+.imgequipo {
+  width: 48%;
+  height: 94%;
 }

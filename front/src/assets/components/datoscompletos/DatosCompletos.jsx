@@ -4,7 +4,10 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+
 import { useEquiposContext } from "../../context/EquiposContext";
+
+import "../busquedaequipos/estilodashboardequipo.css";
 
 function DatosCompletos() {
   const { obtenerDatosEquipoPorId } = useEquiposContext();
@@ -309,8 +312,8 @@ function DatosCompletos() {
                   className="text-center-input"
                   as="select"
                   aria-label="Default select example"
-                  name="ubicacion" // Agrega el atributo name con el mismo nombre que el estado
-                  value={equipoData.ubicacion} // Asigna el valor del estado al value del select
+                  name="ubicacion"
+                  value={equipoData.ubicacion}
                 >
                   <option>{equipoData.ubicacion}</option>
                 </Form.Control>
@@ -322,8 +325,8 @@ function DatosCompletos() {
                   className="text-center-input"
                   as="select"
                   aria-label="Default select example"
-                  name="status" // Agrega el atributo name con el mismo nombre que el estado
-                  value={equipoData.status} // Asigna el valor del estado al value del select
+                  name="status"
+                  value={equipoData.status}
                 >
                   <option>{equipoData.status}</option>
                 </Form.Control>

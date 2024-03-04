@@ -10,11 +10,11 @@ body {
   font-size: smaller;
 }
 
-h5{
+h5 {
   text-align: left;
 }
 
-hr{
+hr {
   border: 2px solid darkblue;
 }
 /*--------Fecha y num empleado------------------------------------------*/
@@ -86,33 +86,32 @@ hr{
   text-transform: uppercase;
 }
 
-.datoprocesador{
+.datoprocesador {
   width: 60%;
 }
-.datoprocesador label{
+.datoprocesador label {
   background-color: aqua;
   width: 41%;
   border: 1px solid black;
   font-size: initial;
-  
 }
-.datoprocesador input{
+.datoprocesador input {
   width: 59%;
   text-transform: uppercase;
 }
 
-.datoram{
+.datoram {
   width: 40%;
 }
 
-.datoram label{
-background-color: aqua;
-width: 70%;
-border: 1px solid black;
-font-size: initial;
+.datoram label {
+  background-color: aqua;
+  width: 70%;
+  border: 1px solid black;
+  font-size: initial;
 }
 
-.datoram input{
+.datoram input {
   width: 30%;
   text-transform: uppercase;
 }
@@ -135,32 +134,31 @@ font-size: initial;
   font-size: initial;
 }
 
-.cajasecundariaobservaciones input{
+.cajasecundariaobservaciones input {
   width: 80%;
   text-transform: uppercase;
 }
 
-
 /*---------importante---------------------------------------------------------*/
 
-.cajaimportante{
+.cajaimportante {
   display: flex;
   flex-direction: column;
 }
 
-.cajaimportante textarea{
+.cajaimportante textarea {
   height: 14rem;
   font-size: smaller;
 }
 
 /*----------firmas--------------------*/
-.signature{
+.signature {
   display: flex;
-    gap: 28px;
-    margin-top: 8px;
+  gap: 28px;
+  margin-top: 8px;
 }
 
-.signaturedatos{
+.signaturedatos {
   display: flex;
   flex-direction: column;
   gap: 1px;

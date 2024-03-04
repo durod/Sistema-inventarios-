@@ -1,10 +1,12 @@
 import { useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
-import "../busquedaequipos/estilobuscadeequipo.css";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
+
+import "../busquedaequipos/estilobuscadeequipo.css";
+
+import axios from "axios";
 
 const BusquedaEquipos = () => {
   const [parametro, setParametro] = useState("");
@@ -48,15 +50,11 @@ const BusquedaEquipos = () => {
         <td className="text-center align-middle">{equipo.id_direccion}</td>
         <td className="text-center align-middle">{equipo.id_departamento}</td>
         <td className="text-center align-middle">{equipo.puesto}</td>
-
-        {/* Información de equipos */}
         <td className="text-center align-middle">{equipo.codigo_inventario}</td>
-        {/* Resto de las columnas de equipos */}
         <td className="text-center align-middle">{equipo.numero_serie}</td>
         <td className="text-center align-middle">{equipo.marca}</td>
         <td className="text-center align-middle">{equipo.modelo}</td>
         <td className="text-center align-middle">{equipo.monitor}</td>
-        {/* Resto de las columnas de equipos */}
 
         <td>
           <Link
@@ -116,21 +114,7 @@ const BusquedaEquipos = () => {
                 <th className="text-center align-middle">Número de Serie</th>
                 <th className="text-center align-middle">Marca</th>
                 <th className="text-center align-middle">Modelo</th>
-                {/* <th className="text-center align-middle ">Tipo de Equipo</th> */}
-                {/* <th className="text-center align-middle"> Sistema Operativo</th>
-                <th className="text-center align-middle">Memoria RAM</th>
-                <th className="text-center align-middle">Procesador</th>
-                <th className="text-center align-middle">Almacenamiento</th>
-                <th className="text-center align-middle">
-                  Número de Serie del Cargador
-  </th> */}
                 <th className="text-center align-middle">Monitor</th>
-                {/*  <th className="text-center align-middle">Teclado</th>
-                <th className="text-center align-middle">Ratón</th>
-                <th className="text-center align-middle">Accesorios</th>
-                <th className="text-center align-middle">
-                  Suscripción a Office
-</th> */}
                 <th className="text-center align-middle">Acciones</th>
               </tr>
             </thead>

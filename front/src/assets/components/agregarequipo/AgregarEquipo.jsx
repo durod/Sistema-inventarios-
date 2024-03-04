@@ -3,12 +3,13 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import axios from "axios";
-import "../agregarequipo/estiloagregarequipo.css";
 
 import { dellModels, appleModels } from "../../modelsData";
 import AdminEquipos from "../adminequipos/AdminEquipos";
 
+import "../agregarequipo/estiloagregarequipo.css";
+
+import axios from "axios";
 const URI = "http://localhost:3002/equipos";
 
 export default function AgregarEquipo() {

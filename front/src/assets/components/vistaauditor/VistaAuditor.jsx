@@ -1,8 +1,9 @@
+import { useState, useEffect } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import axios from "axios";
-import { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
+
+import axios from "axios";
 
 const URI = "http://localhost:3002/equipos";
 
@@ -18,14 +19,13 @@ function VistaAuditor() {
     try {
       const response = await axios.get(URI);
       setEquipos(response.data);
-      setError(null); // Limpiar el estado de error en caso de éxito
+      setError(null);
     } catch (error) {
       console.error("Error al obtener equipos:", error.message);
-      setError("Error al cargar equipos. Por favor, inténtalo de nuevo."); // Guardar el error en el estado
+      setError("Error al cargar equipos. Por favor, inténtalo de nuevo.");
     }
   };
 
-  // Función para dividir los equipos por ubicación
   const dividirPorUbicacion = () => {
     const equiposPorUbicacion = {
       "PB - Almacén": [],
@@ -54,7 +54,6 @@ function VistaAuditor() {
     return equiposPorUbicacion;
   };
 
-  // Función para renderizar las pestañas y tablas por ubicación
   const renderTabs = () => {
     const equiposPorUbicacion = dividirPorUbicacion();
     return Object.entries(equiposPorUbicacion).map(([ubicacion, equipos]) => (

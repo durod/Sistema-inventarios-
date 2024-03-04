@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
 
 import { useEquiposContext } from "../../context/EquiposContext";
-import "../dashboardequipos/estilodashboardequipo.css";
 import AdminEquipos from "../adminequipos/AdminEquipos";
+
+import "../dashboardequipos/estilodashboardequipo.css";
 
 function Dashboardequipos() {
   const { equipos, obtenerEquipos } = useEquiposContext();
@@ -53,30 +54,29 @@ function Dashboardequipos() {
       [`Sin Suscripción (${equiposSinSuscripcion})`, equiposSinSuscripcion], // Agregar la cantidad de equipos sin suscripción
     ]);
 
-     const equiposPorTipo = equipos.reduce((acc, equipo) => {
-    if (acc[equipo.tipo_equipo]) {
-      acc[equipo.tipo_equipo] += 1;
-    } else {
-      acc[equipo.tipo_equipo] = 1;
-    }
-    return acc;
-  }, {});
+    const equiposPorTipo = equipos.reduce((acc, equipo) => {
+      if (acc[equipo.tipo_equipo]) {
+        acc[equipo.tipo_equipo] += 1;
+      } else {
+        acc[equipo.tipo_equipo] = 1;
+      }
+      return acc;
+    }, {});
 
-  // Convertir los datos en el formato requerido por Google Charts
-  const tiposEquiposChartData = Object.entries(equiposPorTipo).map(
-    ([tipo, cantidad]) => [tipo, cantidad]
-  );
+    // Convertir los datos en el formato requerido por Google Charts
+    const tiposEquiposChartData = Object.entries(equiposPorTipo).map(
+      ([tipo, cantidad]) => [tipo, cantidad]
+    );
 
-  // Establecer los datos para la gráfica de tipos de equipos
-  setTiposEquiposData([
-    ["Tipo de Equipo", "Cantidad de Equipos"],
-    ...tiposEquiposChartData.map(([tipo, cantidad]) => [
-      `${tipo} (${cantidad})`, // Agregar la cantidad de equipos al nombre del tipo de equipo
-      cantidad, // Pasar la cantidad como segundo valor
-    ]),
-  ]);
-}, [equipos]);
-    
+    // Establecer los datos para la gráfica de tipos de equipos
+    setTiposEquiposData([
+      ["Tipo de Equipo", "Cantidad de Equipos"],
+      ...tiposEquiposChartData.map(([tipo, cantidad]) => [
+        `${tipo} (${cantidad})`, // Agregar la cantidad de equipos al nombre del tipo de equipo
+        cantidad, // Pasar la cantidad como segundo valor
+      ]),
+    ]);
+  }, [equipos]);
 
   return (
     <div className="principalcontainer">

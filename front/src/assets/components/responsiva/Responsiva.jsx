@@ -22,7 +22,6 @@ function Responsiva() {
     document.body.style.fontSize = "10px";
     window.alert("Recuerda imprimir solo la primera pag.");
 
-
     html2pdf(responsivaRef.current, pdfOptions);
 
     // Restauro el tamaño de fuente original después de generar el PDF
@@ -110,7 +109,7 @@ function Responsiva() {
           </fieldset>
 
           <fieldset>
-          <h5 style={{ marginTop: '21px' }}>Datos del Equipo Asignado</h5>
+            <h5 style={{ marginTop: "21px" }}>Datos del Equipo Asignado</h5>
             <hr />
 
             <div>
@@ -273,18 +272,18 @@ function Responsiva() {
             </div>
           </fieldset>
 
-<fieldset>
-  <div className="cajaimportante">
-          <label htmlFor="prohibiciones">IMPORTANTE</label>
+          <fieldset>
+            <div className="cajaimportante">
+              <label htmlFor="prohibiciones">IMPORTANTE</label>
 
-          <textarea
-            id="prohibiciones"
-            name="prohibiciones"
-            className="textoimportante"
-            required
-            readOnly
-          >
-            {`Queda estrictamente prohibido instalar cualquier otro sistema o programa sin la aprobación del área de tecnología,
+              <textarea
+                id="prohibiciones"
+                name="prohibiciones"
+                className="textoimportante"
+                required
+                readOnly
+              >
+                {`Queda estrictamente prohibido instalar cualquier otro sistema o programa sin la aprobación del área de tecnología,
 así como el uso o acceso a páginas prohibidas por la política del uso de equipo, haciéndome responsable de la debida
 resguarda del mismo.
 
@@ -297,8 +296,8 @@ solicitará la devolución del mismo.
 5) EL daño o extravío de los equipos serán responsabilidad del empleado y el costo del mismo será descontado vía
 nómina.
 6) En caso de robo, de no presentar acta de denuncia se aplicará el punto anterior.`}
-          </textarea>
-          </div>
+              </textarea>
+            </div>
           </fieldset>
           <div className="signature">
             <div className="signaturedatos">
@@ -331,9 +330,9 @@ nómina.
             </div>
           </div>
 
-                <br />
-                <br />
-                <br />
+          <br />
+          <br />
+          <br />
           <button type="button" onClick={generatePDF}>
             Generar Responsiva
           </button>

@@ -1,5 +1,5 @@
-import  { createContext, useState, useContext } from "react";
-import PropTypes from "prop-types"; // Importamos PropTypes para validar las props
+import { createContext, useState, useContext } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 
 const EquiposContext = createContext();
@@ -26,7 +26,9 @@ export const EquiposProvider = ({ children }) => {
       return response.data;
     } catch (error) {
       console.error("Error al obtener datos del equipo:", error.message);
-      throw new Error("Error al cargar datos del equipo. Por favor, inténtalo de nuevo.");
+      throw new Error(
+        "Error al cargar datos del equipo. Por favor, inténtalo de nuevo."
+      );
     }
   };
 
@@ -76,9 +78,8 @@ export const EquiposProvider = ({ children }) => {
   );
 };
 
-// Validamos las props del componente EquiposProvider
 EquiposProvider.propTypes = {
-  children: PropTypes.node.isRequired, // Validamos que children sea de tipo node y sea requerido
+  children: PropTypes.node.isRequired,
 };
 
 export const useEquiposContext = () => useContext(EquiposContext);

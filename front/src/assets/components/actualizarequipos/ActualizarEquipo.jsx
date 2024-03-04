@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-//import Table from "react-bootstrap/Table";
+
+import axios from "axios";
 const URI = "http://localhost:3002/equipos";
 
 const ActualizarEquipo = () => {
@@ -324,7 +324,6 @@ const ActualizarEquipo = () => {
             />
           </Form.Group>
 
-
           <Form.Group as={Col} controlId="formGridstatus">
             <Form.Label className="formLabel">Estado del Equipo</Form.Label>
             <Form.Control
@@ -338,10 +337,8 @@ const ActualizarEquipo = () => {
               <option>Selecciona estado del equipo</option>
               <option value="1">Activo</option>
               <option value="0">Inactivo </option>
-              
             </Form.Control>
           </Form.Group>
-
         </Row>
 
         <Row className="mb-3">
