@@ -1,18 +1,12 @@
-body {
-  margin: 0;
-  padding: 0;
-  background-color: white;
-}
 
-.cajaprincipal {
-  margin-top: 1%;
+.cajaprincipalresponsiva {
   padding: 5px;
   font-size: smaller;
+  display: flex;
+  flex-direction: column;  
 }
 
-h5 {
-  text-align: left;
-}
+
 
 hr {
   border: 2px solid darkblue;
