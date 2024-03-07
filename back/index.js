@@ -12,6 +12,7 @@ import {
   eliminarEquipo,
   obtenerDetallesEquipoEmpleado,
   buscarEquiposPorParametro,
+  obtenerDetallesEquipoPorId,
 } from "./consulta.js";
 import fs from "fs";
 
@@ -149,6 +150,22 @@ app.get("/datoscompletos/:codigo_inventario/:numempleado", async (req, res) => {
     res.status(status).send("Error al obtener detalles: " + message);
   }
 });
+
+app.get("/equipos/:id", async (req, res) => {
+  const equipoId = req.params.id;
+
+  try {
+    // Usar la función 'obtenerDetallesEquipoPorId' para obtener los detalles del equipo por ID
+    const equipoDetalles = await obtenerDetallesEquipoPorId(equipoId);
+    res.json(equipoDetalles);
+  } catch (error) {
+    console.error("Error al obtener detalles del equipo:", error);
+    res
+      .status(500)
+      .send("Error interno del servidor al obtener detalles del equipo");
+  }
+});
+
 
 
 //3. PUT para modificar el equipo

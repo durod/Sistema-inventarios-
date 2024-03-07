@@ -45,7 +45,7 @@ function DatosCompletos() {
       <Form>
         <div className="botonesdatos">
           <Link
-            to={`/actualizar/${datos.id}`}
+            to={`/actualizarequipo/${datos.id}`}
             className="btn btn-info mb-2"
           >
             Actualizar Datos

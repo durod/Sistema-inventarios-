@@ -86,6 +86,31 @@ const verEquipos = async () => {
   }
 };
 
+const obtenerDetallesEquipoPorId = async (id) => {
+  try {
+    const consulta = `
+        SELECT pc_info.*, empleados.*
+        FROM pc_info
+        LEFT JOIN asignaciones ON pc_info.codigo_inventario = asignaciones.codigo_inventario
+        LEFT JOIN empleados ON asignaciones.numEmpleado = empleados.numEmpleado
+        WHERE pc_info.id = $1;
+    `;
+    const values = [id];
+
+    const result = await pool.query(consulta, values);
+
+    if (result.rowCount === 0) {
+      // Si no se encuentra el equipo, puedes lanzar una excepción o devolver un mensaje indicando que no se encontró
+      throw new Error("No se encontró el equipo con el ID proporcionado.");
+    }
+
+    return result.rows[0];
+  } catch (error) {
+    console.error("Error al obtener detalles del equipo por ID:", error);
+    throw error;
+  }
+};
+
 // Función para actualizar un equipo en la tabla
 const actualizarEquipo = async (id, newData) => {
   try {
@@ -111,7 +136,7 @@ const actualizarEquipo = async (id, newData) => {
                 accesorios = $15,
                 suscripcion_office = $16,
                 ubicacion = $17,
-                status = $18
+                status = $18,
                  
             WHERE id = $1
             RETURNING *`;
@@ -279,4 +304,5 @@ export {
   eliminarEquipo,
   buscarEquiposPorParametro,
   obtenerDetallesEquipoEmpleado,
+  obtenerDetallesEquipoPorId,
 };
