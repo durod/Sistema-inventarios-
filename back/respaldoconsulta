@@ -1,95 +1,6 @@
-import pkg from "pg";
-const { Pool } = pkg;
-
-const pool = new Pool({
-  allowExitOnIdle: true,
-});
-
-// funcion para insertar un equipo en la tabla en forma de parametros
-const agregarEquipo = async ({
-  codigo_inventario,
-  tipo_equipo,
-  numero_serie,
-  marca,
-  modelo,
-  sistema_operativo,
-  memoria_ram,
-  procesador,
-  almacenamiento,
-  numero_serie_cargador,
-  monitor,
-  teclado,
-  raton,
-  accesorios,
-  suscripcion_office,
-  ubicacion,
-  status,
-}) => {
-  try {
-    const consulta =
-      "INSERT INTO pc_info VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING *";
-    const values = [
-      codigo_inventario,
-      tipo_equipo,
-      numero_serie,
-      marca,
-      modelo,
-      sistema_operativo,
-      memoria_ram,
-      procesador,
-      almacenamiento,
-      numero_serie_cargador,
-      monitor,
-      teclado,
-      raton,
-      accesorios,
-      suscripcion_office,
-      ubicacion,
-      status,
-    ];
-
-    const result = await pool.query(consulta, values);
-
-    /*console.log(
-      "---------------------------------------------------------------"
-    );
-    console.log("Equipo agregado");
-    console.log("Objeto devuelto de la consulta: ", result);
-    console.log("Filas procesadas: ", result.rowCount);
-    console.log("Información ingresada: ", result.rows[0]);
-    console.log(
-      "----------------------------------------------------------------"
-    );*/
-  } catch (error) {
-    console.error("Error al agregar el equipo: ", error);
-    throw error; // Agrega esto para propagar el error
-  }
-};
-
-// funcion listar el contenido de la tabla
-const verEquipos = async () => {
-  try {
-    const query = `
-    SELECT pc_info.*, empleados.numempleado, empleados.id_direccion, empleados.id_departamento, empleados.nombre, empleados.appaterno, empleados.apmaterno, empleados.puesto
-    FROM pc_info
-    LEFT JOIN asignaciones ON pc_info.codigo_inventario = asignaciones.codigo_inventario
-    LEFT JOIN empleados ON asignaciones.numempleado = empleados.numempleado
-    WHERE pc_info.status = 1
-    ORDER BY pc_info.codigo_inventario ASC; 
-    `;
-    const { rows, command, rowCount, fields } = await pool.query(query);
-
-    return rows;
-  } catch (error) {
-    console.error("Error al intentar ver equipos: ", error);
-    throw error;
-  }
-};
-
-// Función para actualizar un equipo en la tabla
 const actualizarEquipo = async (id, newData) => {
   try {
-    //  console.log("Iniciando actualización de equipo...");
+  //  console.log("Iniciando actualización de equipo...");
 
     // Crear la consulta para actualizar los datos del equipo con el ID proporcionado
     const consulta = `
@@ -144,7 +55,7 @@ const actualizarEquipo = async (id, newData) => {
     // Ejecutar la consulta y obtener el resultado
     const result = await pool.query(consulta, values);
 
-    // console.log("Equipo actualizado correctamente:", result.rows[0]);
+   // console.log("Equipo actualizado correctamente:", result.rows[0]);
 
     const asignacionConsulta = `
     INSERT INTO asignaciones (codigo_inventario, numEmpleado)
@@ -173,43 +84,32 @@ const actualizarEquipo = async (id, newData) => {
   }
 };
 
-const obtenerDetallesEquipoEmpleado = async (
-  codigo_inventario,
-  numempleado
-) => {
-  // Definimos la consulta base para los detalles del equipo.
-  let query = `
-    SELECT pi.* FROM pc_info pi WHERE pi.codigo_inventario = $1
-  `;
-  const params = [codigo_inventario];
-
-  // Si numempleado está presente, expandimos la consulta para incluir detalles del empleado.
-  if (numempleado && numempleado !== "sinEmpleado") {
-    query = `
-      SELECT e.*, pi.*
-      FROM asignaciones a
-      JOIN empleados e ON a.numempleado = e.numempleado
-      JOIN pc_info pi ON a.codigo_inventario = pi.codigo_inventario
-      WHERE pi.codigo_inventario = $1 AND e.numempleado = $2
-    `;
-    params.push(numempleado);
-  }
-
+const obtenerDetallesEquipoPorId = async (id) => {
   try {
-    const { rows } = await pool.query(query, params);
-    // Asumimos que esta consulta devuelve un solo registro que corresponde a la combinación específica.
-    // Si numempleado no estaba presente o era 'sinEmpleado', solo tendremos detalles del equipo.
-    return rows[0] || null; // Devolvemos null si no se encontraron filas para manejar este caso en el cliente.
+    const consulta = `
+        SELECT pc_info.*, empleados.*
+        FROM pc_info
+        LEFT JOIN asignaciones ON pc_info.codigo_inventario = asignaciones.codigo_inventario
+        LEFT JOIN empleados ON asignaciones.numEmpleado = empleados.numEmpleado
+        WHERE pc_info.id = $1;
+    `;
+    const values = [id];
+
+    const result = await pool.query(consulta, values);
+
+    if (result.rowCount === 0) {
+      // Si no se encuentra el equipo, puedes lanzar una excepción o devolver un mensaje indicando que no se encontró
+      throw new Error("No se encontró el equipo con el ID proporcionado.");
+    }
+
+    return result.rows[0];
   } catch (error) {
-    console.error(
-      "Error al intentar obtener detalles del equipo y empleado: ",
-      error
-    );
+    console.error("Error al obtener detalles del equipo por ID:", error);
     throw error;
   }
 };
 
-// Función para buscar equipos en función de un parámetro en todas las columnas
+
 const buscarEquiposPorParametro = async (parametro) => {
   try {
     const consulta = `
@@ -272,11 +172,84 @@ const eliminarEquipo = async (id) => {
   }
 };
 
-export {
-  agregarEquipo,
-  verEquipos,
-  actualizarEquipo,
-  eliminarEquipo,
-  buscarEquiposPorParametro,
-  obtenerDetallesEquipoEmpleado,
+
+// funcion para insertar un equipo en la tabla en forma de parametros
+const agregarEquipo = async ({
+  codigo_inventario,
+  tipo_equipo,
+  numero_serie,
+  marca,
+  modelo,
+  sistema_operativo,
+  memoria_ram,
+  procesador,
+  almacenamiento,
+  numero_serie_cargador,
+  monitor,
+  teclado,
+  raton,
+  accesorios,
+  suscripcion_office,
+  ubicacion,
+  status,
+}) => {
+  try {
+    /* console.log(
+      "Entro agregarEquipo: ",
+      codigo_inventario,
+      tipo_equipo,
+      numero_serie,
+      marca,
+      modelo,
+      sistema_operativo,
+      memoria_ram,
+      procesador,
+      almacenamiento,
+      numero_serie_cargador,
+      monitor,
+      teclado,
+      raton,
+      accesorios,
+      suscripcion_office,
+      ubicacion
+    );*/
+
+    const consulta =
+      "INSERT INTO pc_info VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING *";
+    const values = [
+      codigo_inventario,
+      tipo_equipo,
+      numero_serie,
+      marca,
+      modelo,
+      sistema_operativo,
+      memoria_ram,
+      procesador,
+      almacenamiento,
+      numero_serie_cargador,
+      monitor,
+      teclado,
+      raton,
+      accesorios,
+      suscripcion_office,
+      ubicacion,
+      status,
+    ];
+
+    const result = await pool.query(consulta, values);
+
+    /*console.log(
+      "---------------------------------------------------------------"
+    );
+    console.log("Equipo agregado");
+    console.log("Objeto devuelto de la consulta: ", result);
+    console.log("Filas procesadas: ", result.rowCount);
+    console.log("Información ingresada: ", result.rows[0]);
+    console.log(
+      "----------------------------------------------------------------"
+    );*/
+  } catch (error) {
+    console.error("Error al agregar el equipo: ", error);
+    throw error; // Agrega esto para propagar el error
+  }
 };

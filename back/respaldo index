@@ -1,3 +1,4 @@
+
 // para manejar variables de ambiente
 import * as dotenv from "dotenv";
 dotenv.config();
@@ -5,13 +6,9 @@ import path from "path";
 
 // importando modulos personalizados
 import { handleErrors } from "./errors.js";
-import {
-  agregarEquipo,
+import {  
   verEquipos,
-  actualizarEquipo,
-  eliminarEquipo,
-  obtenerDetallesEquipoEmpleado,
-  buscarEquiposPorParametro,
+  
 } from "./consulta.js";
 import fs from "fs";
 
@@ -45,21 +42,75 @@ app.listen(PORT, () => {
   console.log("servidor listo en http://localhost:" + PORT);
 });
 
-//rutas del enrutador/ Api Rest, enlazar ruta con funcion BD
 
-//1. GET para ver todos los equipos registrados en la tabla
-app.get("/equipos", async (req, res) => {
+
+app.get("/equipos/:id", async (req, res) => {
+  const equipoId = req.params.id;
+
   try {
-    const equipos = await verEquipos();
-    res.json(equipos); //respuesta del servidor que es la respuesta que dio la funcion de consulta a BD
+    // Usar la función 'obtenerDetallesEquipoPorId' para obtener los detalles del equipo por ID
+    const equipoDetalles = await obtenerDetallesEquipoPorId(equipoId);
+    res.json(equipoDetalles);
   } catch (error) {
-    console.error("Error en la ruta /equipos (verEquipos): ", error);
-    const { status, message } = handleErrors(error.code);
-    res.status(status).send("Error al obtener los equipos: " + message);
+    console.error("Error al obtener detalles del equipo:", error);
+    res
+      .status(500)
+      .send("Error interno del servidor al obtener detalles del equipo");
   }
 });
 
-//2. POST para ingresar un equipo en la tabla
+
+
+app.put("/equipos/actualizar/:id", upload.single("foto"), async (req, res) => {
+    const equipoId = req.params.id;
+    const equipoData = req.body;
+  
+    try {
+    
+      const originalFileName = req.file ? req.file.originalname : null;
+      console.log("Nombre del archivo original:", originalFileName);
+  
+      // Si existe el archivo original, procede a renombrarlo
+      if (originalFileName) {
+        const codigoInventario = equipoData.codigo_inventario;
+        const newFileName = `${codigoInventario}-${originalFileName}`;
+        console.log("Nuevo nombre del archivo:", newFileName);
+  
+        const oldFilePath = req.file.path;
+        console.log("Ruta original del archivo:", oldFilePath);
+  
+        const newFilePath = `../front/public/uploads/${codigoInventario}.jpg`;
+        console.log("Ruta nueva del archivo:", newFilePath);
+  
+        try {
+          fs.renameSync(oldFilePath, newFilePath);
+          console.log("Archivo renombrado correctamente.");
+        } catch (err) {
+          console.error("Error al renombrar el archivo:", err);
+          throw err;
+        }
+      }
+  
+      // Actualizar equipo con los datos proporcionados
+      const updatedEquipo = await actualizarEquipo(equipoId, equipoData);
+      console.log("Equipo actualizado con éxito:", updatedEquipo);
+  
+      res.status(200).json({
+        ok: true,
+        message: "Equipo actualizado con éxito",
+        result: updatedEquipo,
+      });
+    } catch (error) {
+      console.error("Error al actualizar equipo:", error.message);
+      const { status, message } = handleErrors(error.code);
+      res.status(status || 500).json({
+        ok: false,
+        result: message || "Error interno del servidor",
+      });
+    }
+  });
+
+  //2. POST para ingresar un equipo en la tabla
 app.post("/equipos", async (req, res) => {
   const {
     codigo_inventario,
@@ -100,7 +151,6 @@ app.post("/equipos", async (req, res) => {
       accesorios,
       suscripcion_office,
       ubicacion,
-      status
     });
     res.send("equipo agregado con éxito");
     /*console.log("valor req.body en la ruta /equipos: ", req.body);*/
@@ -134,77 +184,6 @@ app.get("/buscarEquipo", async (req, res) => {
   }
 });
 
-app.get("/datoscompletos/:codigo_inventario/:numempleado", async (req, res) => {
-  try {
-    const { codigo_inventario, numempleado } = req.params;
-    const detalles = await obtenerDetallesEquipoEmpleado(codigo_inventario, numempleado);
-    if (detalles) {
-      res.json(detalles);
-    } else {
-      res.status(404).send("Detalles no encontrados");
-    }
-  } catch (error) {
-    console.error("Error al obtener los detalles del equipo y empleado: ", error);
-    const { status, message } = handleErrors(error.code);
-    res.status(status).send("Error al obtener detalles: " + message);
-  }
-});
-
-
-//3. PUT para modificar el equipo
-app.put("/equipos/actualizar/:id", upload.single("foto"), async (req, res) => {
-  const equipoId = req.params.id;
-  const equipoData = req.body;
-
-  try {
-    /* console.log("Iniciando actualización de equipo...");
-    console.log("ID del equipo a actualizar:", equipoId);
-    console.log("Datos del equipo a actualizar:", equipoData);*/
-
-    // Obtener el nombre del archivo original si existe
-    const originalFileName = req.file ? req.file.originalname : null;
-    console.log("Nombre del archivo original:", originalFileName);
-
-    // Si existe el archivo original, procede a renombrarlo
-    if (originalFileName) {
-      const codigoInventario = equipoData.codigo_inventario;
-      const newFileName = `${codigoInventario}-${originalFileName}`;
-      console.log("Nuevo nombre del archivo:", newFileName);
-
-      const oldFilePath = req.file.path;
-      console.log("Ruta original del archivo:", oldFilePath);
-
-      const newFilePath = `../front/public/uploads/${codigoInventario}.jpg`;
-      console.log("Ruta nueva del archivo:", newFilePath);
-
-      try {
-        fs.renameSync(oldFilePath, newFilePath);
-        console.log("Archivo renombrado correctamente.");
-      } catch (err) {
-        console.error("Error al renombrar el archivo:", err);
-        throw err;
-      }
-    }
-
-    // Actualizar equipo con los datos proporcionados
-    const updatedEquipo = await actualizarEquipo(equipoId, equipoData);
-    console.log("Equipo actualizado con éxito:", updatedEquipo);
-
-    res.status(200).json({
-      ok: true,
-      message: "Equipo actualizado con éxito",
-      result: updatedEquipo,
-    });
-  } catch (error) {
-    console.error("Error al actualizar equipo:", error.message);
-    const { status, message } = handleErrors(error.code);
-    res.status(status || 500).json({
-      ok: false,
-      result: message || "Error interno del servidor",
-    });
-  }
-});
-
 //5. DELETE para eliminar un registro de la tabla segun ID
 app.delete("/equipos/:id", async (req, res) => {
   const equipoId = req.params.id;
@@ -233,9 +212,4 @@ app.delete("/equipos/:id", async (req, res) => {
       result: message + " : " + error.column,
     });
   }
-});
-
-//0. GET para ver ruta raiz
-app.use("*", (req, res) => {
-  res.json({ ok: false, result: "404 Pagina no Encontrada" });
 });

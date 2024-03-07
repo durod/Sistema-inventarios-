@@ -1,51 +1,48 @@
-import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+
+import { useEquiposContext } from "../../context/EquiposContext";
 
 import "../datoscompletos/estilodatoscompletos.css";
 
 function DatosCompletos() {
-  const { codigo_inventario, numempleado } = useParams(); // Extrae los parámetros
-  const [datos, setDatos] = useState(null); // Estado para almacenar los datos cargados
+  const { obtenerDatosEquipoPorId } = useEquiposContext();
+  const { id } = useParams();
   const navigate = useNavigate();
+  const [equipoData, setEquipoData] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const cargarDatos = async () => {
+    const cargarDatosEquipo = async () => {
       try {
-        const respuesta = await fetch(
-          `http://localhost:3002/datoscompletos/${codigo_inventario}/${
-            numempleado || "sinEmpleado"
-          }`
-        );
-        const datosCargados = await respuesta.json();
-        setDatos(datosCargados);
+        const data = await obtenerDatosEquipoPorId(id);
+        setEquipoData(data);
+        setLoading(false);
       } catch (error) {
-        console.error("Error al cargar los datos:", error);
+        console.error("Error al cargar datos del equipo:", error.message);
       }
     };
 
-    cargarDatos();
-  }, [codigo_inventario, numempleado]);
-
-  if (!datos) {
-    return <div>Cargando datos...</div>;
-  }
+    cargarDatosEquipo();
+  }, [id, obtenerDatosEquipoPorId]);
 
   const handleVerResponsivaClick = () => {
-    navigate(`/verResponsiva/${datos.id}`, {
-      state: { datos: datos },
+    navigate(`/verResponsiva/${equipoData.id}`, {
+      state: { equipoData: equipoData },
     });
   };
+
   return (
     <div className="containerform ">
       <h2>Datos completos</h2>
       <Form>
         <div className="botonesdatos">
           <Link
-            to={`/actualizar/${datos.id}`}
+            to={`/actualizarequipo/${equipoData.id}`}
             className="btn btn-info mb-2"
           >
             Actualizar Datos
@@ -74,7 +71,9 @@ function DatosCompletos() {
                     className="text-center-input"
                     type="text"
                     name="nombre"
-                    value={`${datos.nombre || "No Asignado"} ${datos.appaterno || ""} ${datos.apmaterno || ""}`}
+                    value={`${equipoData.nombre || ""} ${
+                      equipoData.appaterno || ""
+                    } ${equipoData.apmaterno || ""}`}
                   />
                 </Form.Group>
 
@@ -83,8 +82,8 @@ function DatosCompletos() {
                   <Form.Control
                     className="text-center-input"
                     type="text"
-                    name="numempleado"
-                    value={datos.id_direccion || "No Asignado"}
+                    name="numEmpleado"
+                    value={equipoData.id_direccion || ""}
                   />
                 </Form.Group>
 
@@ -94,7 +93,7 @@ function DatosCompletos() {
                     className="text-center-input"
                     type="text"
                     name="id_direccion"
-                    value={datos.id_departamento || "No Asignado"}
+                    value={`${equipoData.id_departamento || ""} `}
                   />
                 </Form.Group>
               </Row>
@@ -104,8 +103,8 @@ function DatosCompletos() {
                   <Form.Control
                     className="text-center-input"
                     type="text"
-                    name="numempleado"
-                    value={datos.puesto || "No Asignado"}
+                    name="numEmpleado"
+                    value={equipoData.puesto || ""}
                   />
                 </Form.Group>
 
@@ -116,8 +115,8 @@ function DatosCompletos() {
                   <Form.Control
                     className="text-center-input"
                     type="text"
-                    name="numempleado"
-                    value={datos.numempleado || "No Asignado"}
+                    name="numEmpleado"
+                    value={equipoData.numempleado || ""}
                   />
                 </Form.Group>
               </Row>
@@ -129,13 +128,14 @@ function DatosCompletos() {
                 <div className="cajaimgequipo">
                   <img
                     className="imgequipo"
-                    src={`../../../public/uploads/${datos.codigo_inventario}.jpg`}
-                    alt={datos.codigo_inventario}
+                    src={`../../../public/uploads/${equipoData.codigo_inventario}.jpg`}
+                    alt={equipoData.codigo_inventario}
                   />
                 </div>
               </div>
             </div>
           </div>
+
           <div className="cajadatosequipo">
             <h2 className="h2datos">Datos del equipo:</h2>
 
@@ -146,7 +146,7 @@ function DatosCompletos() {
                   className="text-center-input"
                   type="text"
                   name="codigo_inventario"
-                  value={datos.codigo_inventario || ""}
+                  value={equipoData.codigo_inventario || ""}
                 />
               </Form.Group>
 
@@ -156,8 +156,10 @@ function DatosCompletos() {
                   className="text-center-input"
                   as="select"
                   name="tipo_equipo"
-                  value={datos.tipo_equipo || ""}
-                ></Form.Control>
+                  value={equipoData.tipo_equipo || ""}
+                >
+                  <option>{equipoData.tipo_equipo || ""}</option>
+                </Form.Control>
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridSerialNumber">
@@ -166,7 +168,7 @@ function DatosCompletos() {
                   className="text-center-input"
                   type="text"
                   name="numero_serie"
-                  value={datos.numero_serie || ""}
+                  value={equipoData.numero_serie || ""}
                 />
               </Form.Group>
 
@@ -176,8 +178,10 @@ function DatosCompletos() {
                   className="text-center-input"
                   as="select"
                   name="marca"
-                  value={datos.marca || ""}
-                ></Form.Control>
+                  value={equipoData.marca || ""}
+                >
+                  <option>{equipoData.marca || ""}</option>
+                </Form.Control>
               </Form.Group>
             </Row>
 
@@ -188,7 +192,7 @@ function DatosCompletos() {
                   className="text-center-input"
                   type="text"
                   name="modelo"
-                  value={datos.modelo || ""}
+                  value={equipoData.modelo || ""}
                 />
               </Form.Group>
 
@@ -198,8 +202,10 @@ function DatosCompletos() {
                   className="text-center-input"
                   as="select"
                   name="sistema_operativo"
-                  value={datos.sistema_operativo || ""}
-                ></Form.Control>
+                  value={equipoData.sistema_operativo || ""}
+                >
+                  <option>{equipoData.sistema_operativo || ""}</option>
+                </Form.Control>
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridRAM">
@@ -208,8 +214,10 @@ function DatosCompletos() {
                   className="text-center-input"
                   as="select"
                   name="memoria_ram"
-                  value={datos.memoria_ram || ""}
-                ></Form.Control>
+                  value={equipoData.memoria_ram || ""}
+                >
+                  <option>{equipoData.memoria_ram || ""}</option>
+                </Form.Control>
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridProcessor">
@@ -218,7 +226,7 @@ function DatosCompletos() {
                   className="text-center-input"
                   type="text"
                   name="procesador"
-                  value={datos.procesador || ""}
+                  value={equipoData.procesador || ""}
                 />
               </Form.Group>
             </Row>
@@ -229,7 +237,7 @@ function DatosCompletos() {
                   className="text-center-input"
                   type="text"
                   name="almacenamiento"
-                  value={datos.almacenamiento || ""}
+                  value={equipoData.almacenamiento || ""}
                 />
               </Form.Group>
 
@@ -241,7 +249,7 @@ function DatosCompletos() {
                   className="text-center-input"
                   type="text"
                   name="numero_serie_cargador"
-                  value={datos.numero_serie_cargador || ""}
+                  value={equipoData.numero_serie_cargador || ""}
                 />
               </Form.Group>
             </Row>
@@ -251,7 +259,7 @@ function DatosCompletos() {
                 className="text-center-input"
                 type="text"
                 name="monitor"
-                value={datos.monitor || ""}
+                value={equipoData.monitor || ""}
               />
             </Form.Group>
             <Row className="mb-3">
@@ -261,7 +269,7 @@ function DatosCompletos() {
                   className="text-center-input"
                   type="text"
                   name="teclado"
-                  value={datos.teclado || ""}
+                  value={equipoData.teclado || ""}
                 />
               </Form.Group>
 
@@ -271,7 +279,7 @@ function DatosCompletos() {
                   className="text-center-input"
                   type="text"
                   name="raton"
-                  value={datos.mouse || ""}
+                  value={equipoData.raton || ""}
                 />
               </Form.Group>
             </Row>
@@ -282,7 +290,7 @@ function DatosCompletos() {
                   className="text-center-input"
                   type="text"
                   name="accesorios"
-                  value={datos.accesorios || ""}
+                  value={equipoData.accesorios || ""}
                 />
               </Form.Group>
 
@@ -294,7 +302,7 @@ function DatosCompletos() {
                   className="text-center-input"
                   type="text"
                   name="suscripcion_office"
-                  value={datos.suscripcion_office || ""}
+                  value={equipoData.suscripcion_office || ""}
                 />
               </Form.Group>
 
@@ -305,8 +313,10 @@ function DatosCompletos() {
                   as="select"
                   aria-label="Default select example"
                   name="ubicacion"
-                  value={datos.ubicacion || ""}
-                ></Form.Control>
+                  value={equipoData.ubicacion}
+                >
+                  <option>{equipoData.ubicacion}</option>
+                </Form.Control>
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridstatus">
@@ -316,8 +326,10 @@ function DatosCompletos() {
                   as="select"
                   aria-label="Default select example"
                   name="status"
-                  value={datos.status || ""}
-                ></Form.Control>
+                  value={equipoData.status}
+                >
+                  <option>{equipoData.status}</option>
+                </Form.Control>
               </Form.Group>
             </Row>
           </div>

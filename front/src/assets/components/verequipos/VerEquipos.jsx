@@ -1,39 +1,42 @@
-import { useEffect } from "react";
+import  { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Table, Dropdown } from "react-bootstrap";
 
-import { useEquiposContext } from "../../context/EquiposContext";
-import AdminEquipos from "../adminequipos/AdminEquipos";
-
 import "../verequipos/estiloverequipos.css";
 
+
+import AdminEquipos from "../adminequipos/AdminEquipos";
+
 function VerEquipos() {
-  const { equipos, error, obtenerEquipos, confirmarEliminarEquipo } =
-    useEquiposContext();
+  const [equipos, setEquipos] = useState([]);
 
   useEffect(() => {
-    obtenerEquipos();
-  }, [obtenerEquipos]);
+    const fetchEquipos = async () => {
+      try {
+        const response = await fetch('http://localhost:3002/equipos'); // Asegúrate de ajustar esta URL
+        const data = await response.json();
+        setEquipos(data);
+      } catch (error) {
+        console.error("Error al obtener los equipos: ", error);
+      }
+    };
+
+    fetchEquipos();
+  }, []);
 
   const renderEquipos = () => {
-    return equipos.map((equipo) => (
-      <tr key={`${equipo.id}-${equipo.numempleado}`}>
-        {/* Información de empleados */}
+    return equipos.map((equipo, index) => (
+      <tr key={`${equipo.codigo_inventario}-${equipo.numempleado}-${index}`}>
         <td className="text-center align-middle">{equipo.numempleado}</td>
         <td className="text-center align-middle">{`${equipo.nombre} ${equipo.appaterno} ${equipo.apmaterno}`}</td>
         <td className="text-center align-middle">{equipo.id_direccion}</td>
         <td className="text-center align-middle">{equipo.id_departamento}</td>
         <td className="text-center align-middle">{equipo.puesto}</td>
-
-        {/* Información de equipos */}
         <td className="text-center align-middle">{equipo.codigo_inventario}</td>
-        {/* Resto de las columnas de equipos */}
         <td className="text-center align-middle">{equipo.numero_serie}</td>
         <td className="text-center align-middle">{equipo.marca}</td>
         <td className="text-center align-middle">{equipo.modelo}</td>
         <td className="text-center align-middle">{equipo.monitor}</td>
-        {/* Resto de las columnas de equipos */}
-
         <td>
           <Dropdown>
             <Dropdown.Toggle variant="primary" id="dropdown-basic">
@@ -42,12 +45,9 @@ function VerEquipos() {
 
             <Dropdown.Menu>
               <Dropdown.Item>
-                <Link
-                  to={`/datoscompletos/${equipo.id}`}
-                  className="btn btn-info mb-2"
-                >
-                  Ver Más
-                </Link>
+              <Link to={`/datoscompletos/${equipo.codigo_inventario}/${equipo.numempleado || 'sinEmpleado'}`} className="btn btn-info mb-2">
+  Ver Más
+</Link>
               </Dropdown.Item>
               <Dropdown.Item>
                 <button
@@ -71,9 +71,9 @@ function VerEquipos() {
       <div className="row">
         <div className="col">
           <h1>Lista de Equipos</h1>
-          {error && <div className="alert alert-danger">{error}</div>}
+          
           <div className="cajaprincipalverequipos">
-            <div className="cajaadminequipos">
+          <div className="cajaadminequipos">
               <AdminEquipos />
             </div>
             <Table

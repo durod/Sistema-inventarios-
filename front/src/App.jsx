@@ -25,7 +25,7 @@ function App() {
             <Route path="/adminequipos" element={<AdminEquipos />} />
             <Route path="/agregarequipo" element={<AgregarEquipo />} />
             <Route path="/actualizarequipo/:id" element={<ActualizarEquipo />} />
-            <Route path="/datoscompletos/:id" element={<DatosCompletos />} />
+            <Route path="/datoscompletos/:codigo_inventario/:numempleado" element={<DatosCompletos />} />
             <Route path="/buscarEquipo" element={<BusquedaEquipos />} />
             <Route path="/verResponsiva/:id" element={<Responsiva />} />
             <Route path="/vistaauditor" element={<VistaAuditor />} />

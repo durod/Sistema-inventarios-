@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect  } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 
@@ -6,7 +6,10 @@ const EquiposContext = createContext();
 
 export const EquiposProvider = ({ children }) => {
   const [equipos, setEquipos] = useState([]);
+  const [detallesEquipo, setDetallesEquipo] = useState(null); // Para almacenar los detalles del equipo seleccionado
+  const [empleadosAsignados, setEmpleadosAsignados] = useState([]); // Para los empleados asignados al equipo seleccionado
   const [error, setError] = useState(null);
+
 
   const obtenerEquipos = async () => {
     try {
@@ -19,56 +22,32 @@ export const EquiposProvider = ({ children }) => {
     }
   };
 
-  const obtenerDatosEquipoPorId = async (id) => {
-    try {
-      const URI = "http://localhost:3002/equipos";
-      const response = await axios.get(`${URI}/${id}`);
-      return response.data;
-    } catch (error) {
-      console.error("Error al obtener datos del equipo:", error.message);
-      throw new Error(
-        "Error al cargar datos del equipo. Por favor, inténtalo de nuevo."
-      );
-    }
-  };
 
-  const agregarEquipo = async (nuevoEquipo) => {
-    try {
-      await axios.post("http://localhost:3002/equipos", nuevoEquipo);
-      obtenerEquipos();
-    } catch (error) {
-      console.error("Error al agregar equipo:", error.message);
-      setError("Error al agregar equipo. Por favor, inténtalo de nuevo.");
-    }
-  };
 
-  const eliminarEquipo = async (id) => {
+  const obtenerDetallesEquipoYEmpleados = async (equipoId) => {
     try {
-      await axios.delete(`http://localhost:3002/equipos/${id}`);
-      obtenerEquipos();
+      const response = await axios.get(`http://localhost:3002/equipos/${equipoId}`);
+      // Asegúrate de que la respuesta del servidor tenga la estructura esperada
+      setDetallesEquipo(response.data.equipo);
+      setEmpleadosAsignados(response.data.empleados);
     } catch (error) {
-      console.error("Error al eliminar equipo:", error.message);
-      setError("Error al eliminar equipo. Por favor, inténtalo de nuevo.");
+      console.error("Error al obtener detalles del equipo y empleados:", error.message);
+      setError("Error al cargar los detalles del equipo. Por favor, inténtalo de nuevo.");
     }
   };
+  
+ 
 
-  const confirmarEliminarEquipo = async (id, codigoInventario) => {
-    const confirmacion = window.confirm(
-      `¿Estás seguro de eliminar el equipo con código de inventario: ${codigoInventario}?`
-    );
-    if (confirmacion) {
-      eliminarEquipo(id);
-    }
-  };
+ 
 
   const contextValue = {
     equipos,
+    detallesEquipo,
+    empleadosAsignados,
     error,
-    agregarEquipo,
-    eliminarEquipo,
-    confirmarEliminarEquipo,
     obtenerEquipos,
-    obtenerDatosEquipoPorId,
+    obtenerDetallesEquipoYEmpleados,
+    // Cualquier otra función o estado que estés proporcionando
   };
 
   return (

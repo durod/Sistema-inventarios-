@@ -39,6 +39,7 @@ export default function AgregarEquipo() {
     const suscripcionOffice =
       event.target.elements.formGridOfficeSubscription.value;
     const ubicacion = event.target.elements.formGridubicacion.value;
+    const status = event.target.elements.formGridstatus.value;
 
     // Verificar que al menos un campo esté lleno
     if (!(codigoInventario && tipoEquipo && numeroSerie)) {
@@ -64,6 +65,7 @@ export default function AgregarEquipo() {
       accesorios: accesorios,
       suscripcion_office: suscripcionOffice,
       ubicacion,
+      status,
     };
 
     try {
@@ -318,6 +320,17 @@ export default function AgregarEquipo() {
                   <option value="piso3">Economista P3</option>
                   <option value="piso4">Economista P4</option>
                   <option value="santander">Santander rotativa</option>
+                </Form.Control>
+              </Form.Group>
+
+              <Form.Group as={Col} controlId="formGridstatus">
+                <Form.Label className="formLabel">Estado del Equipo</Form.Label>
+                <Form.Control
+                  className="text-center-input"
+                  as="select"
+                  aria-label="Default select example"
+                >
+                  <option value="1">Activo</option>
                 </Form.Control>
               </Form.Group>
             </Row>
