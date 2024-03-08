@@ -4,7 +4,7 @@
    
 }
 
-.form {
+.formregistrarusuario {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -76,11 +76,11 @@
     gap: 6px;
   }
   
-  .form label {
+  .formregistrarusuario label {
     position: relative;
   }
   
-  .form label .input {
+  .formregistrarusuario label .inputregistrarusuario {
     background-color: #333;
     color: #fff;
     width: 100%;
@@ -90,7 +90,7 @@
     border-radius: 10px;
   }
   
-  .form label .input + span {
+  .formregistrarusuario label .inputregistrarusuario + span {
     color: rgba(255, 255, 255, 0.5);
     position: absolute;
     left: 10px;
@@ -100,24 +100,24 @@
     transition: 0.3s ease;
   }
   
-  .form label .input:placeholder-shown + span {
+  .formregistrarusuario label .inputregistrarusuario:placeholder-shown + span {
     top: 12.5px;
     font-size: 0.9em;
   }
   
-  .form label .input:focus + span,
-  .form label .input:valid + span {
+  .formregistrarusuario label .inputregistrarusuario:focus + span,
+  .formregistrarusuario label .inputregistrarusuario:valid + span {
     color: #00bfff;
     top: 0px;
     font-size: 0.7em;
     font-weight: 600;
   }
   
-  .input {
+  .inputregistrarusuario {
     font-size: medium;
   }
   
-  .submit {
+  .submitregistrarusuario {
     border: none;
     outline: none;
     padding: 10px;
@@ -128,7 +128,7 @@
     background-color: #00bfff;
   }
   
-  .submit:hover {
+  .submitregistrarusuario:hover {
     background-color: #00bfff96;
   }
   

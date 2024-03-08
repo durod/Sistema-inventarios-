@@ -14,6 +14,7 @@ import "./App.css";
 import AdminEquipos from "./assets/components/adminequipos/AdminEquipos.jsx";
 import Dashboardequipos from "./assets/components/dashboardequipos/Dashboardequipos.jsx";
 import RegistrarUsuario from "./assets/components/registrarusuario/RegistrarUsuario.jsx";
+import LoginUser from "./assets/components/login/LoginUser.jsx";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="/vistaauditor" element={<VistaAuditor />} />
             <Route path="/dashboardequipos" element={<Dashboardequipos />} />
             <Route path="/registrarusuario" element={<RegistrarUsuario />} />
+            <Route path="/loginuser" element={<LoginUser />} />
           </Routes>
         </BrowserRouter>
       </>
