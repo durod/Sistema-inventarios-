@@ -5,7 +5,7 @@ import "../responsiva/responsivastyles.css";
 
 function Responsiva() {
   const location = useLocation();
-  const equipoData = location.state ? location.state.equipoData : null;
+  const datos = location.state ? location.state.datos : null;
 
   const generatePDF = () => {
     const pdfOptions = {
@@ -53,7 +53,7 @@ function Responsiva() {
                 type="text"
                 id="numEmpleado"
                 name="numEmpleado"
-                value={equipoData.numempleado}
+                value={datos.numempleado}
                 required
               />
             </div>
@@ -65,7 +65,7 @@ function Responsiva() {
                 type="text"
                 id="direccion"
                 name="direccion"
-                value={equipoData.id_direccion}
+                value={datos.id_direccion}
                 required
               />
             </div>
@@ -77,7 +77,7 @@ function Responsiva() {
                 type="text"
                 id="depto"
                 name="depto"
-                value={equipoData.id_departamento}
+                value={datos.id_departamento}
                 required
               />
             </div>
@@ -89,9 +89,9 @@ function Responsiva() {
                 type="text"
                 id="nombre"
                 name="nombre"
-                value={`${equipoData.nombre || ""} ${
-                  equipoData.appaterno || ""
-                } ${equipoData.apmaterno || ""}`}
+                value={`${datos.nombre || ""} ${
+                  datos.appaterno || ""
+                } ${datos.apmaterno || ""}`}
                 required
               />
             </div>
@@ -103,7 +103,7 @@ function Responsiva() {
                 type="text"
                 id="puesto"
                 name="puesto"
-                value={equipoData.puesto || ""}
+                value={datos.puesto || ""}
                 required
               />
             </div>
@@ -123,7 +123,7 @@ function Responsiva() {
                     type="text"
                     id="noInventario"
                     name="noInventario"
-                    value={equipoData.codigo_inventario || ""}
+                    value={datos.codigo_inventario || ""}
                     required
                   />
                 </div>
@@ -135,7 +135,7 @@ function Responsiva() {
                     type="text"
                     id="numSerie"
                     name="numSerie"
-                    value={equipoData.numero_serie || ""}
+                    value={datos.numero_serie || ""}
                     required
                   />
                 </div>
@@ -149,7 +149,7 @@ function Responsiva() {
                     type="text"
                     id="tipoEquipo"
                     name="tipoEquipo"
-                    value={equipoData.tipo_equipo || ""}
+                    value={datos.tipo_equipo || ""}
                     required
                   />
                 </div>
@@ -161,7 +161,7 @@ function Responsiva() {
                     type="text"
                     id="marca"
                     name="marca"
-                    value={equipoData.marca || ""}
+                    value={datos.marca || ""}
                     required
                   />
                 </div>
@@ -173,7 +173,7 @@ function Responsiva() {
                     type="text"
                     id="modelo"
                     name="modelo"
-                    value={equipoData.modelo || ""}
+                    value={datos.modelo || ""}
                     required
                   />
                 </div>
@@ -188,7 +188,7 @@ function Responsiva() {
                     type="text"
                     id="procesador"
                     name="procesador"
-                    value={equipoData.procesador || ""}
+                    value={datos.procesador || ""}
                     required
                   />
                 </div>
@@ -200,7 +200,7 @@ function Responsiva() {
                     type="text"
                     id="ram"
                     name="ram"
-                    value={equipoData.memoria_ram || ""}
+                    value={datos.memoria_ram || ""}
                     required
                   />
                 </div>
@@ -215,7 +215,7 @@ function Responsiva() {
                   id="sistemaOperativo"
                   name="sistemaOperativo"
                   required
-                  value={equipoData.sistema_operativo || ""}
+                  value={datos.sistema_operativo || ""}
                 />
               </div>
               <div className="datosequipo">
@@ -226,7 +226,7 @@ function Responsiva() {
                   type="text"
                   id="versionOffice"
                   name="versionOffice"
-                  value={equipoData.suscripcion_office || ""}
+                  value={datos.suscripcion_office || ""}
                   required
                 />
               </div>
@@ -243,32 +243,32 @@ function Responsiva() {
                   type="text"
                   id="cargador"
                   name="cargador"
-                  value={equipoData.numero_serie_cargador || ""}
+                  value={datos.numero_serie_cargador || ""}
                 />
               </div>
               <input
                 type="text"
                 id="monitor"
                 name="monitor"
-                value={equipoData.monitor || ""}
+                value={datos.monitor || ""}
               />
               <input
                 type="text"
                 id="teclado"
                 name="teclado"
-                value={equipoData.teclado || ""}
+                value={datos.teclado || ""}
               />
               <input
                 type="text"
                 id="raton"
                 name="raton"
-                value={equipoData.raton || ""}
+                value={datos.raton || ""}
               />
               <input
                 type="text"
                 id="accesorios"
                 name="accesorios"
-                value={equipoData.accesorios || ""}
+                value={datos.accesorios || ""}
               />
             </div>
           </fieldset>
