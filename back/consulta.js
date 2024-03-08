@@ -111,40 +111,34 @@ const obtenerDetallesEquipoPorId = async (id) => {
   }
 };
 
-// Función para actualizar un equipo en la tabla
+// Función para actualizar un equipo en la tabla pc_info
 const actualizarEquipo = async (id, newData) => {
   try {
-    //  console.log("Iniciando actualización de equipo...");
-
-    // Crear la consulta para actualizar los datos del equipo con el ID proporcionado
+    // Actualizar los datos del equipo en pc_info, excluyendo codigo_inventario
     const consulta = `
             UPDATE pc_info
             SET 
-                codigo_inventario = $2,
-                tipo_equipo = $3,
-                numero_serie = $4,
-                marca = $5,
-                modelo = $6,
-                sistema_operativo = $7,
-                memoria_ram = $8,
-                procesador = $9,
-                almacenamiento = $10,
-                numero_serie_cargador = $11,
-                monitor = $12,
-                teclado = $13,
-                raton = $14,
-                accesorios = $15,
-                suscripcion_office = $16,
-                ubicacion = $17,
-                status = $18,
-                 
+                tipo_equipo = $2,
+                numero_serie = $3,
+                marca = $4,
+                modelo = $5,
+                sistema_operativo = $6,
+                memoria_ram = $7,
+                procesador = $8,
+                almacenamiento = $9,
+                numero_serie_cargador = $10,
+                monitor = $11,
+                teclado = $12,
+                raton = $13,
+                accesorios = $14,
+                suscripcion_office = $15,
+                ubicacion = $16,
+                status = $17
             WHERE id = $1
             RETURNING *`;
 
-    // Organizar los valores para la actualización
     const values = [
       id,
-      newData.codigo_inventario,
       newData.tipo_equipo,
       newData.numero_serie,
       newData.marca,
@@ -163,40 +157,27 @@ const actualizarEquipo = async (id, newData) => {
       newData.status,
     ];
 
-    /*console.log("Consulta de actualización:", consulta);
-    console.log("Valores para la actualización:", values);*/
-
-    // Ejecutar la consulta y obtener el resultado
     const result = await pool.query(consulta, values);
 
-    // console.log("Equipo actualizado correctamente:", result.rows[0]);
+    // Insertar una nueva asignación solo si se proporciona numEmpleado
+    if (newData.numEmpleado && newData.numEmpleado.trim() !== "") {
+        const asignacionConsulta = `
+            INSERT INTO asignaciones (codigo_inventario, numEmpleado)
+            VALUES ($1, $2)
+            RETURNING *;
+        `;
 
-    const asignacionConsulta = `
-    INSERT INTO asignaciones (codigo_inventario, numEmpleado)
-    VALUES ($1, $2)
-    RETURNING *;
-`;
-
-    const asignacionValues = [
-      newData.codigo_inventario, // Código de inventario del equipo
-      newData.numEmpleado, // Número de empleado especificado
-    ];
-
-    await pool.query(asignacionConsulta, asignacionValues);
-
-    /*console.log("---------------------------------------------------------------");
-        console.log("Equipo actualizado");
-        console.log("Objeto devuelto de la consulta: ", result);
-        console.log("Filas procesadas: ", result.rowCount);
-        console.log("Información actualizada: ", result.rows[0]);
-        console.log("----------------------------------------------------------------");*/
+        // Ejecutar la consulta de asignaciones utilizando el código_inventario actual del equipo y el numEmpleado proporcionado
+        await pool.query(asignacionConsulta, [newData.codigo_inventario, newData.numEmpleado]);
+    }
 
     return result.rows[0]; // Retornar los datos del equipo actualizado
   } catch (error) {
-    console.error("Error al actualizar el equipo: ", error);
+    console.error("Error al actualizar el equipo:", error);
     throw error;
   }
 };
+
 
 const obtenerDetallesEquipoEmpleado = async (
   codigo_inventario,
