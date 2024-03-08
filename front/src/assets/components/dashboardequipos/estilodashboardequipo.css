@@ -12,7 +12,9 @@
 
 .cajachart {
   border: 1px solid black;
-  background-color: brown;
+  background-color: royalblue;
+  padding: 5px;
+  margin-bottom: 5px;
 }
 
 .input {

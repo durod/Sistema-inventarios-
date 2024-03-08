@@ -36,7 +36,7 @@ function Dashboardequipos() {
     setUbicacionesData([
       ["Ubicación", "Cantidad de Equipos"],
       ...ubicacionesChartData.map(([ubicacion, cantidad]) => [
-        `${ubicacion} (${cantidad})`, // Agregar la cantidad de equipos al nombre de la ubicación
+        `${ubicacion}   ${cantidad}`, // Agregar la cantidad de equipos al nombre de la ubicación
         cantidad, // Pasar la cantidad como segundo valor
       ]),
     ]);
