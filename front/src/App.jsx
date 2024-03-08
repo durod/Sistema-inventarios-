@@ -13,6 +13,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import AdminEquipos from "./assets/components/adminequipos/AdminEquipos.jsx";
 import Dashboardequipos from "./assets/components/dashboardequipos/Dashboardequipos.jsx";
+import RegistrarUsuario from "./assets/components/registrarusuario/RegistrarUsuario.jsx";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/verResponsiva/:id" element={<Responsiva />} />
             <Route path="/vistaauditor" element={<VistaAuditor />} />
             <Route path="/dashboardequipos" element={<Dashboardequipos />} />
+            <Route path="/registrarusuario" element={<RegistrarUsuario />} />
           </Routes>
         </BrowserRouter>
       </>
