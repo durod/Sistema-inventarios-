@@ -4,6 +4,7 @@ import { Chart } from "react-google-charts";
 import { useEquiposContext } from "../../context/EquiposContext";
 import AdminEquipos from "../adminequipos/AdminEquipos";
 
+import Accordion from "react-bootstrap/Accordion";
 import "../dashboardequipos/estilodashboardequipo.css";
 
 function Dashboardequipos() {
@@ -85,51 +86,67 @@ function Dashboardequipos() {
       </div>
 
       <div className="cajasecundariadashboard">
-        <div className="cajachart">
-          <h1>Distribución de Equipos por Ubicación</h1>
-          <Chart
-            width={"100%"}
-            height={"300px"}
-            chartType="PieChart"
-            loader={<div>Cargando Gráfico</div>}
-            data={ubicacionesData}
-            options={{
-              title: "Distribución de Equipos por Ubicación",
-              pieSliceText: "value",
-            }}
-          />
-          <p>Total de Equipos: {equipos.length}</p>
-        </div>
-        <div className="cajachart">
-          <h1>Distribución de Equipos por Suscripción Office</h1>
-          <Chart
-            width={"100%"}
-            height={"300px"}
-            chartType="PieChart"
-            loader={<div>Cargando Gráfico</div>}
-            data={suscripcionOfficeData}
-            options={{
-              title: "Distribución de Equipos por Suscripción Office",
-              pieSliceText: "value",
-            }}
-          />
-          <p>Total de Equipos: {equipos.length}</p>
-        </div>
-        <div className="cajachart">
-          <h1>Distribución de Tipos de Equipos</h1>
-          <Chart
-            width={"100%"}
-            height={"300px"}
-            chartType="PieChart"
-            loader={<div>Cargando Gráfico</div>}
-            data={tiposEquiposData}
-            options={{
-              title: "Distribución de Tipos de Equipos",
-              pieSliceText: "value",
-            }}
-          />
-          <p>Total de Equipos: {equipos.length}</p>
-        </div>
+        <Accordion defaultActiveKey="0" flush>
+          <Accordion.Item eventKey="1">
+            <Accordion.Header>
+              Distribución de Equipos por Ubicación
+            </Accordion.Header>
+            <Accordion.Body>
+              <Chart
+                width={"100%"}
+                height={"300px"}
+                chartType="PieChart"
+                loader={<div>Cargando Gráfico</div>}
+                data={ubicacionesData}
+                options={{
+                  title: "Distribución de Equipos por Ubicación",
+                  pieSliceText: "value",
+                }}
+              />
+              <p>Total de Equipos: {equipos.length}</p>
+            </Accordion.Body>
+          </Accordion.Item>
+
+          <Accordion.Item eventKey="2">
+            <Accordion.Header>
+              Distribución de Equipos por Suscripción Office
+            </Accordion.Header>
+            <Accordion.Body>
+              <Chart
+                width={"100%"}
+                height={"300px"}
+                chartType="PieChart"
+                loader={<div>Cargando Gráfico</div>}
+                data={suscripcionOfficeData}
+                options={{
+                  title: "Distribución de Equipos por Suscripción Office",
+                  pieSliceText: "value",
+                }}
+              />
+              <p>Total de Equipos: {equipos.length}</p>
+            </Accordion.Body>
+          </Accordion.Item>
+
+          <Accordion.Item eventKey="3">
+            <Accordion.Header>
+              Distribución de Tipos de Equipos
+            </Accordion.Header>
+            <Accordion.Body>
+              <Chart
+                width={"100%"}
+                height={"300px"}
+                chartType="PieChart"
+                loader={<div>Cargando Gráfico</div>}
+                data={tiposEquiposData}
+                options={{
+                  title: "Distribución de Tipos de Equipos",
+                  pieSliceText: "value",
+                }}
+              />
+              <p>Total de Equipos: {equipos.length}</p>
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
       </div>
     </div>
   );
