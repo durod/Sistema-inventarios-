@@ -11,8 +11,6 @@ CREATE TABLE asignaciones (
     FOREIGN KEY (codigo_inventario) REFERENCES pc_info(codigo_inventario)
 );
 
-
-
 tabla empleados:
 
     CREATE TABLE empleados (
@@ -61,7 +59,6 @@ tabla empleados:
         fechaRestriccionInicio VARCHAR(255),
         fechaRestriccionFin VARCHAR(255)
     );
-
 
 tabla pc_info
 

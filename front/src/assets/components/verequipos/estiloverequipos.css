@@ -1,10 +1,20 @@
-.cajaprincipalverequipos {
+.containerverequipos {
+  margin-top: 8%;
   display: flex;
+  gap: 1%;
 }
 
-.container {
-  margin-top: 8%;
+
+.cajaprincipalverequipos {
+  width: 81%;
 }
+
+
+
+.cajaadminequiposverequipos{
+  width: 17%;
+}
+
 
 h1 {
   color: white;

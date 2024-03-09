@@ -1,13 +1,17 @@
-.cajaprincipal {
-  margin-top: 10%;
+.containerdashboard {
+  margin-top: 8%;
   display: flex;
+  width: 100%;
 }
 
-.cajasecundaria {
-  display: flex;
-  gap: 5%;
-  display: flex;
+.cajasecundariadashboard {
+  display: flex;  
   flex-direction: column;
+  width: 80%;
+}
+
+.cajaadminequiposdashboard {
+  width: 17%;
 }
 
 .cajachart {

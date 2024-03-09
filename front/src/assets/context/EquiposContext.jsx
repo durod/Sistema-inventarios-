@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useEffect  } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 
@@ -9,7 +9,6 @@ export const EquiposProvider = ({ children }) => {
   const [detallesEquipo, setDetallesEquipo] = useState(null); // Para almacenar los detalles del equipo seleccionado
   const [empleadosAsignados, setEmpleadosAsignados] = useState([]); // Para los empleados asignados al equipo seleccionado
   const [error, setError] = useState(null);
-
 
   const obtenerEquipos = async () => {
     try {
@@ -22,23 +21,24 @@ export const EquiposProvider = ({ children }) => {
     }
   };
 
-
-
   const obtenerDetallesEquipoYEmpleados = async (equipoId) => {
     try {
-      const response = await axios.get(`http://localhost:3002/equipos/${equipoId}`);
+      const response = await axios.get(
+        `http://localhost:3002/equipos/${equipoId}`
+      );
       // Asegúrate de que la respuesta del servidor tenga la estructura esperada
       setDetallesEquipo(response.data.equipo);
       setEmpleadosAsignados(response.data.empleados);
     } catch (error) {
-      console.error("Error al obtener detalles del equipo y empleados:", error.message);
-      setError("Error al cargar los detalles del equipo. Por favor, inténtalo de nuevo.");
+      console.error(
+        "Error al obtener detalles del equipo y empleados:",
+        error.message
+      );
+      setError(
+        "Error al cargar los detalles del equipo. Por favor, inténtalo de nuevo."
+      );
     }
   };
-  
- 
-
- 
 
   const contextValue = {
     equipos,

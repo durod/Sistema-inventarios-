@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
+
 
 import "../busquedaequipos/estilobuscadeequipo.css";
 
 import axios from "axios";
+import AdminEquipos from "../adminequipos/AdminEquipos";
 
 const BusquedaEquipos = () => {
   const [parametro, setParametro] = useState("");
@@ -49,7 +49,7 @@ const BusquedaEquipos = () => {
         </td>
         <td className="text-center align-middle">{equipo.id_direccion}</td>
         <td className="text-center align-middle">{equipo.id_departamento}</td>
-        <td className="text-center align-middle">{equipo.puesto}</td>
+
         <td className="text-center align-middle">{equipo.codigo_inventario}</td>
         <td className="text-center align-middle">{equipo.numero_serie}</td>
         <td className="text-center align-middle">{equipo.marca}</td>
@@ -75,61 +75,52 @@ const BusquedaEquipos = () => {
   };
 
   return (
-    <div className="cajaPrincipal">
-      <div className="row">
-        <div className="col colbuscar ">
-          <div className="form-group mb-3 col-md-4 colbuscarinput">
-            <input
-              type="text"
-              id="parametro"
-              className="form-control form-control-sm mr-2"
-              placeholder="Parámetro de búsqueda:"
-              value={parametro}
-              onChange={(e) => setParametro(e.target.value)}
-            />
-            <button
-              className="btn btn-primary mb-3 "
-              size="sm"
-              onClick={buscarEquipos}
-            >
-              Buscar
-            </button>
-          </div>
-          <h1>Resultados de Búsqueda de Equipos: </h1>
-
-          {error && <div className="alert alert-danger">{error}</div>}
-          <Table striped bordered hover variant="dark" className="custom-table">
-            <thead>
-              <tr>
-                <th className="text-center align-middle">Número de Empleado</th>
-                <th className="text-center align-middle">Empleado </th>
-
-                <th className="text-center align-middle">Dirección</th>
-                <th className="text-center align-middle">Departamento</th>
-                <th className="text-center align-middle">Puesto</th>
-                <th className="text-center align-middle">
-                  Código de Inventario
-                </th>
-
-                <th className="text-center align-middle">Número de Serie</th>
-                <th className="text-center align-middle">Marca</th>
-                <th className="text-center align-middle">Modelo</th>
-                <th className="text-center align-middle">Monitor</th>
-                <th className="text-center align-middle">Acciones</th>
-              </tr>
-            </thead>
-            <tbody>{renderEquipos()}</tbody>
-          </Table>
-        </div>
+    <div className="cajaprincipalbusquedaequipos">
+      <div className="cajaadminequiposbusquedaequipos">
+        <AdminEquipos />
       </div>
-      <Col>
-        <Button
-          variant="secondary"
-          onClick={() => (window.location.href = "/")}
-        >
-          Ir a Home
-        </Button>
-      </Col>
+      <div className=" colbuscar ">
+        <div className="form-group mb-3 col-md-4 colbuscarequipos">
+          <input
+            type="text"
+            id="parametro"
+            className="form-control form-control-sm mr-2"
+            placeholder="Parámetro de búsqueda:"
+            value={parametro}
+            onChange={(e) => setParametro(e.target.value)}
+          />
+          <button
+            className="btn btn-success "
+            size="sm"
+            onClick={buscarEquipos}
+          >
+            Buscar
+          </button>
+        </div>
+        <h1>Resultados de Búsqueda de Equipos: </h1>
+
+        {error && <div className="alert alert-danger">{error}</div>}
+        <Table striped bordered hover variant="dark" className="custom-table">
+          <thead>
+            <tr>
+              <th className="text-center align-middle">Número de Empleado</th>
+              <th className="text-center align-middle">Empleado </th>
+
+              <th className="text-center align-middle">Dirección</th>
+              <th className="text-center align-middle">Departamento</th>
+
+              <th className="text-center align-middle">Código de Inventario</th>
+
+              <th className="text-center align-middle">Número de Serie</th>
+              <th className="text-center align-middle">Marca</th>
+              <th className="text-center align-middle">Modelo</th>
+              <th className="text-center align-middle">Monitor</th>
+              <th className="text-center align-middle">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>{renderEquipos()}</tbody>
+        </Table>
+      </div>
     </div>
   );
 };

@@ -1,46 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap")
 #root {
   margin: 0px;
   padding: 0px;
   width: 100%;
 }
 
-.principalcontainer {
+.containeragregarequipo {
   display: flex;
   width: 100%;
   align-items: baseline;
-  justify-content: center;
-  gap: 1%;
 }
 
-.cajasecundaria {
-  margin-top: 10rem;
-  width: 70%;
+.cajasecundariaagregarequipo {
+  margin-top: 5%;
+  width: 80%;
 }
 
 .cajaagregarEquipo {
   color: white;
 }
 
+.cajaagregarEquipo h1 {
+  color: white;
+  text-align: center;
+}
+
 .formagregarequipo {
   color: yellow;
-  font-size: xx-large;
+  font-size: large;
+  background-color: midnightblue;
+  padding: 1%;
 }
 
-.formagregarequipo .formLabel {
-  font-weight: bold;
-  font-family: monospace;
-  background-color: black;
+.formagregarequipo .formLabelagregarequipo {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
 }
 
-.cajaadminequipos {
-  width: 20%;
+.cajaadminequiposagregarequipo {
+  width: 17%;
 }
 
-.menuasideadminequipos {
-  width: 84%;
-}
-
-.input {
+.inputagregarequipo {
   display: flex;
   flex-direction: column;
   width: 347px;
@@ -50,4 +52,9 @@
   transition: 1s;
   padding: 10px;
   overflow: hidden;
+}
+
+.cajabotonagregarequipo {
+  display: flex;
+  justify-content: center;
 }

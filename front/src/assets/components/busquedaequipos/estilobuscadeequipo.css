@@ -1,5 +1,20 @@
-.cajaPrincipal {
+.cajaprincipalbusquedaequipos {
   margin-top: 5%;
   color: yellow;
-  padding: 2%;
+  display: flex;
+}
+
+.cajaadminequiposbusquedaequipos {
+  width: 17%;
+}
+
+.colbuscar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.colbuscarequipos {
+  display: flex;
+  gap: 1%;
 }

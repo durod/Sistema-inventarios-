@@ -105,28 +105,28 @@ export default function AgregarEquipo() {
     }
   };
   return (
-    <div className="principalcontainer">
-      <div className="cajaadminequipos">
+    <div className="containeragregarequipo">
+      <div className="cajaadminequiposagregarequipo">
         <AdminEquipos />
       </div>
-      <div className="cajasecundaria">
+      <div className="cajasecundariaagregarequipo">
         <div className="cajaagregarEquipo">
           <h1> Agregar Equipo</h1>
           <Form onSubmit={handleSubmit} className="formagregarequipo">
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridInventoryCode">
-                <Form.Label className="formLabel">CÓDIGO DE INV</Form.Label>
+                <Form.Label className="formLabelagregarequipo">CÓDIGO DE INV</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputagregarequipo"
                   type="text"
                   placeholder="Ingrese el código de inventario"
                 />
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridEquipmentType">
-                <Form.Label className="formLabel">TIPO DE EQUIPO</Form.Label>
+                <Form.Label className="formLabelagregarequipo">TIPO DE EQUIPO</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputagregarequipo"
                   as="select"
                   aria-label="Default select example"
                 >
@@ -138,18 +138,18 @@ export default function AgregarEquipo() {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridSerialNumber">
-                <Form.Label className="formLabel">NÚMERO DE SERIE</Form.Label>
+                <Form.Label className="formLabelagregarequipo">NÚMERO DE SERIE</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputagregarequipo"
                   type="text"
                   placeholder="Ingrese el número de serie"
                 />
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridBrand">
-                <Form.Label className="formLabel">MARCA</Form.Label>
+                <Form.Label className="formLabelagregarequipo">MARCA</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputagregarequipo"
                   as="select"
                   aria-label="Default select example"
                   onChange={handleBrandChange}
@@ -163,9 +163,9 @@ export default function AgregarEquipo() {
 
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridModel">
-                <Form.Label className="formLabel">MODELO</Form.Label>
+                <Form.Label className="formLabelagregarequipo">MODELO</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputagregarequipo"
                   as="select"
                   aria-label="Default select example"
                   onChange={handleModelChange}
@@ -182,9 +182,9 @@ export default function AgregarEquipo() {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridOperatingSystem">
-                <Form.Label className="formLabel">SISTEMA OPERATIVO</Form.Label>
+                <Form.Label className="formLabelagregarequipo">SISTEMA OPERATIVO</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputagregarequipo"
                   as="select"
                   aria-label="Default select example"
                 >
@@ -201,9 +201,9 @@ export default function AgregarEquipo() {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridRAM">
-                <Form.Label className="formLabel">MEMORIA RAM</Form.Label>
+                <Form.Label className="formLabelagregarequipo">MEMORIA RAM</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputagregarequipo"
                   as="select"
                   aria-label="Default select example"
                 >
@@ -216,9 +216,9 @@ export default function AgregarEquipo() {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridProcessor">
-                <Form.Label className="formLabel">PROCESADOR</Form.Label>
+                <Form.Label className="formLabelagregarequipo">PROCESADOR</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputagregarequipo"
                   type="text"
                   placeholder="Procesador"
                   value={selectedModel.procesador || ""}
@@ -229,9 +229,9 @@ export default function AgregarEquipo() {
 
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridStorage">
-                <Form.Label className="formLabel">ALMACENAMIENTO</Form.Label>
+                <Form.Label className="formLabelagregarequipo">ALMACENAMIENTO</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputagregarequipo"
                   type="text"
                   placeholder="Almacenamiento"
                   value={selectedModel.almacenamiento || ""}
@@ -240,11 +240,11 @@ export default function AgregarEquipo() {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridChargerSerial">
-                <Form.Label className="formLabel">
+                <Form.Label className="formLabelagregarequipo">
                   SERIE DEL CARGADOR
                 </Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputagregarequipo"
                   type="text"
                   placeholder="Ingrese la serie del cargador"
                 />
@@ -253,9 +253,9 @@ export default function AgregarEquipo() {
 
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridMonitor">
-                <Form.Label className="formLabel">MONITOR</Form.Label>
+                <Form.Label className="formLabelagregarequipo">MONITOR</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputagregarequipo"
                   type="text"
                   placeholder="Ingrese el monitor"
                 />
@@ -264,18 +264,18 @@ export default function AgregarEquipo() {
 
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridKeyboard">
-                <Form.Label className="formLabel">TECLADO</Form.Label>
+                <Form.Label className="formLabelagregarequipo">TECLADO</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputagregarequipo"
                   type="text"
                   placeholder="Ingrese el teclado"
                 />
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridMouse">
-                <Form.Label className="formLabel">MOUSE</Form.Label>
+                <Form.Label className="formLabelagregarequipo">MOUSE</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputagregarequipo"
                   type="text"
                   placeholder="Ingrese el mouse"
                 />
@@ -284,20 +284,20 @@ export default function AgregarEquipo() {
 
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridAccessories">
-                <Form.Label className="formLabel">ACCESORIOS</Form.Label>
+                <Form.Label className="formLabelagregarequipo">ACCESORIOS</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputagregarequipo"
                   type="text"
                   placeholder="Ingrese los accesorios"
                 />
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridOfficeSubscription">
-                <Form.Label className="formLabel">
+                <Form.Label className="formLabelagregarequipo">
                   SUSCRIPCIÓN OFFICE
                 </Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputagregarequipo"
                   as="select"
                   aria-label="Default select example"
                 >
@@ -309,9 +309,9 @@ export default function AgregarEquipo() {
 
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridubicacion">
-                <Form.Label className="formLabel">Ubicación</Form.Label>
+                <Form.Label className="formLabelagregarequipo">Ubicación</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputagregarequipo"
                   as="select"
                   aria-label="Default select example"
                 >
@@ -324,9 +324,9 @@ export default function AgregarEquipo() {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridstatus">
-                <Form.Label className="formLabel">Estado del Equipo</Form.Label>
+                <Form.Label className="formLabelagregarequipo">Estado del Equipo</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputagregarequipo"
                   as="select"
                   aria-label="Default select example"
                 >
@@ -336,19 +336,12 @@ export default function AgregarEquipo() {
             </Row>
 
             <Row className="mb-3">
-              <Col>
+              <Col className="cajabotonagregarequipo">
                 <Button variant="primary" type="submit">
                   Agregar Equipo
                 </Button>
               </Col>
-              <Col>
-                <Button
-                  variant="secondary"
-                  onClick={() => (window.location.href = "/")}
-                >
-                  Ir a Home
-                </Button>
-              </Col>
+              
             </Row>
           </Form>
         </div>

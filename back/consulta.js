@@ -161,14 +161,17 @@ const actualizarEquipo = async (id, newData) => {
 
     // Insertar una nueva asignación solo si se proporciona numEmpleado
     if (newData.numEmpleado && newData.numEmpleado.trim() !== "") {
-        const asignacionConsulta = `
+      const asignacionConsulta = `
             INSERT INTO asignaciones (codigo_inventario, numEmpleado)
             VALUES ($1, $2)
             RETURNING *;
         `;
 
-        // Ejecutar la consulta de asignaciones utilizando el código_inventario actual del equipo y el numEmpleado proporcionado
-        await pool.query(asignacionConsulta, [newData.codigo_inventario, newData.numEmpleado]);
+      // Ejecutar la consulta de asignaciones utilizando el código_inventario actual del equipo y el numEmpleado proporcionado
+      await pool.query(asignacionConsulta, [
+        newData.codigo_inventario,
+        newData.numEmpleado,
+      ]);
     }
 
     return result.rows[0]; // Retornar los datos del equipo actualizado
@@ -177,7 +180,6 @@ const actualizarEquipo = async (id, newData) => {
     throw error;
   }
 };
-
 
 const obtenerDetallesEquipoEmpleado = async (
   codigo_inventario,
@@ -219,26 +221,37 @@ const obtenerDetallesEquipoEmpleado = async (
 const buscarEquiposPorParametro = async (parametro) => {
   try {
     const consulta = `
-        SELECT * 
-        FROM pc_info
-        WHERE 
-          codigo_inventario ILIKE $1 OR
-          tipo_equipo ILIKE $1 OR
-          numero_serie ILIKE $1 OR
-          marca ILIKE $1 OR
-          modelo ILIKE $1 OR
-          sistema_operativo ILIKE $1 OR
-          memoria_ram ILIKE $1 OR
-          procesador ILIKE $1 OR
-          almacenamiento ILIKE $1 OR
-          numero_serie_cargador ILIKE $1 OR
-          monitor ILIKE $1 OR
-          teclado ILIKE $1 OR
-          raton ILIKE $1 OR
-          accesorios ILIKE $1 OR
-          suscripcion_office ILIKE $1
-          ubicacion ILIKE $1
-          status ILIKE $1
+    SELECT 
+  pc_info.*,
+  empleados.numempleado,
+  empleados.nombre,
+  empleados.appaterno,
+  empleados.apmaterno
+FROM 
+  pc_info
+INNER JOIN asignaciones ON pc_info.codigo_inventario = asignaciones.codigo_inventario
+INNER JOIN empleados ON asignaciones.numempleado = empleados.numempleado
+WHERE 
+  pc_info.codigo_inventario ILIKE $1 OR
+  pc_info.tipo_equipo ILIKE $1 OR
+  pc_info.numero_serie ILIKE $1 OR
+  pc_info.marca ILIKE $1 OR
+  pc_info.modelo ILIKE $1 OR
+  pc_info.sistema_operativo ILIKE $1 OR
+  pc_info.memoria_ram ILIKE $1 OR
+  pc_info.procesador ILIKE $1 OR
+  pc_info.almacenamiento ILIKE $1 OR
+  pc_info.numero_serie_cargador ILIKE $1 OR
+  pc_info.monitor ILIKE $1 OR
+  pc_info.teclado ILIKE $1 OR
+  pc_info.raton ILIKE $1 OR
+  pc_info.accesorios ILIKE $1 OR
+  pc_info.suscripcion_office ILIKE $1 OR
+  pc_info.ubicacion ILIKE $1 OR
+  empleados.numempleado::text ILIKE $1 OR
+  empleados.nombre ILIKE $1 OR
+  empleados.appaterno ILIKE $1 OR
+  empleados.apmaterno ILIKE $1;
       `;
     const values = [`%${parametro}%`];
 

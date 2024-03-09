@@ -1,9 +1,8 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Table, Dropdown } from "react-bootstrap";
 
 import "../verequipos/estiloverequipos.css";
-
 
 import AdminEquipos from "../adminequipos/AdminEquipos";
 
@@ -13,7 +12,7 @@ function VerEquipos() {
   useEffect(() => {
     const fetchEquipos = async () => {
       try {
-        const response = await fetch('http://localhost:3002/equipos'); // Asegúrate de ajustar esta URL
+        const response = await fetch("http://localhost:3002/equipos"); // Asegúrate de ajustar esta URL
         const data = await response.json();
         setEquipos(data);
       } catch (error) {
@@ -45,9 +44,14 @@ function VerEquipos() {
 
             <Dropdown.Menu>
               <Dropdown.Item>
-              <Link to={`/datoscompletos/${equipo.codigo_inventario}/${equipo.numempleado || 'sinEmpleado'}`} className="btn btn-info mb-2">
-  Ver Más
-</Link>
+                <Link
+                  to={`/datoscompletos/${equipo.codigo_inventario}/${
+                    equipo.numempleado || "sinEmpleado"
+                  }`}
+                  className="btn btn-info mb-2"
+                >
+                  Ver Más
+                </Link>
               </Dropdown.Item>
               <Dropdown.Item>
                 <button
@@ -67,45 +71,29 @@ function VerEquipos() {
   };
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col">
-          <h1>Lista de Equipos</h1>
-          
-          <div className="cajaprincipalverequipos">
-          <div className="cajaadminequipos">
-              <AdminEquipos />
-            </div>
-            <Table
-              striped
-              bordered
-              hover
-              variant="dark"
-              className="custom-table"
-            >
-              <thead>
-                <tr>
-                  <th className="text-center align-middle">
-                    Número de Empleado
-                  </th>
-                  <th className="text-center align-middle">Empleado </th>
-                  <th className="text-center align-middle">Dirección</th>
-                  <th className="text-center align-middle">Departamento</th>
-                  <th className="text-center align-middle">Puesto</th>
-                  <th className="text-center align-middle">
-                    Código de Inventario
-                  </th>
-                  <th className="text-center align-middle">Número de Serie</th>
-                  <th className="text-center align-middle">Marca</th>
-                  <th className="text-center align-middle">Modelo</th>
-                  <th className="text-center align-middle">Monitor</th>
-                  <th className="text-center align-middle"></th>
-                </tr>
-              </thead>
-              <tbody>{renderEquipos()}</tbody>
-            </Table>
-          </div>
-        </div>
+    <div className="containerverequipos">
+      <div className="cajaadminequiposverequipos">
+        <AdminEquipos />
+      </div>
+      <div className="cajaprincipalverequipos">
+        <Table striped bordered hover variant="dark" className="custom-table">
+          <thead>
+            <tr>
+              <th className="text-center align-middle">Número de Empleado</th>
+              <th className="text-center align-middle">Empleado </th>
+              <th className="text-center align-middle">Dirección</th>
+              <th className="text-center align-middle">Departamento</th>
+              <th className="text-center align-middle">Puesto</th>
+              <th className="text-center align-middle">Código de Inventario</th>
+              <th className="text-center align-middle">Número de Serie</th>
+              <th className="text-center align-middle">Marca</th>
+              <th className="text-center align-middle">Modelo</th>
+              <th className="text-center align-middle">Monitor</th>
+              <th className="text-center align-middle"></th>
+            </tr>
+          </thead>
+          <tbody>{renderEquipos()}</tbody>
+        </Table>
       </div>
     </div>
   );

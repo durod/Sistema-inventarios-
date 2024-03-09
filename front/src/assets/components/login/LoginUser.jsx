@@ -19,7 +19,7 @@ function LoginUser() {
             <input type="text" className="inputloginuser" placeholder="Username"/>
             <input type="text" className="inputloginuser" placeholder="Password"/>
             <input type="text" className="inputloginuser" placeholder="Confirm Password"/>
-            <button className="btn">Signup</button>
+            <button className="btnloginuser">Signup</button>
             
         </div>
     </form>

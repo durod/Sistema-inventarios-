@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
 
 import { useEquiposContext } from "../../context/EquiposContext";
@@ -79,12 +79,12 @@ function Dashboardequipos() {
   }, [equipos]);
 
   return (
-    <div className="principalcontainer">
-      <div className="cajaadminequipos">
+    <div className="containerdashboard">
+      <div className="cajaadminequiposdashboard">
         <AdminEquipos />
       </div>
 
-      <div className="cajasecundaria">
+      <div className="cajasecundariadashboard">
         <div className="cajachart">
           <h1>Distribución de Equipos por Ubicación</h1>
           <Chart

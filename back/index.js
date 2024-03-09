@@ -101,7 +101,7 @@ app.post("/equipos", async (req, res) => {
       accesorios,
       suscripcion_office,
       ubicacion,
-      status
+      status,
     });
     res.send("equipo agregado con éxito");
     /*console.log("valor req.body en la ruta /equipos: ", req.body);*/
@@ -138,14 +138,20 @@ app.get("/buscarEquipo", async (req, res) => {
 app.get("/datoscompletos/:codigo_inventario/:numempleado", async (req, res) => {
   try {
     const { codigo_inventario, numempleado } = req.params;
-    const detalles = await obtenerDetallesEquipoEmpleado(codigo_inventario, numempleado);
+    const detalles = await obtenerDetallesEquipoEmpleado(
+      codigo_inventario,
+      numempleado
+    );
     if (detalles) {
       res.json(detalles);
     } else {
       res.status(404).send("Detalles no encontrados");
     }
   } catch (error) {
-    console.error("Error al obtener los detalles del equipo y empleado: ", error);
+    console.error(
+      "Error al obtener los detalles del equipo y empleado: ",
+      error
+    );
     const { status, message } = handleErrors(error.code);
     res.status(status).send("Error al obtener detalles: " + message);
   }
@@ -165,8 +171,6 @@ app.get("/equipos/:id", async (req, res) => {
       .send("Error interno del servidor al obtener detalles del equipo");
   }
 });
-
-
 
 //3. PUT para modificar el equipo
 app.put("/equipos/actualizar/:id", upload.single("foto"), async (req, res) => {
