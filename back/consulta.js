@@ -291,6 +291,24 @@ const eliminarEquipo = async (id) => {
   }
 };
 
+const quitarAsignacion = async (codigo_inventario, numempleado) => {
+  try {
+    const consulta =
+      "DELETE FROM asignaciones WHERE codigo_inventario = $1 AND numempleado = $2 RETURNING *";
+    const values = [codigo_inventario, numempleado];
+    const result = await pool.query(consulta, values);
+
+    if (result.rowCount === 0) {
+      throw new Error("Asignación no encontrada o ya fue eliminada.");
+    }
+
+    return result.rows[0]; // Retorna la asignación eliminada
+  } catch (error) {
+    console.error("Error al quitar la asignación: ", error);
+    throw error;
+  }
+};
+
 export {
   agregarEquipo,
   verEquipos,
@@ -299,4 +317,5 @@ export {
   buscarEquiposPorParametro,
   obtenerDetallesEquipoEmpleado,
   obtenerDetallesEquipoPorId,
+  quitarAsignacion,
 };

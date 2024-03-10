@@ -13,6 +13,7 @@ import {
   obtenerDetallesEquipoEmpleado,
   buscarEquiposPorParametro,
   obtenerDetallesEquipoPorId,
+  quitarAsignacion,
 } from "./consulta.js";
 import fs from "fs";
 
@@ -255,6 +256,30 @@ app.delete("/equipos/:id", async (req, res) => {
     });
   }
 });
+
+app.delete(
+  "/asignaciones/:codigo_inventario/:numempleado",
+  async (req, res) => {
+    try {
+      const { codigo_inventario, numempleado } = req.params;
+      const asignacionEliminada = await quitarAsignacion(
+        codigo_inventario,
+        numempleado
+      );
+      res.json({
+        mensaje: "Asignación eliminada con éxito",
+        asignacionEliminada,
+      });
+    } catch (error) {
+      res
+        .status(500)
+        .send({
+          mensaje: "Error al eliminar la asignación",
+          error: error.message,
+        });
+    }
+  }
+);
 
 //0. GET para ver ruta raiz
 app.use("*", (req, res) => {
