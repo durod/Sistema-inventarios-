@@ -282,15 +282,18 @@ const ActualizarEquipo = () => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridOfficeSubscription">
-            <Form.Label className="formLabel">SUSCRIPCIÓN OFFICE</Form.Label>
-            <Form.Control
-              className="text-center-input"
-              type="text"
-              name="suscripcion_office"
-              value={equipoData.suscripcion_office || ""}
-              onChange={handleChange}
-            />
-          </Form.Group>
+  <Form.Label className="formLabel">SUSCRIPCIÓN OFFICE</Form.Label>
+  <Form.Select 
+    className="text-center-input" 
+    name="suscripcion_office" 
+    value={equipoData.suscripcion_office || ""}
+    onChange={handleChange}
+  >
+    <option value="no">no</option>
+    <option value="si">si</option>
+  </Form.Select>
+</Form.Group>
+
         </Row>
 
     <Row className="mb-3">
