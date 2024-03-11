@@ -23,6 +23,19 @@ function VerEquipos() {
     fetchEquipos();
   }, []);
 
+  const eliminarEquipo = async (id) => {
+    try {
+      console.log("Antes de eliminar el equipo, ID:", id);
+      await axios.delete(`${URI}/${id}`);
+      console.log("Después de eliminar el equipo");
+      verEquipos();
+    } catch (error) {
+      console.error("Error al eliminar equipo:", error.message);
+    }
+  };
+
+
+
   const renderEquipos = () => {
     return equipos.map((equipo, index) => (
       <tr key={`${equipo.codigo_inventario}-${equipo.numempleado}-${index}`}>
@@ -57,7 +70,7 @@ function VerEquipos() {
                 <button
                   className="btn btn-danger mx-auto"
                   onClick={() =>
-                    confirmarEliminarEquipo(equipo.id, equipo.codigo_inventario)
+                    eliminarEquipo(equipo.id, equipo.codigo_inventario)
                   }
                 >
                   Eliminar
@@ -93,6 +106,8 @@ function VerEquipos() {
       }
     }
   };
+
+  
   return (
     <div className="containerverequipos">
       <div className="cajaadminequiposverequipos">

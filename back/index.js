@@ -14,6 +14,7 @@ import {
   buscarEquiposPorParametro,
   obtenerDetallesEquipoPorId,
   quitarAsignacion,
+  agregarUsuario,
 } from "./consulta.js";
 import fs from "fs";
 
@@ -271,15 +272,31 @@ app.delete(
         asignacionEliminada,
       });
     } catch (error) {
-      res
-        .status(500)
-        .send({
-          mensaje: "Error al eliminar la asignación",
-          error: error.message,
-        });
+      res.status(500).send({
+        mensaje: "Error al eliminar la asignación",
+        error: error.message,
+      });
     }
   }
 );
+
+app.post("/usuario", async (req, res) => {
+  const { correo, password, rol } = req.body;
+
+  try {
+    await agregarUsuario({
+      correo,
+      password,
+      rol,
+    });
+    res.send("equipo agregado con éxito");
+   
+  } catch (error) {
+    console.error("Error en la ruta /usuario (agregarUsuario): ", error);
+    const { status, message } = handleErrors(error.code);
+    res.status(status).send("Error al agregar el usuario: " + message);
+  }
+});
 
 //0. GET para ver ruta raiz
 app.use("*", (req, res) => {

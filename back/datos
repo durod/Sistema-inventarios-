@@ -95,5 +95,5 @@ CREATE TABLE perfilesinventario (
   id SERIAL PRIMARY KEY,
   correo VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
-  rol JSON NOT NULL
+  rol VARCHAR(255) NOT NULL
 );

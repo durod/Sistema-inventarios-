@@ -1,8 +1,56 @@
 import "../registrarusuario/registrarusuario.css";
 
 import AdminEquipos from "../adminequipos/AdminEquipos";
+import axios from "axios";
+const URI = "http://localhost:3002/usuario";
+
+
 function RegistrarUsuario() {
-  // Aquí deberías agregar los useState para manejar los estados de los inputregistrarusuarios
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    // Obtener los valores de los campos del formulario
+    const correo = event.target.elements.labelusername.value;
+    const password = event.target.elements.labelpassword.value;
+    const rol = event.target.elements.labelrol.value;
+    const confirmPassword = event.target.elements.confirmPassword.value; // Asegúrate de asignar el id="confirmPassword" al input correspondiente
+
+if (password !== confirmPassword) {
+  alert("Las contraseñas no coinciden.");
+  return;
+}
+
+    // Verificar que al menos un campo esté lleno
+    if (!(correo && password && rol)) {
+      alert("Debes llenar los campos.");
+      return;
+    }
+
+    // Crear un objeto con los datos del equipo
+    const usuarioData = {
+      correo: correo,
+      password: password,
+      rol: rol,
+      
+    };
+
+    try {
+      // Enviar la solicitud solo si al menos un campo está lleno
+      await axios.post(URI, usuarioData);
+
+      // Limpiar el formulario después de agregar el equipo
+      event.target.reset();
+
+      // Mostrar el mensaje de éxito
+      alert("El usuario se ha agregado correctamente.");
+
+      // Redirigir a la página de inicio después de agregar el equipo
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Error al agregar equipo:", error.message);
+    }
+  };
 
   return (
     <div className="containerregistrarusuario">
@@ -10,23 +58,26 @@ function RegistrarUsuario() {
         <AdminEquipos />
       </div>
       <div className="cajaregistrarusuario">
-      <form className="formregistrarusuario">
+      <form onSubmit={handleSubmit} className="formregistrarusuario">
         <p className="title">Registrar un usuario</p>
         <p className="message">
           registra un usuario para que acceda al sistema
         </p>
         <div className="flex"></div>
-        <label>
+        <label >
           <input
+          id="labelusername" 
             className="inputregistrarusuario"
             type="text"
             placeholder="username"
             required
+            
           />
           <span>Username</span>
         </label>
-        <label>
+        <label >
           <input
+          id="labelpassword"
             className="inputregistrarusuario"
             type="password"
             placeholder="Password"
@@ -34,8 +85,9 @@ function RegistrarUsuario() {
           />
           <span>Password</span>
         </label>
-        <label>
+        <label >
           <input
+           id="confirmPassword"
             className="inputregistrarusuario"
             type="password"
             placeholder="Confirm password"
@@ -43,8 +95,8 @@ function RegistrarUsuario() {
           />
           <span>Confirm password</span>
         </label>
-        <label>
-          <select className="inputregistrarusuario" required>
+        <label >
+          <select id="labelrol" className="inputregistrarusuario" required>
             <option value="" disabled selected>
               Seleccione un rol
             </option>

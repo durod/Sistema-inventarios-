@@ -5,6 +5,8 @@ const pool = new Pool({
   allowExitOnIdle: true,
 });
 
+
+
 // funcion para insertar un equipo en la tabla en forma de parametros
 const agregarEquipo = async ({
   codigo_inventario,
@@ -309,6 +311,33 @@ const quitarAsignacion = async (codigo_inventario, numempleado) => {
   }
 };
 
+
+//------------------- Funciones para administrar usuarios--------------------------------
+
+const agregarUsuario = async ({
+  correo,
+  password,
+  rol,
+}) => {
+  try {
+    const consulta =
+      "INSERT INTO perfilesinventario VALUES (DEFAULT, $1, $2, $3) RETURNING *";
+    const values = [
+      correo,
+  password,
+  rol,
+    ];
+
+    const result = await pool.query(consulta, values);
+
+  } catch (error) {
+    console.error("Error al agregar el usuario: ", error);
+    throw error; // Agrega esto para propagar el error
+  }
+};
+
+
+
 export {
   agregarEquipo,
   verEquipos,
@@ -318,4 +347,5 @@ export {
   obtenerDetallesEquipoEmpleado,
   obtenerDetallesEquipoPorId,
   quitarAsignacion,
+  agregarUsuario,
 };
