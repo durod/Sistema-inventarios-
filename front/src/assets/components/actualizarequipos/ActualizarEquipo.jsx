@@ -6,9 +6,19 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 
 import axios from "axios";
+import Modal from 'react-bootstrap/Modal';
+
 const URI = "http://localhost:3002/equipos";
 
 const ActualizarEquipo = () => {
+  const [showModal, setShowModal] = useState(false);
+const [modalMessage, setModalMessage] = useState("");
+const handleCloseModal = () => {
+  setShowModal(false);
+  // Redirigir al usuario a la página de inicio
+  window.location.href = "/";
+};
+
   const { id } = useParams(); // Obtener el parámetro de la URL
   const [fotoEquipo, setFotoEquipo] = useState(null);
   const [equipoData, setEquipoData] = useState({
@@ -64,7 +74,6 @@ const ActualizarEquipo = () => {
         formData.append("foto", fotoEquipo);
       }
   
-      // Agregar los datos del equipo al formData
       Object.entries(equipoData).forEach(([key, value]) => {
         formData.append(key, value);
       });
@@ -75,9 +84,12 @@ const ActualizarEquipo = () => {
         },
       });
   
-      alert("El equipo se ha actualizado correctamente.");
+      setModalMessage("El equipo se ha actualizado correctamente.");
+      setShowModal(true);
     } catch (error) {
       console.error("Error al actualizar equipo:", error.message);
+      setModalMessage(`Error al actualizar equipo: ${error.message}`);
+      setShowModal(true);
     }
   };
 
@@ -358,6 +370,17 @@ const ActualizarEquipo = () => {
             </Button>
           </Col>
         </Row>
+        <Modal show={showModal} onHide={handleCloseModal}>
+  <Modal.Header closeButton>
+    <Modal.Title>Actualización del Equipo</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>{modalMessage}</Modal.Body>
+  <Modal.Footer>
+    <Button variant="secondary" onClick={handleCloseModal}>
+      Cerrar
+    </Button>
+  </Modal.Footer>
+</Modal>
       </Form>
     </div>
   );
