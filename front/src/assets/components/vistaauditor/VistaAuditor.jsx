@@ -73,7 +73,7 @@ function VistaAuditor() {
             {equipos.map((equipo) => (
               <tr key={equipo.id}>
                 <td>{equipo.codigo_inventario}</td>
-                <td>{equipo.piezas}</td>
+                <td>1</td>
                 <td>{`${equipo.tipo_equipo} ${equipo.marca} ${
                   equipo.modelo
                 } S/N ${equipo.numero_serie} ${
