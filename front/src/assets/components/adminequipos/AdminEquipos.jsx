@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 
-import "../adminequipos/AdminEquipos";
-
 function AdminEquipos() {
   return (
     <div className="cajaprincipaladminequipos">
