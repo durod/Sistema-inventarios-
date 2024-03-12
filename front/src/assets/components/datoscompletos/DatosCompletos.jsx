@@ -35,8 +35,25 @@ function DatosCompletos() {
   }
 
   const handleVerResponsivaClick = () => {
+    const datosModificados = {
+      ...datos,
+      textoProhibiciones: `Queda estrictamente prohibido instalar cualquier otro sistema o programa sin la aprobación del área de tecnología,
+  así como el uso o acceso a páginas prohibidas por la política del uso de equipo, haciéndome responsable de la debida
+  resguarda del mismo.
+  
+  Así mismo estoy de acuerdo con lo siguiente:
+  1) El equipo es propiedad del Periódico El Economista, S.A. de C.V.
+  2) Que lo he recibido en el estado en el que se encuentra, incluyendo sus accesorios.
+  3) Será usado para los fines EXCLUSIVOS del negocio. De no ser así, el Periódico El Economista, S.A de C.V. me
+  solicitará la devolución del mismo.
+  4) En caso de desvinculación laboral, la devolución del equipo será inmediata.
+  5) El daño o extravío de los equipos serán responsabilidad del empleado y el costo del mismo será descontado vía
+  nómina.
+  6) En caso de robo, de no presentar acta de denuncia se aplicará el punto anterior.`
+    };
+  
     navigate(`/verResponsiva/${datos.id}`, {
-      state: { datos: datos },
+      state: { datos: datosModificados },
     });
   };
   return (

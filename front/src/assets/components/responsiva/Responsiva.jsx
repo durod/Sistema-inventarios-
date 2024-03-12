@@ -34,7 +34,7 @@ function Responsiva() {
       <h4>Carta Responsiva de Equipo de cómputo y comunicaciones</h4>
 
       <div>
-        <htmlForm>
+        <form>
           <div className="datosempleadoid">
             <label htmlFor="fecha" className="fondo">
               Fecha
@@ -273,33 +273,29 @@ function Responsiva() {
             </div>
           </fieldset>
 
-<fieldset>
+          <fieldset>
   <div className="cajaimportante">
-          <label htmlFor="prohibiciones">IMPORTANTE</label>
-
-          <textarea
-            id="prohibiciones"
-            name="prohibiciones"
-            className="textoimportante"
-            required
-            readOnly
-          >
-            {`Queda estrictamente prohibido instalar cualquier otro sistema o programa sin la aprobación del área de tecnología,
-así como el uso o acceso a páginas prohibidas por la política del uso de equipo, haciéndome responsable de la debida
-resguarda del mismo.
-
-Así mismo estoy de acuerdo con lo siguiente:
-1) El equipo es propiedad del Periódico El Economista, S.A. de C.V.
-2) Que lo he recibido en el estado en el que se encuentra, incluyendo sus accesorios.
-3) Será usado para los fines EXCLUSIVOS del negocio. De no ser así, el Periódico El Economista, S.A de C.V. me
-solicitará la devolución del mismo.
-4) En caso de desvinculación laboral, la devolución del equipo será inmediata.
-5) EL daño o extravío de los equipos serán responsabilidad del empleado y el costo del mismo será descontado vía
-nómina.
-6) En caso de robo, de no presentar acta de denuncia se aplicará el punto anterior.`}
-          </textarea>
-          </div>
-          </fieldset>
+    <label htmlFor="prohibiciones">IMPORTANTE</label>
+    <div
+      id="prohibiciones"
+      className="textoimportante"
+      // Agrega estilo para imitar un textarea y preservar los saltos de línea
+      style={{
+        whiteSpace: 'pre-wrap', // Mantiene los saltos de línea y espacios
+        border: '1px solid #ccc', // Borde para imitar textarea, ajusta según necesidad
+        padding: '10px', // Padding para imitar textarea, ajusta según necesidad
+        borderRadius: '4px', // Bordes redondeados para imitar textarea, ajusta según necesidad
+        minHeight: '100px', // Altura mínima, ajusta según necesidad
+        overflowY: 'auto' // Permite scroll vertical si el contenido excede la altura
+      }}
+      // Usa `dangerouslySetInnerHTML` solo si estás seguro de que el contenido es seguro y no expone a XSS
+      // Si el contenido puede contener entradas de usuario, considera métodos de saneamiento adecuados
+      dangerouslySetInnerHTML={{ __html: location.state ? location.state.datos.textoProhibiciones.replace(/\n/g, '<br>') : '' }}
+    >
+      {/* Se elimina el contenido del div ya que se establece con dangerouslySetInnerHTML */}
+    </div>
+  </div>
+</fieldset>
           <div className="signature">
             <div className="signaturedatos">
               <input type="text" name="firma" required />
@@ -337,7 +333,7 @@ nómina.
           <button type="button" onClick={generatePDF}>
             Generar Responsiva
           </button>
-        </htmlForm>
+        </form>
       </div>
     </div>
   );

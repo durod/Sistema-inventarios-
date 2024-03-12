@@ -1,7 +1,7 @@
 
 .cajaprincipalresponsiva {
-  padding: 5px;
-  font-size: smaller;
+  padding: 2px;
+  font-size: small;
   display: flex;
   flex-direction: column;  
 }
