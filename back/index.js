@@ -15,6 +15,7 @@ import {
   obtenerDetallesEquipoPorId,
   quitarAsignacion,
   agregarUsuario,
+  verUsuarios,
 } from "./consulta.js";
 import fs from "fs";
 
@@ -297,6 +298,19 @@ app.post("/usuario", async (req, res) => {
     res.status(status).send("Error al agregar el usuario: " + message);
   }
 });
+
+app.get("/usuario", async (req, res) => {
+  try {
+    const usuarios = await verUsuarios();
+    res.json(usuarios); //respuesta del servidor que es la respuesta que dio la funcion de consulta a BD
+  } catch (error) {
+    console.error("Error en la ruta /usuario (verUsuarios): ", error);
+    const { status, message } = handleErrors(error.code);
+    res.status(status).send("Error al obtener los usuarios: " + message);
+  }
+});
+
+
 
 //0. GET para ver ruta raiz
 app.use("*", (req, res) => {

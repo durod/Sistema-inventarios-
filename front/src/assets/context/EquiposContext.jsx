@@ -6,6 +6,7 @@ const EquiposContext = createContext();
 
 export const EquiposProvider = ({ children }) => {
   const [equipos, setEquipos] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);
   const [detallesEquipo, setDetallesEquipo] = useState(null); // Para almacenar los detalles del equipo seleccionado
   const [empleadosAsignados, setEmpleadosAsignados] = useState([]); // Para los empleados asignados al equipo seleccionado
   const [error, setError] = useState(null);
@@ -82,6 +83,23 @@ export const EquiposProvider = ({ children }) => {
     }
   };
 
+  const verUsuarios = async () => {
+    try {
+      const response = await axios.get("http://localhost:3002/usuario");
+      setUsuarios(response.data);
+      setError(null);
+    } catch (error) {
+      console.error("Error al obtener equipos:", error.message);
+      setError("Error al cargar equipos. Por favor, inténtalo de nuevo.");
+    }
+  };
+
+
+
+
+
+  
+
   const contextValue = {
     equipos,
     detallesEquipo,
@@ -92,6 +110,8 @@ export const EquiposProvider = ({ children }) => {
     obtenerEquipos,
     obtenerDetallesEquipoYEmpleados,
     quitarAsignacionEquipo,
+    verUsuarios,
+    usuarios,
     // Cualquier otra función o estado que estés proporcionando
   };
 

@@ -1,4 +1,4 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Table, Dropdown } from "react-bootstrap";
 
@@ -10,7 +10,6 @@ import { useEquiposContext } from "../../context/EquiposContext";
 function VerEquipos() {
   const {
     equipos,
-   
     obtenerEquipos,
     confirmarEliminarEquipo,
     quitarAsignacionEquipo,

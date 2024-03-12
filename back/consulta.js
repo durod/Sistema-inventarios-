@@ -336,6 +336,23 @@ const agregarUsuario = async ({
   }
 };
 
+// funcion listar el contenido de la tabla perfilesinventario
+const verUsuarios = async () => {
+  try {
+    const query = `
+    SELECT perfilesinventario.*
+    FROM perfilesinventario
+    
+    `;
+    const { rows, command, rowCount, fields } = await pool.query(query);
+
+    return rows;
+  } catch (error) {
+    console.error("Error al intentar ver los usuarios: ", error);
+    throw error;
+  }
+};
+
 
 
 export {
@@ -348,4 +365,5 @@ export {
   obtenerDetallesEquipoPorId,
   quitarAsignacion,
   agregarUsuario,
+  verUsuarios
 };
