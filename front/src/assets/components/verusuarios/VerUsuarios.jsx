@@ -25,6 +25,8 @@ function verUsuarios() {
             <Dropdown.Toggle variant="primary" id="dropdown-basic">
               Acciones
             </Dropdown.Toggle>
+            
+            <Dropdown.Menu>
             <Dropdown.Item>
                 <button
                   className="btn btn-danger mx-auto"
@@ -35,8 +37,6 @@ function verUsuarios() {
                   Eliminar
                 </button>
               </Dropdown.Item>
-            <Dropdown.Menu>
-              
             </Dropdown.Menu>
           </Dropdown>
         </td>

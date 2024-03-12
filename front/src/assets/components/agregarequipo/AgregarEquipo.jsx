@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+import Modal from 'react-bootstrap/Modal'; // Importa Modal
 
 import { dellModels, appleModels } from "../../modelsData";
 import AdminEquipos from "../adminequipos/AdminEquipos";
@@ -15,7 +16,16 @@ const URI = "http://localhost:3002/equipos";
 export default function AgregarEquipo() {
   const [selectedModel, setSelectedModel] = useState({});
   const [selectedBrand, setSelectedBrand] = useState("");
+  const [showModal, setShowModal] = useState(false); // Estado para el modal
+  const [modalMessage, setModalMessage] = useState(""); // Estado para el mensaje del modal
 
+  const handleCloseModal = () => {
+    setShowModal(false);
+    // Si el mensaje es de éxito, redirigir al usuario
+    if (modalMessage === "El equipo se ha agregado correctamente.") {
+      window.location.href = "/";
+    }
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -76,12 +86,13 @@ export default function AgregarEquipo() {
       event.target.reset();
 
       // Mostrar el mensaje de éxito
-      alert("El equipo se ha agregado correctamente.");
-
+      setModalMessage("El equipo se ha agregado correctamente.");
+      setShowModal(true);
       // Redirigir a la página de inicio después de agregar el equipo
-      window.location.href = "/";
+   
     } catch (error) {
-      console.error("Error al agregar equipo:", error.message);
+      setModalMessage(`Error al agregar equipo: ${error.message}`);
+      setShowModal(true);
     }
   };
 
@@ -373,6 +384,17 @@ export default function AgregarEquipo() {
               </Col>
             </Row>
           </Form>
+          <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Notificación</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modalMessage}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
         </div>
       </div>
     </div>

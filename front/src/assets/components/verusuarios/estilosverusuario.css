@@ -1,4 +1,17 @@
 .containerveusuarios{
-display: flex;
+    margin-top: 8%;
+    display: flex;
+    gap: 1%;
 }
 
+
+.cajaprincipalverusuarios {
+    width: 60%;
+  }
+  
+  
+  
+  .cajaadminequiposverusuarios{
+    width: 17%;
+  }
+  
