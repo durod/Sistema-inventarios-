@@ -2,6 +2,8 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 import path from "path";
+import ExcelJS from 'exceljs';
+
 
 // importando modulos personalizados
 import { handleErrors } from "./errors.js";
@@ -62,6 +64,130 @@ app.get("/equipos", async (req, res) => {
     res.status(status).send("Error al obtener los equipos: " + message);
   }
 });
+
+
+app.get("/equipos/excel", async (req, res) => {
+  try {
+      const equipos = await verEquipos();
+      const workbook = new ExcelJS.Workbook();
+      
+      // Agrupando equipos por ubicación o piso
+      const equiposPorUbicacion = equipos.reduce((acc, equipo) => {
+          const key = equipo.ubicacion; // Asume que 'ubicacion' es un identificador único
+          if (!acc[key]) {
+              acc[key] = [];
+          }
+          acc[key].push(equipo);
+          return acc;
+      }, {});
+
+      Object.entries(equiposPorUbicacion).forEach(([ubicacion, equiposUbicacion], index) => {
+        // Ajustando los nombres de las ubicaciones directamente
+        let nombreHoja = ubicacion; // Asume que este es el valor deseado por defecto
+        if (ubicacion === 'pbalmacen') {
+          nombreHoja = 'PB - Almacén';
+        } else if (ubicacion === 'piso3') {
+          nombreHoja = 'Economista P3';
+        } else if (ubicacion === 'piso4') {
+          nombreHoja = 'Economista P4';
+        } else if (ubicacion === 'santander') {
+          nombreHoja = 'Santander rotativa';
+        }
+      
+        const sheet = workbook.addWorksheet(nombreHoja);
+          
+          // ANEXO A
+          sheet.mergeCells('A1:F1');
+sheet.getCell('A1').value = 'ANEXO A';
+sheet.getCell('A1').font = { name: 'Calibri', size: 14, bold: true };
+sheet.getCell('A1').alignment = { horizontal: 'center', vertical: 'middle' };
+sheet.getCell('A1').border = {
+  top: { style: 'thin' },
+  left: { style: 'thin' },
+  bottom: { style: 'thin' },
+  right: { style: 'thin' }
+};
+
+          // DOMICILIO
+          sheet.mergeCells('A2:A3');
+sheet.getCell('A2').value = 'DOMICILIO:';
+sheet.getCell('A2').font = { name: 'Calibri', size: 12, bold: true };
+sheet.getCell('A2').alignment = { horizontal: 'center', vertical: 'middle' };
+sheet.getCell('A2').border = {
+  top: { style: 'thin' },
+  left: { style: 'thin' },
+  bottom: { style: 'thin' },
+  right: { style: 'thin' }
+};
+
+sheet.mergeCells('B2:F3');
+sheet.getCell('B2').value = 'Av. San Jerónimo 458, Col. Jardines del Pedregal, C.P. 01900, México CDMX';
+sheet.getCell('B2').font = { name: 'Calibri', size: 10, bold: true };
+sheet.getCell('B2').alignment = { horizontal: 'center', vertical: 'middle' };
+sheet.getCell('B2').border = {
+  top: { style: 'thin' },
+  left: { style: 'thin' },
+  bottom: { style: 'thin' },
+  right: { style: 'thin' }
+};
+
+          
+       
+
+          // Cabeceras de la tabla
+          const headerRow = sheet.addRow(['CÓDIGO', 'PIEZAS', 'DESCRIPCIÓN ESPECÍFICA', 'UBICACIÓN', 'DEPARTAMENTO', 'FOTO']);
+          headerRow.font = { name: 'Calibri', size: 11, bold: true };
+          headerRow.alignment = { horizontal: 'center' };
+          headerRow.eachCell(cell => {
+              cell.border = {
+                  top: { style: 'thin' },
+                  left: { style: 'thin' },
+                  bottom: { style: 'thin' },
+                  right: { style: 'thin' }
+              };
+          });
+          sheet.getColumn(1).width = 10;
+          
+          sheet.getColumn(3).width = 100;
+          sheet.getColumn(4).width = 15;
+          sheet.getColumn(5).width = 15;
+          sheet.getColumn(6).width = 30;
+          // Datos de los equipos
+          equiposUbicacion.forEach(equipo => {
+            const row = sheet.addRow([
+                equipo.codigo_inventario,
+                '1',
+                `${equipo.tipo_equipo} ${equipo.marca} ${equipo.modelo} S/N ${equipo.numero_serie} ${
+                  equipo.numero_serie_cargador ? `Cargador: ${equipo.numero_serie_cargador}` : ""
+                } ${equipo.teclado ? `Teclado: ${equipo.teclado}` : ""} ${
+                  equipo.raton ? `Raton: ${equipo.raton}` : ""
+                } ${equipo.monitor ? `Monitor: ${equipo.monitor}` : ""}`, // Aquí se corrigió el error
+                equipo.ubicacion,
+                equipo.id_departamento,
+                'Ver archivo', // Ejemplo para la columna Foto
+            ]);
+              row.eachCell(cell => {
+                  cell.border = {
+                      top: { style: 'thin' },
+                      left: { style: 'thin' },
+                      bottom: { style: 'thin' },
+                      right: { style: 'thin' }
+                  };
+              });
+          });
+      });
+
+      // Configurar headers y enviar archivo
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      res.setHeader("Content-Disposition", "attachment; filename=Equipos.xlsx");
+      await workbook.xlsx.write(res);
+      res.end();
+  } catch (error) {
+      console.error("Error generando el Excel de equipos: ", error);
+      res.status(500).send("Error interno del servidor");
+  }
+});
+
 
 //2. POST para ingresar un equipo en la tabla
 app.post("/equipos", async (req, res) => {

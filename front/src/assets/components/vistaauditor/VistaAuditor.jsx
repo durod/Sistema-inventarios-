@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Table from "react-bootstrap/Table";
-
+import { Button } from 'react-bootstrap';
 import axios from "axios";
 
 const URI = "http://localhost:3002/equipos";
@@ -99,9 +99,13 @@ function VistaAuditor() {
     ));
   };
 
+  const descargarExcel = () => {
+    window.open('http://localhost:3002/equipos/excel');
+  };
   return (
     <div className="cajaprincipalauditor">
       <h1>AUDITORES</h1>
+      <Button onClick={descargarExcel}>Descargar Excel</Button>
       <Tabs
         defaultActiveKey="PB - Almacén"
         id="ubicaciones-tabs"
