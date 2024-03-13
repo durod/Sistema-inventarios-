@@ -13,7 +13,7 @@
 
 .cajasecundariaagregarequipo {
   margin-top: 5%;
-  width: 80%;
+  width: 84%;
 }
 
 .cajaagregarEquipo {
@@ -23,24 +23,31 @@
 .cajaagregarEquipo h1 {
   color: white;
   text-align: center;
+  font-family: 'Roboto';
+  background-color: midnightblue;
+  width: 100%;
+  border-radius: 25px;
 }
 
 .formagregarequipo {
   color: turquoise;
   font-size: large;
-  background-color: #12121a;
+  background-color:rgba(5 3 0 / 70%); /* bisque con 70% de opacidad */
   padding: 1%;
   border-radius: 25px;
 }
 
 .formagregarequipo .formLabelagregarequipo {
   font-family: "Roboto", sans-serif;
-  font-weight: 100;
-  font-style: normal;
+  /* font-weight: 100; */
+  /* font-style: normal; */
+  background-color: black;
+  padding: 0px 27px;
+  border-radius: 25px;
 }
 
 .cajaadminequiposagregarequipo {
-  width: 17%;
+  width: 15%;
 }
 
 .inputagregarequipo {
