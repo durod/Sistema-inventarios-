@@ -20,7 +20,7 @@ import VerUsuarios from "./assets/components/verusuarios/VerUsuarios.jsx";
 function App() {
   return (
     <EquiposProvider> {/* Envolver la aplicación con el proveedor del contexto */}
-      <>
+      
         <BrowserRouter>
           <Header />
           <Routes>
@@ -38,7 +38,7 @@ function App() {
             <Route path="/usuario" element={<VerUsuarios />} />
           </Routes>
         </BrowserRouter>
-      </>
+      
     </EquiposProvider>
   );
 }
