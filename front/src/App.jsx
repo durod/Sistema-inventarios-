@@ -2,13 +2,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { EquiposProvider } from "./assets/context/EquiposContext.jsx"; // Importamos el proveedor del contexto
 import VerEquipos from "../src/assets/components/verequipos/VerEquipos.jsx";
-import AgregarEquipo from "../src/assets/components/agregarequipo/AgregarEquipo";
-import ActualizarEquipo from "../src/assets/components/actualizarequipos/ActualizarEquipo";
-import BusquedaEquipos from "../src/assets/components/busquedaequipos/BusquedaEquipos";
-import DatosCompletos from "../src/assets/components/datoscompletos/DatosCompletos";
-import Responsiva from "../src/assets/components/responsiva/Responsiva";
-import Header from "../src/assets/components/header/Header";
-import VistaAuditor from "../src/assets/components/vistaauditor/VistaAuditor";
+import AgregarEquipo from "../src/assets/components/agregarequipo/AgregarEquipo.jsx";
+import ActualizarEquipo from "../src/assets/components/actualizarequipos/ActualizarEquipo.jsx";
+import BusquedaEquipos from "../src/assets/components/busquedaequipos/BusquedaEquipos.jsx";
+import DatosCompletos from "../src/assets/components/datoscompletos/DatosCompletos.jsx";
+import Responsiva from "../src/assets/components/responsiva/Responsiva.jsx";
+import Header from "../src/assets/components/header/Header.jsx";
+import VistaAuditor from "../src/assets/components/vistaauditor//VistaAuditor.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
