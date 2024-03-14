@@ -1,7 +1,7 @@
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { EquiposProvider } from "./assets/context/EquiposContext.jsx"; // Importamos el proveedor del contexto
-import VerEquipos from "./assets/components/verequipos/VerEquipos";
+import VerEquipos from "front\src\assets\components\verequipos\VerEquipos.jsx";
 import AgregarEquipo from "./assets/components/agregarequipo/AgregarEquipo";
 import ActualizarEquipo from "./assets/components/actualizarequipos/ActualizarEquipo";
 import BusquedaEquipos from "./assets/components/busquedaequipos/BusquedaEquipos";
