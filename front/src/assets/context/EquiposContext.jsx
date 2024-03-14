@@ -13,7 +13,7 @@ export const EquiposProvider = ({ children }) => {
 
   const obtenerEquipos = async () => {
     try {
-      const response = await axios.get("http://localhost:3002/equipos");
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/equipos`);
       setEquipos(response.data);
       setError(null);
     } catch (error) {
