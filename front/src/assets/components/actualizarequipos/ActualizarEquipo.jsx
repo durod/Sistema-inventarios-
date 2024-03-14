@@ -8,7 +8,7 @@ import Row from "react-bootstrap/Row";
 import axios from "axios";
 import Modal from 'react-bootstrap/Modal';
 
-const URI = "http://localhost:3002/equipos";
+const URI = `${import.meta.env.VITE_BACKEND_URL}/equipos`;
 
 const ActualizarEquipo = () => {
   const [showModal, setShowModal] = useState(false);

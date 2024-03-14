@@ -5,7 +5,8 @@ import Table from "react-bootstrap/Table";
 import { Button } from 'react-bootstrap';
 import axios from "axios";
 
-const URI = "http://localhost:3002/equipos";
+const URI = `${import.meta.env.VITE_BACKEND_URL}/equipos`;
+
 
 function VistaAuditor() {
   const [equipos, setEquipos] = useState([]);

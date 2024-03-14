@@ -2,7 +2,7 @@ import "../registrarusuario/registrarusuario.css";
 
 import AdminEquipos from "../adminequipos/AdminEquipos.jsx";
 import axios from "axios";
-const URI = "http://localhost:3002/usuario";
+const backendURL = import.meta.env.VITE_BACKEND_URL;
 
 
 function RegistrarUsuario() {
@@ -37,7 +37,7 @@ if (password !== confirmPassword) {
 
     try {
       // Enviar la solicitud solo si al menos un campo está lleno
-      await axios.post(URI, usuarioData);
+      await axios.post(`${backendURL}/usuario`, usuarioData);
 
       // Limpiar el formulario después de agregar el equipo
       event.target.reset();

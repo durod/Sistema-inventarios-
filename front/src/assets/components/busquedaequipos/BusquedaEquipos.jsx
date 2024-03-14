@@ -7,6 +7,8 @@ import "../busquedaequipos/estilobuscadeequipo.css";
 
 import axios from "axios";
 import AdminEquipos from "../adminequipos/AdminEquipos.jsx";
+const backendURL = import.meta.env.VITE_BACKEND_URL;
+
 
 const BusquedaEquipos = () => {
   const [parametro, setParametro] = useState("");
@@ -16,7 +18,7 @@ const BusquedaEquipos = () => {
   const buscarEquipos = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3002/buscarEquipo?parametro=${parametro}`
+        `${backendURL}/buscarEquipo?parametro=${parametro}`
       );
       setEquipos(response.data);
       setError(null);
@@ -31,7 +33,7 @@ const BusquedaEquipos = () => {
         `¿Estás seguro de eliminar el equipo con código de inventario: ${codigoInventario}?`
       );
       if (confirmacion) {
-        await axios.delete(`http://localhost:3002/equipos/${id}`);
+        await axios.delete(`${backendURL}/${id}`);
         buscarEquipos();
       }
     } catch (error) {

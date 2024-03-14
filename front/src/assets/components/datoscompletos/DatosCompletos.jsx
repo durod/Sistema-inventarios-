@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-
+import axios from "axios";
 import "../datoscompletos/estilodatoscompletos.css";
 
 function DatosCompletos() {
@@ -15,13 +15,10 @@ function DatosCompletos() {
   useEffect(() => {
     const cargarDatos = async () => {
       try {
-        const respuesta = await fetch(
-          `http://localhost:3002/datoscompletos/${codigo_inventario}/${
-            numempleado || "sinEmpleado"
-          }`
+        const response = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/datoscompletos/${codigo_inventario}/${numempleado || "sinEmpleado"}`
         );
-        const datosCargados = await respuesta.json();
-        setDatos(datosCargados);
+        setDatos(response.data);
       } catch (error) {
         console.error("Error al cargar los datos:", error);
       }
