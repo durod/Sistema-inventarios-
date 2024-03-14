@@ -2,7 +2,10 @@ import pkg from "pg";
 const { Pool } = pkg;
 
 const pool = new Pool({
-  allowExitOnIdle: true,
+  connectionString: process.env.DATABASE_URL, // Asume que tienes tu URL completa de conexión como variable de entorno
+  ssl: {
+    rejectUnauthorized: false, // Esto permite conexiones a servidores con certificados autofirmados; úsalo solo si confías en tu servidor
+  },
 });
 
 
