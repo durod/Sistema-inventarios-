@@ -10,7 +10,7 @@ import Responsiva from "../src/assets/components/responsiva/Responsiva";
 import Header from "../src/assets/components/header/Header";
 import VistaAuditor from "../src/assets/components/vistaauditor/VistaAuditor";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../App.css";
+import "./App.css";
 
 import Dashboardequipos from "./assets/components/dashboardequipos/Dashboardequipos.jsx";
 import RegistrarUsuario from "./assets/components/registrarusuario/RegistrarUsuario.jsx";
