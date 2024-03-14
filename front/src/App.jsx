@@ -21,7 +21,7 @@ function App() {
   return (
     <EquiposProvider> {/* Envolver la aplicación con el proveedor del contexto */}
       
-        <BrowserRouter basename="Sistema-inventarios-">
+        <BrowserRouter basename="/Sistema-inventarios-">
           <Header />
           <Routes>
             <Route path="/" element={<VerEquipos />} />
