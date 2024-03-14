@@ -81,7 +81,7 @@ CREATE TABLE pc_info (
     suscripcion_office VARCHAR(255),    
     ubicacion VARCHAR(255),
     status INTEGER(1)
-	numEmpleado INTEGER REFERENCES empleados(numEmpleado)
+	
 );
 
 
