@@ -11,7 +11,7 @@ import AdminEquipos from "../adminequipos/AdminEquipos.jsx";
 import "../agregarequipo/estiloagregarequipo.css";
 
 import axios from "axios";
-const URI = "${import.meta.env.VITE_BACKEND_URL}/equipos";
+const URI = `${import.meta.env.VITE_BACKEND_URL}/equipos`;
 
 export default function AgregarEquipo() {
   const [selectedModel, setSelectedModel] = useState({});
