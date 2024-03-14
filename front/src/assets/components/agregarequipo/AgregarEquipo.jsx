@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import Modal from 'react-bootstrap/Modal'; // Importa Modal
 
 import { dellModels, appleModels } from "../../modelsData";
-import AdminEquipos from "../adminequipos/AdminEquipos";
+import AdminEquipos from "../adminequipos/AdminEquipos.jsx";
 
 import "../agregarequipo/estiloagregarequipo.css";
 

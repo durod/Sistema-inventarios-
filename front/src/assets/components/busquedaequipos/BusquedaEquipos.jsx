@@ -6,7 +6,7 @@ import Table from "react-bootstrap/Table";
 import "../busquedaequipos/estilobuscadeequipo.css";
 
 import axios from "axios";
-import AdminEquipos from "../adminequipos/AdminEquipos";
+import AdminEquipos from "../adminequipos/AdminEquipos.jsx";
 
 const BusquedaEquipos = () => {
   const [parametro, setParametro] = useState("");

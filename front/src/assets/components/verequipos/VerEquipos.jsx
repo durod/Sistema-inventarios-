@@ -5,7 +5,7 @@ import { Table, Dropdown } from "react-bootstrap";
 import "../verequipos/estiloverequipos.css";
 
 import AdminEquipos from "../adminequipos/AdminEquipos.jsx";
-import { useEquiposContext } from "../../context/EquiposContext";
+import { useEquiposContext } from "../../context/EquiposContext.jsx";
 
 function VerEquipos() {
   const {

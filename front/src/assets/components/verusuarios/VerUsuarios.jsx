@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Table, Dropdown } from "react-bootstrap";
 
-import AdminEquipos from "../adminequipos/AdminEquipos";
+import AdminEquipos from "../adminequipos/AdminEquipos.jsx";
 import "../verusuarios/estilosverusuario.css";
-import { useEquiposContext } from "../../context/EquiposContext";
+import { useEquiposContext } from "../../context/EquiposContext.jsx";
 
 function verUsuarios() {
   const { verUsuarios, usuarios, confirmarEliminarEquipo, } = useEquiposContext();

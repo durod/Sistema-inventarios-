@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
 
-import { useEquiposContext } from "../../context/EquiposContext";
-import AdminEquipos from "../adminequipos/AdminEquipos";
+import { useEquiposContext } from "../../context/EquiposContext.jsx";
+import AdminEquipos from "../adminequipos/AdminEquipos.jsx";
 
 import Accordion from "react-bootstrap/Accordion";
 import "../dashboardequipos/estilodashboardequipo.css";

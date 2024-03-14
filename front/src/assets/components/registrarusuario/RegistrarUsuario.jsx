@@ -1,6 +1,6 @@
 import "../registrarusuario/registrarusuario.css";
 
-import AdminEquipos from "../adminequipos/AdminEquipos";
+import AdminEquipos from "../adminequipos/AdminEquipos.jsx";
 import axios from "axios";
 const URI = "http://localhost:3002/usuario";
 
