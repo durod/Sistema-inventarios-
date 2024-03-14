@@ -25,7 +25,7 @@ export const EquiposProvider = ({ children }) => {
   const obtenerDetallesEquipoYEmpleados = async (equipoId) => {
     try {
       const response = await axios.get(
-        `http://localhost:3002/equipos/${equipoId}`
+        `${import.meta.env.VITE_BACKEND_URL}/${equipoId}`
       );
       // Asegúrate de que la respuesta del servidor tenga la estructura esperada
       setDetallesEquipo(response.data.equipo);
@@ -43,7 +43,7 @@ export const EquiposProvider = ({ children }) => {
 
   const eliminarEquipo = async (id) => {
     try {
-      await axios.delete(`http://localhost:3002/equipos/${id}`);
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/${id}`);
       obtenerEquipos();
     } catch (error) {
       console.error("Error al eliminar equipo:", error.message);
@@ -67,7 +67,7 @@ export const EquiposProvider = ({ children }) => {
     ) {
       try {
         const response = await fetch(
-          `http://localhost:3002/asignaciones/${codigo_inventario}/${numempleado}`,
+          `${import.meta.env.VITE_BACKEND_URL}/${codigo_inventario}/${numempleado}`,
           {
             method: "DELETE",
           }
@@ -85,7 +85,7 @@ export const EquiposProvider = ({ children }) => {
 
   const verUsuarios = async () => {
     try {
-      const response = await axios.get("http://localhost:3002/usuario");
+      const response = await axios.get("${import.meta.env.VITE_BACKEND_URL}");
       setUsuarios(response.data);
       setError(null);
     } catch (error) {
