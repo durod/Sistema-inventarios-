@@ -21,18 +21,16 @@
 }
 
 .cajaagregarEquipo h1 {
-  color: white;
+  color: yellow;
   text-align: center;
-  font-family: 'Roboto';
-  background-color: midnightblue;
-  width: 100%;
+  font-family: "Roboto";
   border-radius: 25px;
 }
 
 .formagregarequipo {
   color: turquoise;
   font-size: large;
-  background-color:rgba(5 3 0 / 70%); /* bisque con 70% de opacidad */
+  background-color: rgba(5 3 0 / 70%); /* bisque con 70% de opacidad */
   padding: 1%;
   border-radius: 25px;
 }

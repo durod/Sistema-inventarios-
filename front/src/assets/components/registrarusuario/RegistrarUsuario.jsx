@@ -69,7 +69,7 @@ if (password !== confirmPassword) {
           id="labelusername" 
             className="inputregistrarusuario"
             type="text"
-            placeholder="username"
+            
             required
             
           />
@@ -80,7 +80,7 @@ if (password !== confirmPassword) {
           id="labelpassword"
             className="inputregistrarusuario"
             type="password"
-            placeholder="Password"
+            
             required
           />
           <span>Password</span>
@@ -90,7 +90,7 @@ if (password !== confirmPassword) {
            id="confirmPassword"
             className="inputregistrarusuario"
             type="password"
-            placeholder="Confirm password"
+            
             required
           />
           <span>Confirm password</span>
