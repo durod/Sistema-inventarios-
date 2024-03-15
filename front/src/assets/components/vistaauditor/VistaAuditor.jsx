@@ -101,7 +101,7 @@ function VistaAuditor() {
   };
 
   const descargarExcel = () => {
-    window.open('http://localhost:3002/equipos/excel');
+    window.open('${import.meta.env.VITE_BACKEND_URL}/equipos/excel');
   };
   return (
     <div className="cajaprincipalauditor">
