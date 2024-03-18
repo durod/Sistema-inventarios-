@@ -43,8 +43,9 @@ export const EquiposProvider = ({ children }) => {
 
   const eliminarEquipo = async (id) => {
     try {
-      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/${id}`);
-      obtenerEquipos();
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/equipos/${id}`);
+      // Llamar a obtenerEquipos para actualizar la lista de equipos después de la eliminación
+      await obtenerEquipos();
     } catch (error) {
       console.error("Error al eliminar equipo:", error.message);
       setError("Error al eliminar equipo. Por favor, inténtalo de nuevo.");

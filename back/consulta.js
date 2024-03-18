@@ -272,27 +272,15 @@ WHERE
 // FUNCION PARA ELIMINAR UN REGISTRO DE LA TABLA
 const eliminarEquipo = async (id) => {
   try {
-    // Obtener el código_inventario del equipo que se va a eliminar
-    const equipo = await obtenerDetallesEquipoPorId(id);
-    const codigoInventario = equipo.codigo_inventario;
+    // Eliminar directamente el equipo de pc_info sin considerar asignaciones
+    const result = await pool.query("DELETE FROM pc_info WHERE id = $1 RETURNING *", [id]);
 
-    // Eliminar asignaciones para el código_inventario
-    const asignacionConsulta =
-      "DELETE FROM asignaciones WHERE codigo_inventario = $1 RETURNING *";
-    const asignacionValues = [codigoInventario];
-    await pool.query(asignacionConsulta, asignacionValues);
+    console.log("Equipo eliminado:", result.rows[0]); // Imprime los datos del equipo eliminado
 
-    // Ahora puedes eliminar el equipo sin violar la restricción de clave externa
-    const result = await pool.query(
-      "DELETE FROM pc_info WHERE id = $1 RETURNING *",
-      [id]
-    );
-
-    /* console.log("Equipo eliminado:", result.rows[0]); // Imprime los datos del equipo eliminado*/
-
-    verEquipos(); // Actualizar la lista de equipos después de la eliminación
+    // No es necesario llamar a verEquipos aquí ya que este es el backend
   } catch (error) {
     console.error("Error al eliminar equipo:", error.message);
+    throw error; // Es importante propagar el error para manejarlo en la capa superior
   }
 };
 
