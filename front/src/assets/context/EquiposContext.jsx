@@ -67,12 +67,9 @@ export const EquiposProvider = ({ children }) => {
       )
     ) {
       try {
-        const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/${codigo_inventario}/${numempleado}`,
-          {
-            method: "DELETE",
-          }
-        );
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/asignaciones/${codigo_inventario}/${numempleado}`, {
+          method: "DELETE",
+      });
         const data = await response.json();
 
         alert(data.mensaje); // O maneja la respuesta como prefieras
