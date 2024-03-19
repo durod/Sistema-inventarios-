@@ -19,24 +19,25 @@ h2{
 
 .cajaprincipaldatoscompletos {
   display: flex;
-
   gap: 16px;
-  color: turquoise;
+  color: #40e0d0;
   font-size: large;
-  
   padding: 1%;
   border-radius: 25px;
+  width: 100%;
+  justify-content: end;
 }
 
 
 .cajadatosdatoscompletos{
   border: 3px solid teal;
-  color: turquoise;
+  color: #40e0d0;
   font-size: large;
-  background-color: rgba(5 3 0 / 70%); 
+  background-color: #050300b3;
   padding: 1%;
   height: 100%;
   border-radius: 8px;
+  width: 52%;
 }
 .botonesdatoscompletos {
   display: flex;
@@ -71,10 +72,11 @@ h2{
 
 .cajadatosmepleadoimagendatoscompletos {
   display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 50%;
-  gap: 10px;
+    flex-direction: column;
+    height: 100%;
+    width: 48%;
+    gap: 10px;
+    align-items: flex-end;
 }
 
 .cajaprincipalimgequipo {
