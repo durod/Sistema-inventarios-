@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+
 import { Table, Dropdown } from "react-bootstrap";
 
 import AdminEquipos from "../adminequipos/AdminEquipos.jsx";
@@ -7,7 +7,7 @@ import "../verusuarios/estilosverusuario.css";
 import { useEquiposContext } from "../../context/EquiposContext.jsx";
 
 function verUsuarios() {
-  const { verUsuarios, usuarios, confirmarEliminarEquipo } =
+  const { verUsuarios, usuarios,  } =
     useEquiposContext();
 
   useEffect(() => {
@@ -28,14 +28,7 @@ function verUsuarios() {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item>
-                <button
-                  className="btn btn-danger mx-auto"
-                  onClick={() => confirmarEliminarUsuario(usuario.id)}
-                >
-                  Eliminar
-                </button>
-              </Dropdown.Item>
+              
             </Dropdown.Menu>
           </Dropdown>
         </td>
