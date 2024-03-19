@@ -344,7 +344,15 @@ const verUsuarios = async () => {
   }
 };
 
-
+const eliminarUsuario = async (usuarioId) => {
+  try {
+    const result = await pool.query("DELETE FROM perfilesinventario WHERE id = $1 RETURNING *", [usuarioId]);
+    return result.rows[0];
+  } catch (error) {
+    console.error("Error al eliminar el usuario: ", error);
+    throw error;
+  }
+};
 
 export {
   agregarEquipo,
@@ -356,5 +364,6 @@ export {
   obtenerDetallesEquipoPorId,
   quitarAsignacion,
   agregarUsuario,
-  verUsuarios
+  verUsuarios,
+  eliminarUsuario
 };

@@ -101,6 +101,17 @@ export const EquiposProvider = ({ children }) => {
     }
   };
 
+  const eliminarUsuario = async (usuarioId) => {
+    try {
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/usuario/${usuarioId}`);
+      // Actualizar la lista de usuarios tras la eliminación
+      await verUsuarios();
+    } catch (error) {
+      console.error("Error al eliminar usuario:", error.message);
+      setError("Error al eliminar usuario. Por favor, inténtalo de nuevo.");
+    }
+  };
+
   const contextValue = {
     equipos,
     detallesEquipo,
@@ -112,6 +123,7 @@ export const EquiposProvider = ({ children }) => {
     obtenerDetallesEquipoYEmpleados,
     quitarAsignacionEquipo,
     verUsuarios,
+    eliminarUsuario,
     usuarios,
     // Cualquier otra función o estado que estés proporcionando
   };

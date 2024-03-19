@@ -17,6 +17,7 @@ import {
   quitarAsignacion,
   agregarUsuario,
   verUsuarios,
+  eliminarUsuario,
 } from "./consulta.js";
 import fs from "fs";
 
@@ -465,6 +466,19 @@ app.get("/usuario", async (req, res) => {
     res.status(status).send("Error al obtener los usuarios: " + message);
   }
 });
+
+app.delete("/usuario/:id", async (req, res) => {
+  try {
+    const usuarioId = req.params.id;
+    const usuarioEliminado = await eliminarUsuario(usuarioId);
+    res.json({ mensaje: "Usuario eliminado con éxito", usuarioEliminado });
+  } catch (error) {
+    console.error("Error al eliminar usuario:", error);
+    const { status, message } = handleErrors(error.code);
+    res.status(status).send("Error al eliminar el usuario: " + message);
+  }
+});
+
 
 //0. GET para ver ruta raiz
 app.use("*", (req, res) => {

@@ -7,7 +7,7 @@ import "../verusuarios/estilosverusuario.css";
 import { useEquiposContext } from "../../context/EquiposContext.jsx";
 
 function verUsuarios() {
-  const { verUsuarios, usuarios,  } =
+  const { verUsuarios, usuarios, eliminarUsuario, } =
     useEquiposContext();
 
   useEffect(() => {
@@ -28,7 +28,14 @@ function verUsuarios() {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              
+            <Dropdown.Item>
+  <button
+    className="btn btn-danger mx-auto"
+    onClick={() => eliminarUsuario(usuario.id)} // Asumiendo que `id` es el identificador único de usuario
+  >
+    Eliminar
+  </button>
+</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </td>
