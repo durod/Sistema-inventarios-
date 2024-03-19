@@ -103,7 +103,7 @@ const ActualizarEquipo = () => {
         <Row className="mb-3">
         <h2>Actualizar Equipo</h2>
           <Form.Group as={Col} controlId="formGridEmployeeNumber">
-            <Form.Label className="formlabelactualizarequipoactualizarequipo">
+            <Form.Label className="formlabelactualizarequipo">
               NÚMERO DE EMPLEADO PARA ASIGNAR
             </Form.Label>
             <Form.Control
