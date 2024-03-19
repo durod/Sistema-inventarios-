@@ -278,9 +278,6 @@ export default function AgregarEquipo() {
                   placeholder="Ingrese la serie del cargador"
                 />
               </Form.Group>
-            </Row>
-
-            <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridMonitor">
                 <Form.Label className="formLabelagregarequipo">
                   MONITOR
@@ -292,6 +289,10 @@ export default function AgregarEquipo() {
                 />
               </Form.Group>
             </Row>
+
+            
+              
+           
 
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridKeyboard">
