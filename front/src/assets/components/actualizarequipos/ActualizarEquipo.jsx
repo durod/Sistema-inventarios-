@@ -6,18 +6,20 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 
 import axios from "axios";
-import Modal from 'react-bootstrap/Modal';
+import Modal from "react-bootstrap/Modal";
+import AdminEquipos from "../adminequipos/AdminEquipos";
+import "../actualizarequipos/estiloactualizarequipo.css";
 
 const URI = `${import.meta.env.VITE_BACKEND_URL}/equipos`;
 
 const ActualizarEquipo = () => {
   const [showModal, setShowModal] = useState(false);
-const [modalMessage, setModalMessage] = useState("");
-const handleCloseModal = () => {
-  setShowModal(false);
-  // Redirigir al usuario a la página de inicio
-  window.location.href = "/";
-};
+  const [modalMessage, setModalMessage] = useState("");
+  const handleCloseModal = () => {
+    setShowModal(false);
+    // Redirigir al usuario a la página de inicio
+    window.location.href = "/";
+  };
 
   const { id } = useParams(); // Obtener el parámetro de la URL
   const [fotoEquipo, setFotoEquipo] = useState(null);
@@ -39,7 +41,6 @@ const handleCloseModal = () => {
     suscripcion_office: "",
     ubicacion: "",
     status: "",
-    
   });
 
   useEffect(() => {
@@ -64,26 +65,25 @@ const handleCloseModal = () => {
     setFotoEquipo(event.target.files[0]);
   };
 
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     try {
       const formData = new FormData();
       if (fotoEquipo !== null) {
         formData.append("foto", fotoEquipo);
       }
-  
+
       Object.entries(equipoData).forEach(([key, value]) => {
         formData.append(key, value);
       });
-  
+
       await axios.put(`${URI}/actualizar/${id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-  
+
       setModalMessage("El equipo se ha actualizado correctamente.");
       setShowModal(true);
     } catch (error) {
@@ -95,6 +95,9 @@ const handleCloseModal = () => {
 
   return (
     <div className="formagregaractualizarequipo">
+      <div className="cajaadminequiposactualizarequipo">
+        <AdminEquipos />
+      </div>
       <h2>Actualizar Equipo</h2>
       <Form onSubmit={handleSubmit} className="formaactualizarequipo">
         <Row className="mb-3">
@@ -114,7 +117,9 @@ const handleCloseModal = () => {
 
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridInventoryCode">
-            <Form.Label className="formlabelactualizarequipo">CÓDIGO DE INV</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">
+              CÓDIGO DE INV
+            </Form.Label>
             <Form.Control
               className="text-center-inputactualizarequipoactualizarequipoactualizarequipo"
               type="text"
@@ -125,7 +130,9 @@ const handleCloseModal = () => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridEquipmentType">
-            <Form.Label className="formlabelactualizarequipo">TIPO DE EQUIPO</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">
+              TIPO DE EQUIPO
+            </Form.Label>
             <Form.Control
               className="text-center-inputactualizarequipoactualizarequipo"
               as="select"
@@ -141,7 +148,9 @@ const handleCloseModal = () => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridSerialNumber">
-            <Form.Label className="formlabelactualizarequipo">NÚMERO DE SERIE</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">
+              NÚMERO DE SERIE
+            </Form.Label>
             <Form.Control
               className="text-center-inputactualizarequipoactualizarequipo"
               type="text"
@@ -171,7 +180,9 @@ const handleCloseModal = () => {
 
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridModel">
-            <Form.Label className="formlabelactualizarequipo">MODELO</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">
+              MODELO
+            </Form.Label>
             <Form.Control
               className="text-center-inputactualizarequipoactualizarequipo"
               type="text"
@@ -182,7 +193,9 @@ const handleCloseModal = () => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridOperatingSystem">
-            <Form.Label className="formlabelactualizarequipo">SISTEMA OPERATIVO</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">
+              SISTEMA OPERATIVO
+            </Form.Label>
             <Form.Control
               className="text-center-inputactualizarequipoactualizarequipo"
               as="select"
@@ -198,7 +211,9 @@ const handleCloseModal = () => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridRAM">
-            <Form.Label className="formlabelactualizarequipo">MEMORIA RAM</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">
+              MEMORIA RAM
+            </Form.Label>
             <Form.Control
               className="text-center-inputactualizarequipoactualizarequipo"
               as="select"
@@ -215,7 +230,9 @@ const handleCloseModal = () => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridProcessor">
-            <Form.Label className="formlabelactualizarequipo">PROCESADOR</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">
+              PROCESADOR
+            </Form.Label>
             <Form.Control
               className="text-center-inputactualizarequipoactualizarequipo"
               type="text"
@@ -227,7 +244,9 @@ const handleCloseModal = () => {
         </Row>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridStorage">
-            <Form.Label className="formlabelactualizarequipo">ALMACENAMIENTO</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">
+              ALMACENAMIENTO
+            </Form.Label>
             <Form.Control
               className="text-center-inputactualizarequipoactualizarequipo"
               type="text"
@@ -238,7 +257,9 @@ const handleCloseModal = () => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridChargerSerial">
-            <Form.Label className="formlabelactualizarequipo">SERIE DEL CARGADOR</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">
+              SERIE DEL CARGADOR
+            </Form.Label>
             <Form.Control
               className="text-center-inputactualizarequipoactualizarequipo"
               type="text"
@@ -283,7 +304,9 @@ const handleCloseModal = () => {
 
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridAccessories">
-            <Form.Label className="formlabelactualizarequipo">ACCESORIOS</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">
+              ACCESORIOS
+            </Form.Label>
             <Form.Control
               className="text-center-inputactualizarequipoactualizarequipo"
               type="text"
@@ -294,23 +317,26 @@ const handleCloseModal = () => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridOfficeSubscription">
-  <Form.Label className="formlabelactualizarequipo">SUSCRIPCIÓN OFFICE</Form.Label>
-  <Form.Select 
-    className="text-center-inputactualizarequipoactualizarequipo" 
-    name="suscripcion_office" 
-    value={equipoData.suscripcion_office || ""}
-    onChange={handleChange}
-  >
-    <option value="no">no</option>
-    <option value="si">si</option>
-  </Form.Select>
-</Form.Group>
-
+            <Form.Label className="formlabelactualizarequipo">
+              SUSCRIPCIÓN OFFICE
+            </Form.Label>
+            <Form.Select
+              className="text-center-inputactualizarequipoactualizarequipo"
+              name="suscripcion_office"
+              value={equipoData.suscripcion_office || ""}
+              onChange={handleChange}
+            >
+              <option value="no">no</option>
+              <option value="si">si</option>
+            </Form.Select>
+          </Form.Group>
         </Row>
 
-    <Row className="mb-3">
+        <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridubicacion">
-            <Form.Label className="formlabelactualizarequipo">Ubicación</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">
+              Ubicación
+            </Form.Label>
             <Form.Control
               className="text-center-inputactualizarequipoactualizarequipo"
               as="select"
@@ -328,17 +354,21 @@ const handleCloseModal = () => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridfoto">
-            <Form.Label className="formlabelactualizarequipo">Foto del Equipo</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">
+              Foto del Equipo
+            </Form.Label>
             <Form.Control
               className="text-center-inputactualizarequipoactualizarequipo"
               type="file" // Cambia el tipo de entrada a "file"
               accept="image/*" // Esto limita la selección de archivos solo a imágenes
-              onChange={handleFileChange} 
+              onChange={handleFileChange}
             />
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridstatus">
-            <Form.Label className="formlabelactualizarequipo">Estado del Equipo</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">
+              Estado del Equipo
+            </Form.Label>
             <Form.Control
               className="text-center-inputactualizarequipoactualizarequipo"
               as="select"
@@ -353,7 +383,6 @@ const handleCloseModal = () => {
             </Form.Control>
           </Form.Group>
         </Row>
-
 
         <Row className="mb-3">
           <Col>
@@ -371,16 +400,16 @@ const handleCloseModal = () => {
           </Col>
         </Row>
         <Modal show={showModal} onHide={handleCloseModal}>
-  <Modal.Header closeButton>
-    <Modal.Title>Actualización del Equipo</Modal.Title>
-  </Modal.Header>
-  <Modal.Body>{modalMessage}</Modal.Body>
-  <Modal.Footer>
-    <Button variant="secondary" onClick={handleCloseModal}>
-      Cerrar
-    </Button>
-  </Modal.Footer>
-</Modal>
+          <Modal.Header closeButton>
+            <Modal.Title>Actualización del Equipo</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>{modalMessage}</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleCloseModal}>
+              Cerrar
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Form>
     </div>
   );

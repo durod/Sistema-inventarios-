@@ -5,3 +5,29 @@
   width: 100%;
 }
 
+.formagregaractualizarequipo{
+  display: flex;
+  width: 100%;
+  align-items: baseline;
+}
+
+.cajaadminequiposactualizarequipo{
+  width: 15%;
+}
+
+.formaactualizarequipo{
+  color: turquoise;
+  font-size: large;
+  background-color: rgba(5 3 0 / 70%); /* bisque con 70% de opacidad */
+  padding: 1%;
+  border-radius: 25px;
+}
+
+.formaactualizarequipo .formLabelactualizarequipo {
+  font-family: "Roboto", sans-serif;
+  /* font-weight: 100; */
+  /* font-style: normal; */
+  background-color: black;
+  padding: 0px 27px;
+  border-radius: 25px;
+}
