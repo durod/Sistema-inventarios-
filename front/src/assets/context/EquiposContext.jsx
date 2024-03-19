@@ -90,12 +90,14 @@ export const EquiposProvider = ({ children }) => {
 
   const verUsuarios = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}`);
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/usuario`
+      );
       setUsuarios(response.data);
       setError(null);
     } catch (error) {
-      console.error("Error al obtener equipos:", error.message);
-      setError("Error al cargar equipos. Por favor, inténtalo de nuevo.");
+      console.error("Error al obtener usuarios:", error.message);
+      setError("Error al cargar usuarios. Por favor, inténtalo de nuevo.");
     }
   };
 
