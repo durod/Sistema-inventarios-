@@ -5,7 +5,6 @@
   width: 100%;
 }
 
-
 .containerformdatoscompletos {
   margin-top: 5%;
   display: flex;
@@ -15,7 +14,7 @@
 
 .cajaprincipaldatoscompletos {
   display: flex;
-  flex-direction: column;
+
   gap: 16px;
   color: turquoise;
   font-size: large;
@@ -46,20 +45,19 @@
   font-weight: bold;
   font-family: monospace;
   font-size: smaller;
+  background-color: black;
 }
-
-
 
 .h2datos {
   text-align: center;
-  background-color: cornsilk;
+  background-color: indigo;
   border-radius: 25px;
   padding: 1px;
 }
 
 .cajadatosequipodatoscompletos {
   border: 3px solid teal;
-  background-color: papayawhip;
+
   padding: 1%;
   height: 100%;
   border-radius: 8px;
