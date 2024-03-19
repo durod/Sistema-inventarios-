@@ -137,7 +137,7 @@ function DatosCompletos() {
               </Row>
             </div>
 
-            <div className="cajadatos">
+            <div className="cajadatosdatoscompletos">
               <div className="cajaprincipalimgequipo">
                 <h2 className="h2datos">Imagen del equipo:</h2>
                 <div className="cajaimgequipo">
@@ -150,7 +150,7 @@ function DatosCompletos() {
               </div>
             </div>
           </div>
-          <div className="cajadatosequipodatoscompletos">
+          <div className="cajadatosdatoscompletos">
             <h2 className="h2datos">Datos del equipo:</h2>
 
             <Row className="mb-3">

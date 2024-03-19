@@ -22,16 +22,27 @@
   padding: 1%;
   border-radius: 25px;
 }
+/*
 .cajadatos {
   border: 3px solid teal;
   color: turquoise;
   font-size: large;
-  background-color: rgba(5 3 0 / 70%); /* bisque con 70% de opacidad */
+  background-color: rgba(5 3 0 / 70%); 
   padding: 1%;
   height: 100%;
   border-radius: 8px;
 }
+*/
 
+.cajadatosdatoscompletos{
+  border: 3px solid teal;
+  color: turquoise;
+  font-size: large;
+  background-color: rgba(5 3 0 / 70%); 
+  padding: 1%;
+  height: 100%;
+  border-radius: 8px;
+}
 .botonesdatos {
   display: flex;
   flex-direction: row;
