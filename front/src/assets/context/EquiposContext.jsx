@@ -90,7 +90,7 @@ export const EquiposProvider = ({ children }) => {
 
   const verUsuarios = async () => {
     try {
-      const response = await axios.get`${import.meta.env.VITE_BACKEND_URL}`);
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}`);
       setUsuarios(response.data);
       setError(null);
     } catch (error) {
