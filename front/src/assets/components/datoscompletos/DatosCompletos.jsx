@@ -54,10 +54,10 @@ function DatosCompletos() {
     });
   };
   return (
-    <div className="containerform ">
+    <div className="containerformdatoscompletos ">
       <h2>Datos completos</h2>
-      <Form>
-        <div className="botonesdatos">
+      <Form className="formdatoscompletos">
+        <div className="botonesdatoscompletos">
           <Link
             to={`/actualizarequipo/${datos.id}`}
             className="btn btn-info mb-2"
@@ -75,17 +75,17 @@ function DatosCompletos() {
             Ver Responsiva
           </Button>
         </div>
-        <div className="cajaprincipaldatos">
-          <div className="cajadatosmepleadoimagen">
-            <div className="cajadatos">
-              <h2 className="h2datos">Datos del empleado:</h2>
+        <div className="cajaprincipaldatoscompletos">
+          <div className="cajadatosmepleadoimagendatoscompletos">
+            <div className="cajadatosdatoscompletos">
+              <h2 className="h2datosdatoscompletos">Datos del empleado:</h2>
               <Row className="mb-3">
                 <Form.Group controlId="formGridEmployeeName">
-                  <Form.Label className="formLabel">
+                  <Form.Label className="formalbeldatoscompletosdatoscompletos">
                     Nombre Empleado:
                   </Form.Label>
                   <Form.Control
-                    className="text-center-input"
+                    className="text-center-inputdatoscompletosdatoscompletos"
                     type="text"
                     name="nombre"
                     value={`${datos.nombre || "No Asignado"} ${datos.appaterno || ""} ${datos.apmaterno || ""}`}
@@ -93,9 +93,9 @@ function DatosCompletos() {
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridEmployeeNumber">
-                  <Form.Label className="formLabel">DIRECCIÓN</Form.Label>
+                  <Form.Label className="formalbeldatoscompletosdatoscompletos">DIRECCIÓN</Form.Label>
                   <Form.Control
-                    className="text-center-input"
+                    className="text-center-inputdatoscompletosdatoscompletos"
                     type="text"
                     name="numempleado"
                     value={datos.id_direccion || "No Asignado"}
@@ -103,9 +103,9 @@ function DatosCompletos() {
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridEmployeePuesto">
-                  <Form.Label className="formLabel">DEPARTAMENTO:</Form.Label>
+                  <Form.Label className="formalbeldatoscompletosdatoscompletos">DEPARTAMENTO:</Form.Label>
                   <Form.Control
-                    className="text-center-input"
+                    className="text-center-inputdatoscompletos"
                     type="text"
                     name="id_direccion"
                     value={datos.id_departamento || "No Asignado"}
@@ -114,9 +114,9 @@ function DatosCompletos() {
               </Row>
               <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridEmployeedireccion">
-                  <Form.Label className="formLabel">PUESTO:</Form.Label>
+                  <Form.Label className="formalbeldatoscompletos">PUESTO:</Form.Label>
                   <Form.Control
-                    className="text-center-input"
+                    className="text-center-inputdatoscompletos"
                     type="text"
                     name="numempleado"
                     value={datos.puesto || "No Asignado"}
@@ -124,11 +124,11 @@ function DatosCompletos() {
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridEmployeeNumber">
-                  <Form.Label className="formLabel">
+                  <Form.Label className="formalbeldatoscompletos">
                     NÚMERO EMPLEADO:
                   </Form.Label>
                   <Form.Control
-                    className="text-center-input"
+                    className="text-center-inputdatoscompletos"
                     type="text"
                     name="numempleado"
                     value={datos.numempleado || "No Asignado"}
@@ -150,14 +150,14 @@ function DatosCompletos() {
               </div>
             </div>
           </div>
-          <div className="cajadatosequipo">
+          <div className="cajadatosequipodatoscompletos">
             <h2 className="h2datos">Datos del equipo:</h2>
 
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridInventoryCode">
-                <Form.Label className="formLabel">CÓDIGO DE INV</Form.Label>
+                <Form.Label className="formalbeldatoscompletos">CÓDIGO DE INV</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputdatoscompletos"
                   type="text"
                   name="codigo_inventario"
                   value={datos.codigo_inventario || ""}
@@ -165,9 +165,9 @@ function DatosCompletos() {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridEquipmentType">
-                <Form.Label className="formLabel">TIPO DE EQUIPO</Form.Label>
+                <Form.Label className="formalbeldatoscompletos">TIPO DE EQUIPO</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputdatoscompletos"
                   as="select"
                   name="tipo_equipo"
                   value={datos.tipo_equipo || ""}
@@ -175,9 +175,9 @@ function DatosCompletos() {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridSerialNumber">
-                <Form.Label className="formLabel">NÚMERO DE SERIE</Form.Label>
+                <Form.Label className="formalbeldatoscompletos">NÚMERO DE SERIE</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputdatoscompletos"
                   type="text"
                   name="numero_serie"
                   value={datos.numero_serie || ""}
@@ -185,9 +185,9 @@ function DatosCompletos() {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridBrand">
-                <Form.Label className="formLabel">MARCA</Form.Label>
+                <Form.Label className="formalbeldatoscompletos">MARCA</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputdatoscompletos"
                   as="select"
                   name="marca"
                   value={datos.marca || ""}
@@ -197,9 +197,9 @@ function DatosCompletos() {
 
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridModel">
-                <Form.Label className="formLabel">MODELO</Form.Label>
+                <Form.Label className="formalbeldatoscompletos">MODELO</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputdatoscompletos"
                   type="text"
                   name="modelo"
                   value={datos.modelo || ""}
@@ -207,9 +207,9 @@ function DatosCompletos() {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridOperatingSystem">
-                <Form.Label className="formLabel">SISTEMA OPERATIVO</Form.Label>
+                <Form.Label className="formalbeldatoscompletos">SISTEMA OPERATIVO</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputdatoscompletos"
                   as="select"
                   name="sistema_operativo"
                   value={datos.sistema_operativo || ""}
@@ -217,9 +217,9 @@ function DatosCompletos() {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridRAM">
-                <Form.Label className="formLabel">MEMORIA RAM</Form.Label>
+                <Form.Label className="formalbeldatoscompletos">MEMORIA RAM</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputdatoscompletos"
                   as="select"
                   name="memoria_ram"
                   value={datos.memoria_ram || ""}
@@ -227,9 +227,9 @@ function DatosCompletos() {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridProcessor">
-                <Form.Label className="formLabel">PROCESADOR</Form.Label>
+                <Form.Label className="formalbeldatoscompletos">PROCESADOR</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputdatoscompletos"
                   type="text"
                   name="procesador"
                   value={datos.procesador || ""}
@@ -238,9 +238,9 @@ function DatosCompletos() {
             </Row>
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridStorage">
-                <Form.Label className="formLabel">ALMACENAMIENTO</Form.Label>
+                <Form.Label className="formalbeldatoscompletos">ALMACENAMIENTO</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputdatoscompletos"
                   type="text"
                   name="almacenamiento"
                   value={datos.almacenamiento || ""}
@@ -248,11 +248,11 @@ function DatosCompletos() {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridChargerSerial">
-                <Form.Label className="formLabel">
+                <Form.Label className="formalbeldatoscompletos">
                   SERIE DEL CARGADOR
                 </Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputdatoscompletos"
                   type="text"
                   name="numero_serie_cargador"
                   value={datos.numero_serie_cargador || ""}
@@ -260,9 +260,9 @@ function DatosCompletos() {
               </Form.Group>
             </Row>
             <Form.Group controlId="formGridMonitor">
-              <Form.Label className="formLabel">MONITOR</Form.Label>
+              <Form.Label className="formalbeldatoscompletos">MONITOR</Form.Label>
               <Form.Control
-                className="text-center-input"
+                className="text-center-inputdatoscompletos"
                 type="text"
                 name="monitor"
                 value={datos.monitor || ""}
@@ -270,9 +270,9 @@ function DatosCompletos() {
             </Form.Group>
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridKeyboard">
-                <Form.Label className="formLabel">TECLADO</Form.Label>
+                <Form.Label className="formalbeldatoscompletos">TECLADO</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputdatoscompletos"
                   type="text"
                   name="teclado"
                   value={datos.teclado || ""}
@@ -280,9 +280,9 @@ function DatosCompletos() {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridMouse">
-                <Form.Label className="formLabel">MOUSE</Form.Label>
+                <Form.Label className="formalbeldatoscompletos">MOUSE</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputdatoscompletos"
                   type="text"
                   name="raton"
                   value={datos.mouse || ""}
@@ -291,9 +291,9 @@ function DatosCompletos() {
             </Row>
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridAccessories">
-                <Form.Label className="formLabel">ACCESORIOS</Form.Label>
+                <Form.Label className="formalbeldatoscompletos">ACCESORIOS</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputdatoscompletos"
                   type="text"
                   name="accesorios"
                   value={datos.accesorios || ""}
@@ -301,11 +301,11 @@ function DatosCompletos() {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridOfficeSubscription">
-                <Form.Label className="formLabel">
+                <Form.Label className="formalbeldatoscompletos">
                   SUSCRIPCIÓN OFFICE
                 </Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputdatoscompletos"
                   type="text"
                   name="suscripcion_office"
                   value={datos.suscripcion_office || ""}
@@ -313,9 +313,9 @@ function DatosCompletos() {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridubicacion">
-                <Form.Label className="formLabel">Ubicación</Form.Label>
+                <Form.Label className="formalbeldatoscompletos">Ubicación</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputdatoscompletos"
                   as="select"
                   aria-label="Default select example"
                   name="ubicacion"
@@ -324,9 +324,9 @@ function DatosCompletos() {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridstatus">
-                <Form.Label className="formLabel">Estado del equipo</Form.Label>
+                <Form.Label className="formalbeldatoscompletos">Estado del equipo</Form.Label>
                 <Form.Control
-                  className="text-center-input"
+                  className="text-center-inputdatoscompletos"
                   as="select"
                   aria-label="Default select example"
                   name="status"

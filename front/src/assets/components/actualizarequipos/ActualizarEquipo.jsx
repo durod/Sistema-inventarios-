@@ -94,16 +94,16 @@ const handleCloseModal = () => {
   };
 
   return (
-    <div className="containerform formagregarActualizarEquipo">
+    <div className="formagregaractualizarequipo">
       <h2>Actualizar Equipo</h2>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} className="formaactualizarequipo">
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridEmployeeNumber">
-            <Form.Label className="formLabel">
+            <Form.Label className="formlabelactualizarequipoactualizarequipo">
               NÚMERO DE EMPLEADO PARA ASIGNAR
             </Form.Label>
             <Form.Control
-              className="text-center-input"
+              className="text-center-inputactualizarequipoactualizarequipo"
               type="text"
               name="numEmpleado"
               value={equipoData.numEmpleado || ""}
@@ -114,9 +114,9 @@ const handleCloseModal = () => {
 
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridInventoryCode">
-            <Form.Label className="formLabel">CÓDIGO DE INV</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">CÓDIGO DE INV</Form.Label>
             <Form.Control
-              className="text-center-input"
+              className="text-center-inputactualizarequipoactualizarequipoactualizarequipo"
               type="text"
               name="codigo_inventario"
               value={equipoData.codigo_inventario || ""}
@@ -125,9 +125,9 @@ const handleCloseModal = () => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridEquipmentType">
-            <Form.Label className="formLabel">TIPO DE EQUIPO</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">TIPO DE EQUIPO</Form.Label>
             <Form.Control
-              className="text-center-input"
+              className="text-center-inputactualizarequipoactualizarequipo"
               as="select"
               name="tipo_equipo"
               value={equipoData.tipo_equipo || ""}
@@ -141,9 +141,9 @@ const handleCloseModal = () => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridSerialNumber">
-            <Form.Label className="formLabel">NÚMERO DE SERIE</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">NÚMERO DE SERIE</Form.Label>
             <Form.Control
-              className="text-center-input"
+              className="text-center-inputactualizarequipoactualizarequipo"
               type="text"
               name="numero_serie"
               value={equipoData.numero_serie || ""}
@@ -152,9 +152,9 @@ const handleCloseModal = () => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridBrand">
-            <Form.Label className="formLabel">MARCA</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">MARCA</Form.Label>
             <Form.Control
-              className="text-center-input"
+              className="text-center-inputactualizarequipoactualizarequipo"
               as="select"
               name="marca"
               value={equipoData.marca || ""}
@@ -171,9 +171,9 @@ const handleCloseModal = () => {
 
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridModel">
-            <Form.Label className="formLabel">MODELO</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">MODELO</Form.Label>
             <Form.Control
-              className="text-center-input"
+              className="text-center-inputactualizarequipoactualizarequipo"
               type="text"
               name="modelo"
               value={equipoData.modelo || ""}
@@ -182,9 +182,9 @@ const handleCloseModal = () => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridOperatingSystem">
-            <Form.Label className="formLabel">SISTEMA OPERATIVO</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">SISTEMA OPERATIVO</Form.Label>
             <Form.Control
-              className="text-center-input"
+              className="text-center-inputactualizarequipoactualizarequipo"
               as="select"
               name="sistema_operativo"
               value={equipoData.sistema_operativo || ""}
@@ -198,9 +198,9 @@ const handleCloseModal = () => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridRAM">
-            <Form.Label className="formLabel">MEMORIA RAM</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">MEMORIA RAM</Form.Label>
             <Form.Control
-              className="text-center-input"
+              className="text-center-inputactualizarequipoactualizarequipo"
               as="select"
               name="memoria_ram"
               value={equipoData.memoria_ram || ""}
@@ -215,9 +215,9 @@ const handleCloseModal = () => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridProcessor">
-            <Form.Label className="formLabel">PROCESADOR</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">PROCESADOR</Form.Label>
             <Form.Control
-              className="text-center-input"
+              className="text-center-inputactualizarequipoactualizarequipo"
               type="text"
               name="procesador"
               value={equipoData.procesador || ""}
@@ -227,9 +227,9 @@ const handleCloseModal = () => {
         </Row>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridStorage">
-            <Form.Label className="formLabel">ALMACENAMIENTO</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">ALMACENAMIENTO</Form.Label>
             <Form.Control
-              className="text-center-input"
+              className="text-center-inputactualizarequipoactualizarequipo"
               type="text"
               name="almacenamiento"
               value={equipoData.almacenamiento || ""}
@@ -238,9 +238,9 @@ const handleCloseModal = () => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridChargerSerial">
-            <Form.Label className="formLabel">SERIE DEL CARGADOR</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">SERIE DEL CARGADOR</Form.Label>
             <Form.Control
-              className="text-center-input"
+              className="text-center-inputactualizarequipoactualizarequipo"
               type="text"
               name="numero_serie_cargador"
               value={equipoData.numero_serie_cargador || ""}
@@ -249,9 +249,9 @@ const handleCloseModal = () => {
           </Form.Group>
         </Row>
         <Form.Group controlId="formGridMonitor">
-          <Form.Label className="formLabel">MONITOR</Form.Label>
+          <Form.Label className="formlabelactualizarequipo">MONITOR</Form.Label>
           <Form.Control
-            className="text-center-input"
+            className="text-center-inputactualizarequipoactualizarequipo"
             type="text"
             name="monitor"
             value={equipoData.monitor || ""}
@@ -260,9 +260,9 @@ const handleCloseModal = () => {
         </Form.Group>
 
         <Form.Group controlId="formGridKeyboard">
-          <Form.Label className="formLabel">TECLADO</Form.Label>
+          <Form.Label className="formlabelactualizarequipo">TECLADO</Form.Label>
           <Form.Control
-            className="text-center-input"
+            className="text-center-inputactualizarequipoactualizarequipo"
             type="text"
             name="teclado"
             value={equipoData.teclado || ""}
@@ -271,9 +271,9 @@ const handleCloseModal = () => {
         </Form.Group>
 
         <Form.Group controlId="formGridMouse">
-          <Form.Label className="formLabel">MOUSE</Form.Label>
+          <Form.Label className="formlabelactualizarequipo">MOUSE</Form.Label>
           <Form.Control
-            className="text-center-input"
+            className="text-center-inputactualizarequipoactualizarequipo"
             type="text"
             name="raton"
             value={equipoData.raton || ""}
@@ -283,9 +283,9 @@ const handleCloseModal = () => {
 
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridAccessories">
-            <Form.Label className="formLabel">ACCESORIOS</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">ACCESORIOS</Form.Label>
             <Form.Control
-              className="text-center-input"
+              className="text-center-inputactualizarequipoactualizarequipo"
               type="text"
               name="accesorios"
               value={equipoData.accesorios || ""}
@@ -294,9 +294,9 @@ const handleCloseModal = () => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridOfficeSubscription">
-  <Form.Label className="formLabel">SUSCRIPCIÓN OFFICE</Form.Label>
+  <Form.Label className="formlabelactualizarequipo">SUSCRIPCIÓN OFFICE</Form.Label>
   <Form.Select 
-    className="text-center-input" 
+    className="text-center-inputactualizarequipoactualizarequipo" 
     name="suscripcion_office" 
     value={equipoData.suscripcion_office || ""}
     onChange={handleChange}
@@ -310,9 +310,9 @@ const handleCloseModal = () => {
 
     <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridubicacion">
-            <Form.Label className="formLabel">Ubicación</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">Ubicación</Form.Label>
             <Form.Control
-              className="text-center-input"
+              className="text-center-inputactualizarequipoactualizarequipo"
               as="select"
               aria-label="Default select example"
               name="ubicacion" // Agrega el atributo name con el mismo nombre que el estado
@@ -328,9 +328,9 @@ const handleCloseModal = () => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridfoto">
-            <Form.Label className="formLabel">Foto del Equipo</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">Foto del Equipo</Form.Label>
             <Form.Control
-              className="text-center-input"
+              className="text-center-inputactualizarequipoactualizarequipo"
               type="file" // Cambia el tipo de entrada a "file"
               accept="image/*" // Esto limita la selección de archivos solo a imágenes
               onChange={handleFileChange} 
@@ -338,9 +338,9 @@ const handleCloseModal = () => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridstatus">
-            <Form.Label className="formLabel">Estado del Equipo</Form.Label>
+            <Form.Label className="formlabelactualizarequipo">Estado del Equipo</Form.Label>
             <Form.Control
-              className="text-center-input"
+              className="text-center-inputactualizarequipoactualizarequipo"
               as="select"
               aria-label="Default select example"
               name="status" // Agrega el atributo name con el mismo nombre que el estado
