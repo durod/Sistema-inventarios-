@@ -24,7 +24,7 @@ function App() {
         <BrowserRouter basename="/Sistema-inventarios-">
           <Header />
           <Routes>
-            <Route path="/" element={<VerEquipos />} />
+            <Route path="/verequipos" element={<VerEquipos />} />
            
             <Route path="/agregarequipo" element={<AgregarEquipo />} />
             <Route path="/actualizarequipo/:id" element={<ActualizarEquipo />} />
@@ -34,7 +34,7 @@ function App() {
             <Route path="/vistaauditor" element={<VistaAuditor />} />
             <Route path="/dashboardequipos" element={<Dashboardequipos />} />
             <Route path="/registrarusuario" element={<RegistrarUsuario />} />
-            <Route path="/loginuser" element={<LoginUser />} />
+            <Route path="/" element={<LoginUser />} />
             <Route path="/usuario" element={<VerUsuarios />} />
           </Routes>
         </BrowserRouter>
