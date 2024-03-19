@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
 import "../datoscompletos/estilodatoscompletos.css";
+import AdminEquipos from "../adminequipos/AdminEquipos";
 
 function DatosCompletos() {
   const { codigo_inventario, numempleado } = useParams(); // Extrae los parámetros
@@ -57,6 +58,9 @@ function DatosCompletos() {
   };
   return (
     <div className="containerformdatoscompletos ">
+      <div className="cajaadminequiposdatoscompletos">
+        <AdminEquipos />
+      </div>
       <h2>Datos completos</h2>
       <Form className="formdatoscompletos">
         <div className="botonesdatoscompletos">
