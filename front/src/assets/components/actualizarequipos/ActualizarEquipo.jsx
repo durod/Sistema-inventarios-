@@ -280,8 +280,9 @@ const ActualizarEquipo = () => {
             onChange={handleChange}
           />
         </Form.Group>
+
         <Row className="mb-3">
-        <Form.Group controlId="formGridKeyboard">
+        <Form.Group as={Col} controlId="formGridKeyboard">
           <Form.Label className="formlabelactualizarequipo">TECLADO</Form.Label>
           <Form.Control
             className="text-center-inputactualizarequipoactualizarequipo"
@@ -292,7 +293,7 @@ const ActualizarEquipo = () => {
           />
         </Form.Group>
 
-        <Form.Group controlId="formGridMouse">
+        <Form.Group as={Col} controlId="formGridMouse">
           <Form.Label className="formlabelactualizarequipo">MOUSE</Form.Label>
           <Form.Control
             className="text-center-inputactualizarequipoactualizarequipo"
@@ -391,14 +392,7 @@ const ActualizarEquipo = () => {
               Guardar Cambios
             </Button>
           </Col>
-          <Col>
-            <Button
-              variant="secondary"
-              onClick={() => (window.location.href = "/")}
-            >
-              Ir a Home
-            </Button>
-          </Col>
+         
         </Row>
         <Modal show={showModal} onHide={handleCloseModal}>
           <Modal.Header closeButton>
