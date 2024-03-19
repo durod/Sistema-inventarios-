@@ -269,8 +269,7 @@ const ActualizarEquipo = () => {
               onChange={handleChange}
             />
           </Form.Group>
-        </Row>
-        <Form.Group controlId="formGridMonitor">
+          <Form.Group as={Col} controlId="formGridMonitor">
           <Form.Label className="formlabelactualizarequipo">MONITOR</Form.Label>
           <Form.Control
             className="text-center-inputactualizarequipoactualizarequipo"
@@ -280,6 +279,8 @@ const ActualizarEquipo = () => {
             onChange={handleChange}
           />
         </Form.Group>
+        </Row>
+       
 
         <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridKeyboard">
