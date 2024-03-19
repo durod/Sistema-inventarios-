@@ -81,7 +81,7 @@ function DatosCompletos() {
               <h2 className="h2datosdatoscompletos">Datos del empleado:</h2>
               <Row className="mb-3">
                 <Form.Group controlId="formGridEmployeeName">
-                  <Form.Label className="formalbeldatoscompletosdatoscompletos">
+                  <Form.Label className="formLabeldatoscompletos">
                     Nombre Empleado:
                   </Form.Label>
                   <Form.Control
@@ -93,7 +93,7 @@ function DatosCompletos() {
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridEmployeeNumber">
-                  <Form.Label className="formalbeldatoscompletosdatoscompletos">DIRECCIÓN</Form.Label>
+                  <Form.Label className="formLabeldatoscompletos">DIRECCIÓN</Form.Label>
                   <Form.Control
                     className="text-center-inputdatoscompletosdatoscompletos"
                     type="text"
@@ -103,7 +103,7 @@ function DatosCompletos() {
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridEmployeePuesto">
-                  <Form.Label className="formalbeldatoscompletosdatoscompletos">DEPARTAMENTO:</Form.Label>
+                  <Form.Label className="formLabeldatoscompletos">DEPARTAMENTO:</Form.Label>
                   <Form.Control
                     className="text-center-inputdatoscompletos"
                     type="text"
@@ -139,7 +139,7 @@ function DatosCompletos() {
 
             <div className="cajadatos">
               <div className="cajaprincipalimgequipo">
-                <h2 className="h2datos">Imagen del equipo:</h2>
+                <h2 className="h2datosdatoscompletos">Imagen del equipo:</h2>
                 <div className="cajaimgequipo">
                   <img
                     className="imgequipo"
@@ -151,7 +151,7 @@ function DatosCompletos() {
             </div>
           </div>
           <div className="cajadatosequipodatoscompletos">
-            <h2 className="h2datos">Datos del equipo:</h2>
+            <h2 className="h2datosdatoscompletos">Datos del equipo:</h2>
 
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridInventoryCode">
