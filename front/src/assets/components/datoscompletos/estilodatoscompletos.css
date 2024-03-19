@@ -15,6 +15,7 @@
 
 .cajaprincipaldatoscompletos {
   display: flex;
+  flex-direction: column;
   gap: 16px;
   color: turquoise;
   font-size: large;
@@ -64,7 +65,7 @@
   border-radius: 8px;
 }
 
-.cajadatosmepleadoimagen {
+.cajadatosmepleadoimagendatoscompletos {
   display: flex;
   flex-direction: column;
   height: 100%;
