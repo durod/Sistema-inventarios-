@@ -98,9 +98,10 @@ const ActualizarEquipo = () => {
       <div className="cajaadminequiposactualizarequipo">
         <AdminEquipos />
       </div>
-      <h2>Actualizar Equipo</h2>
+      
       <Form onSubmit={handleSubmit} className="formaactualizarequipo">
         <Row className="mb-3">
+        <h2>Actualizar Equipo</h2>
           <Form.Group as={Col} controlId="formGridEmployeeNumber">
             <Form.Label className="formlabelactualizarequipoactualizarequipo">
               NÚMERO DE EMPLEADO PARA ASIGNAR
@@ -279,7 +280,7 @@ const ActualizarEquipo = () => {
             onChange={handleChange}
           />
         </Form.Group>
-
+        <Row className="mb-3">
         <Form.Group controlId="formGridKeyboard">
           <Form.Label className="formlabelactualizarequipo">TECLADO</Form.Label>
           <Form.Control
@@ -301,7 +302,7 @@ const ActualizarEquipo = () => {
             onChange={handleChange}
           />
         </Form.Group>
-
+        </Row>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridAccessories">
             <Form.Label className="formlabelactualizarequipo">
