@@ -61,7 +61,7 @@ function DatosCompletos() {
       <div className="cajaadminequiposdatoscompletos">
         <AdminEquipos />
       </div>
-      <h2>Datos completos</h2>
+      
       <Form className="formdatoscompletos">
         <div className="botonesdatoscompletos">
           <Link
@@ -71,12 +71,6 @@ function DatosCompletos() {
             Actualizar Datos
           </Link>
 
-          <Button
-            variant="secondary"
-            onClick={() => (window.location.href = "/")}
-          >
-            Ir a Home
-          </Button>
           <Button variant="light" onClick={handleVerResponsivaClick}>
             Ver Responsiva
           </Button>

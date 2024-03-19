@@ -4,11 +4,11 @@
   width: 100%;
 }
 
-.cajaadminequiposdatoscompletos{
+.cajaadminequiposdatoscompletos {
   width: 15%;
 }
 
-h2{
+h2 {
   font-size: 2rem;
   color: yellow;
   text-align: center;
@@ -17,7 +17,7 @@ h2{
 .containerformdatoscompletos {
   margin-top: 5%;
   display: flex;
-  flex-direction: column;
+
   width: 100%;
 }
 
@@ -32,8 +32,7 @@ h2{
   justify-content: end;
 }
 
-
-.cajadatosdatoscompletos{
+.cajadatosdatoscompletos {
   border: 3px solid teal;
   color: #40e0d0;
   font-size: large;
@@ -41,7 +40,7 @@ h2{
   padding: 1%;
   height: 100%;
   border-radius: 8px;
-  width: 52%;
+  width: 90%;
 }
 .botonesdatoscompletos {
   display: flex;
@@ -76,11 +75,11 @@ h2{
 
 .cajadatosmepleadoimagendatoscompletos {
   display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 48%;
-    gap: 10px;
-    align-items: flex-end;
+  flex-direction: column;
+  height: 100%;
+  width: 56%;
+  gap: 10px;
+  align-items: flex-end;
 }
 
 .cajaprincipalimgequipo {
