@@ -78,7 +78,7 @@ function DatosCompletos() {
         <div className="cajaprincipaldatoscompletos">
           <div className="cajadatosmepleadoimagendatoscompletos">
             <div className="cajadatosdatoscompletos">
-              <h2 className="h2datosdatoscompletos">Datos del empleado:</h2>
+              <h2 className="h2datos">Datos del empleado:</h2>
               <Row className="mb-3">
                 <Form.Group controlId="formGridEmployeeName">
                   <Form.Label className="formLabeldatoscompletos">
@@ -139,7 +139,7 @@ function DatosCompletos() {
 
             <div className="cajadatos">
               <div className="cajaprincipalimgequipo">
-                <h2 className="h2datosdatoscompletos">Imagen del equipo:</h2>
+                <h2 className="h2datos">Imagen del equipo:</h2>
                 <div className="cajaimgequipo">
                   <img
                     className="imgequipo"
@@ -151,7 +151,7 @@ function DatosCompletos() {
             </div>
           </div>
           <div className="cajadatosequipodatoscompletos">
-            <h2 className="h2datosdatoscompletos">Datos del equipo:</h2>
+            <h2 className="h2datos">Datos del equipo:</h2>
 
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridInventoryCode">
