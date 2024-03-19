@@ -13,12 +13,14 @@
   width: 100%;
 }
 
-.cajaprincipaldatos {
+.cajaprincipaldatoscompletos {
   display: flex;
   gap: 16px;
-  width: 100%;
-  padding: 0px 16px 1px 16px;
-  justify-content: center;
+  color: turquoise;
+  font-size: large;
+  background-color: rgba(5 3 0 / 70%); /* bisque con 70% de opacidad */
+  padding: 1%;
+  border-radius: 25px;
 }
 .cajadatos {
   border: 3px solid teal;
@@ -38,18 +40,14 @@
   margin-bottom: 7px;
 }
 
-.formLabel {
+.formLabeldatoscompletos {
   margin: 1px 0px 4px;
   font-weight: bold;
   font-family: monospace;
   font-size: smaller;
 }
 
-.form-control {
-  margin-top: 0px;
-  font-size: medium;
-  font-family: system-ui;
-}
+
 
 .h2datos {
   text-align: center;
@@ -58,7 +56,7 @@
   padding: 1px;
 }
 
-.cajadatosequipo {
+.cajadatosequipodatoscompletos {
   border: 3px solid teal;
   background-color: papayawhip;
   padding: 1%;
