@@ -62,7 +62,7 @@ function DatosCompletos() {
         <div className="botonesdatoscompletos">
           <Link
             to={`/actualizarequipo/${datos.id}`}
-            className="btn btn-info mb-2"
+            className="btn btn-warning mb-2"
           >
             Actualizar Datos
           </Link>
@@ -73,7 +73,7 @@ function DatosCompletos() {
           >
             Ir a Home
           </Button>
-          <Button variant="info" onClick={handleVerResponsivaClick}>
+          <Button variant="light" onClick={handleVerResponsivaClick}>
             Ver Responsiva
           </Button>
         </div>
