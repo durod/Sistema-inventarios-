@@ -98,10 +98,10 @@ const ActualizarEquipo = () => {
       <div className="cajaadminequiposactualizarequipo">
         <AdminEquipos />
       </div>
-      
+
       <Form onSubmit={handleSubmit} className="formaactualizarequipo">
         <Row className="mb-3">
-        <h2>Actualizar Equipo</h2>
+          <h2>Actualizar Equipo</h2>
           <Form.Group as={Col} controlId="formGridEmployeeNumber">
             <Form.Label className="formlabelactualizarequipo">
               NÚMERO DE EMPLEADO PARA ASIGNAR
@@ -270,40 +270,43 @@ const ActualizarEquipo = () => {
             />
           </Form.Group>
           <Form.Group as={Col} controlId="formGridMonitor">
-          <Form.Label className="formlabelactualizarequipo">MONITOR</Form.Label>
-          <Form.Control
-            className="text-center-inputactualizarequipoactualizarequipo"
-            type="text"
-            name="monitor"
-            value={equipoData.monitor || ""}
-            onChange={handleChange}
-          />
-        </Form.Group>
+            <Form.Label className="formlabelactualizarequipo">
+              MONITOR
+            </Form.Label>
+            <Form.Control
+              className="text-center-inputactualizarequipoactualizarequipo"
+              type="text"
+              name="monitor"
+              value={equipoData.monitor || ""}
+              onChange={handleChange}
+            />
+          </Form.Group>
         </Row>
-       
 
         <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridKeyboard">
-          <Form.Label className="formlabelactualizarequipo">TECLADO</Form.Label>
-          <Form.Control
-            className="text-center-inputactualizarequipoactualizarequipo"
-            type="text"
-            name="teclado"
-            value={equipoData.teclado || ""}
-            onChange={handleChange}
-          />
-        </Form.Group>
+          <Form.Group as={Col} controlId="formGridKeyboard">
+            <Form.Label className="formlabelactualizarequipo">
+              TECLADO
+            </Form.Label>
+            <Form.Control
+              className="text-center-inputactualizarequipoactualizarequipo"
+              type="text"
+              name="teclado"
+              value={equipoData.teclado || ""}
+              onChange={handleChange}
+            />
+          </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridMouse">
-          <Form.Label className="formlabelactualizarequipo">MOUSE</Form.Label>
-          <Form.Control
-            className="text-center-inputactualizarequipoactualizarequipo"
-            type="text"
-            name="raton"
-            value={equipoData.raton || ""}
-            onChange={handleChange}
-          />
-        </Form.Group>
+          <Form.Group as={Col} controlId="formGridMouse">
+            <Form.Label className="formlabelactualizarequipo">MOUSE</Form.Label>
+            <Form.Control
+              className="text-center-inputactualizarequipoactualizarequipo"
+              type="text"
+              name="raton"
+              value={equipoData.raton || ""}
+              onChange={handleChange}
+            />
+          </Form.Group>
         </Row>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridAccessories">
@@ -393,7 +396,6 @@ const ActualizarEquipo = () => {
               Guardar Cambios
             </Button>
           </Col>
-         
         </Row>
         <Modal show={showModal} onHide={handleCloseModal}>
           <Modal.Header closeButton>

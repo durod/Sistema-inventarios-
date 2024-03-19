@@ -2,11 +2,10 @@ import { useState, useEffect } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Table from "react-bootstrap/Table";
-import { Button } from 'react-bootstrap';
+import { Button } from "react-bootstrap";
 import axios from "axios";
 
 const URI = `${import.meta.env.VITE_BACKEND_URL}/equipos`;
-
 
 function VistaAuditor() {
   const [equipos, setEquipos] = useState([]);

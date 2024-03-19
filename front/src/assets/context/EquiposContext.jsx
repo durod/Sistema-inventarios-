@@ -13,7 +13,9 @@ export const EquiposProvider = ({ children }) => {
 
   const obtenerEquipos = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/equipos`);
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/equipos`
+      );
       setEquipos(response.data);
       setError(null);
     } catch (error) {
@@ -67,9 +69,14 @@ export const EquiposProvider = ({ children }) => {
       )
     ) {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/asignaciones/${codigo_inventario}/${numempleado}`, {
-          method: "DELETE",
-      });
+        const response = await fetch(
+          `${
+            import.meta.env.VITE_BACKEND_URL
+          }/asignaciones/${codigo_inventario}/${numempleado}`,
+          {
+            method: "DELETE",
+          }
+        );
         const data = await response.json();
 
         alert(data.mensaje); // O maneja la respuesta como prefieras
@@ -91,12 +98,6 @@ export const EquiposProvider = ({ children }) => {
       setError("Error al cargar equipos. Por favor, inténtalo de nuevo.");
     }
   };
-
-
-
-
-
-  
 
   const contextValue = {
     equipos,

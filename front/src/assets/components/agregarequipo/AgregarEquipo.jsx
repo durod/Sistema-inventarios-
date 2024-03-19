@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import Modal from 'react-bootstrap/Modal'; // Importa Modal
+import Modal from "react-bootstrap/Modal"; // Importa Modal
 
 import { dellModels, appleModels } from "../../modelsData";
 import AdminEquipos from "../adminequipos/AdminEquipos.jsx";
@@ -89,7 +89,6 @@ export default function AgregarEquipo() {
       setModalMessage("El equipo se ha agregado correctamente.");
       setShowModal(true);
       // Redirigir a la página de inicio después de agregar el equipo
-   
     } catch (error) {
       setModalMessage(`Error al agregar equipo: ${error.message}`);
       setShowModal(true);
@@ -290,10 +289,6 @@ export default function AgregarEquipo() {
               </Form.Group>
             </Row>
 
-            
-              
-           
-
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridKeyboard">
                 <Form.Label className="formLabelagregarequipo">
@@ -386,16 +381,16 @@ export default function AgregarEquipo() {
             </Row>
           </Form>
           <Modal show={showModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Notificación</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>{modalMessage}</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
-            Cerrar
-          </Button>
-        </Modal.Footer>
-      </Modal>
+            <Modal.Header closeButton>
+              <Modal.Title>Notificación</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>{modalMessage}</Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleCloseModal}>
+                Cerrar
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </div>
       </div>
     </div>

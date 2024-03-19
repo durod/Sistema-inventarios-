@@ -7,7 +7,8 @@ import "../verusuarios/estilosverusuario.css";
 import { useEquiposContext } from "../../context/EquiposContext.jsx";
 
 function verUsuarios() {
-  const { verUsuarios, usuarios, confirmarEliminarEquipo, } = useEquiposContext();
+  const { verUsuarios, usuarios, confirmarEliminarEquipo } =
+    useEquiposContext();
 
   useEffect(() => {
     verUsuarios();
@@ -25,14 +26,12 @@ function verUsuarios() {
             <Dropdown.Toggle variant="primary" id="dropdown-basic">
               Acciones
             </Dropdown.Toggle>
-            
+
             <Dropdown.Menu>
-            <Dropdown.Item>
+              <Dropdown.Item>
                 <button
                   className="btn btn-danger mx-auto"
-                  onClick={() =>
-                    confirmarEliminarUsuario(usuario.id)
-                  }
+                  onClick={() => confirmarEliminarUsuario(usuario.id)}
                 >
                   Eliminar
                 </button>

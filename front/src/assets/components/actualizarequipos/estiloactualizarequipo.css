@@ -5,7 +5,7 @@
   width: 100%;
 }
 
-.formagregaractualizarequipo{
+.formagregaractualizarequipo {
   display: flex;
   width: 100%;
   align-items: baseline;
@@ -13,11 +13,11 @@
   color: yellow;
 }
 
-.cajaadminequiposactualizarequipo{
+.cajaadminequiposactualizarequipo {
   width: 15%;
 }
 
-.formaactualizarequipo{
+.formaactualizarequipo {
   color: turquoise;
   font-size: large;
   background-color: rgba(5 3 0 / 70%); /* bisque con 70% de opacidad */

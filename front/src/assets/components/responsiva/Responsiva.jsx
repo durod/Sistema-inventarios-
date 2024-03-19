@@ -22,7 +22,6 @@ function Responsiva() {
     document.body.style.fontSize = "10px";
     window.alert("Recuerda imprimir solo la primera pag.");
 
-
     html2pdf(responsivaRef.current, pdfOptions);
 
     // Restauro el tamaño de fuente original después de generar el PDF
@@ -89,9 +88,9 @@ function Responsiva() {
                 type="text"
                 id="nombre"
                 name="nombre"
-                value={`${datos.nombre || ""} ${
-                  datos.appaterno || ""
-                } ${datos.apmaterno || ""}`}
+                value={`${datos.nombre || ""} ${datos.appaterno || ""} ${
+                  datos.apmaterno || ""
+                }`}
                 required
               />
             </div>
@@ -110,7 +109,7 @@ function Responsiva() {
           </fieldset>
 
           <fieldset>
-          <h5 style={{ marginTop: '21px' }}>Datos del Equipo Asignado</h5>
+            <h5 style={{ marginTop: "21px" }}>Datos del Equipo Asignado</h5>
             <hr />
 
             <div>
@@ -274,28 +273,35 @@ function Responsiva() {
           </fieldset>
 
           <fieldset>
-  <div className="cajaimportante">
-    <label htmlFor="prohibiciones">IMPORTANTE</label>
-    <div
-      id="prohibiciones"
-      className="textoimportante"
-      // Agrega estilo para imitar un textarea y preservar los saltos de línea
-      style={{
-        whiteSpace: 'pre-wrap', // Mantiene los saltos de línea y espacios
-        border: '1px solid #ccc', // Borde para imitar textarea, ajusta según necesidad
-        padding: '10px', // Padding para imitar textarea, ajusta según necesidad
-        borderRadius: '4px', // Bordes redondeados para imitar textarea, ajusta según necesidad
-        minHeight: '100px', // Altura mínima, ajusta según necesidad
-        overflowY: 'auto' // Permite scroll vertical si el contenido excede la altura
-      }}
-      // Usa `dangerouslySetInnerHTML` solo si estás seguro de que el contenido es seguro y no expone a XSS
-      // Si el contenido puede contener entradas de usuario, considera métodos de saneamiento adecuados
-      dangerouslySetInnerHTML={{ __html: location.state ? location.state.datos.textoProhibiciones.replace(/\n/g, '<br>') : '' }}
-    >
-      {/* Se elimina el contenido del div ya que se establece con dangerouslySetInnerHTML */}
-    </div>
-  </div>
-</fieldset>
+            <div className="cajaimportante">
+              <label htmlFor="prohibiciones">IMPORTANTE</label>
+              <div
+                id="prohibiciones"
+                className="textoimportante"
+                // Agrega estilo para imitar un textarea y preservar los saltos de línea
+                style={{
+                  whiteSpace: "pre-wrap", // Mantiene los saltos de línea y espacios
+                  border: "1px solid #ccc", // Borde para imitar textarea, ajusta según necesidad
+                  padding: "10px", // Padding para imitar textarea, ajusta según necesidad
+                  borderRadius: "4px", // Bordes redondeados para imitar textarea, ajusta según necesidad
+                  minHeight: "100px", // Altura mínima, ajusta según necesidad
+                  overflowY: "auto", // Permite scroll vertical si el contenido excede la altura
+                }}
+                // Usa `dangerouslySetInnerHTML` solo si estás seguro de que el contenido es seguro y no expone a XSS
+                // Si el contenido puede contener entradas de usuario, considera métodos de saneamiento adecuados
+                dangerouslySetInnerHTML={{
+                  __html: location.state
+                    ? location.state.datos.textoProhibiciones.replace(
+                        /\n/g,
+                        "<br>"
+                      )
+                    : "",
+                }}
+              >
+                {/* Se elimina el contenido del div ya que se establece con dangerouslySetInnerHTML */}
+              </div>
+            </div>
+          </fieldset>
           <div className="signature">
             <div className="signaturedatos">
               <input type="text" name="firma" required />
@@ -327,9 +333,9 @@ function Responsiva() {
             </div>
           </div>
 
-                <br />
-                <br />
-                <br />
+          <br />
+          <br />
+          <br />
           <button type="button" onClick={generatePDF}>
             Generar Responsiva
           </button>

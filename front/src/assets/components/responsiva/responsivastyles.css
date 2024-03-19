@@ -1,12 +1,9 @@
-
 .cajaprincipalresponsiva {
   padding: 2px;
   font-size: small;
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
 }
-
-
 
 hr {
   border: 2px solid darkblue;

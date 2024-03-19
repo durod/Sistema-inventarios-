@@ -64,8 +64,7 @@ function AdminEquipos() {
               </svg>
               <Link to="/usuario">ver Usuarios</Link>
             </button>
-            
-            
+
             <button className="value">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <path
@@ -85,7 +84,9 @@ function AdminEquipos() {
               </svg>
               <Link to="/vistaauditor">Auditores</Link>
             </button>
-
+            {
+              {
+                /*
             <button className="value">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <path
@@ -95,6 +96,9 @@ function AdminEquipos() {
               </svg>
               <Link to="/equiposinactivos">Equipos Inactivos.</Link>
             </button>
+            */
+              }
+            }
           </div>
         </div>
       </div>

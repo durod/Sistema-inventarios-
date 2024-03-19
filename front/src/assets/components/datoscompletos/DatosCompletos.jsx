@@ -61,7 +61,7 @@ function DatosCompletos() {
       <div className="cajaadminequiposdatoscompletos">
         <AdminEquipos />
       </div>
-      
+
       <Form className="formdatoscompletos">
         <div className="botonesdatoscompletos">
           <Link
