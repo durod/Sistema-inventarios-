@@ -1,9 +1,13 @@
 
+import AdminEquipos from "../adminequipos/AdminEquipos";
 import "../login/estilologinuser.css";
 
 function LoginUser() {
   return (
     <div className="containerlogin">
+      <div>
+        <AdminEquipos/>
+      </div>
     <div className="cardlogin">
   <div className="card2">
     <form className="formlogin">
