@@ -3,6 +3,7 @@ import "../login/estilologinuser.css";
 
 function LoginUser() {
   return (
+    <div className="containerlogin">
     <div className="cardlogin">
   <div className="card2">
     <form className="formlogin">
@@ -50,7 +51,7 @@ function LoginUser() {
     </form>
   </div>
 </div>
-
+</div>
   );
 }
 
