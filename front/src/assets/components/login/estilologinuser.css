@@ -1,10 +1,10 @@
-body {
-  margin: 0;
-  padding: 0;
-}
+
 
 .containerlogin{
-  
+  width: 100%;
+  margin-top: 9%;
+  display: flex;
+  justify-content: center;
 }
 .formlogin {
   display: flex;
@@ -19,9 +19,12 @@ body {
 }
 
 .cardlogin {
-  background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+  background-image: linear-gradient(163deg, #00ff75, #3700ff);
   border-radius: 22px;
-  transition: all 0.3s;
+  transition: all .3s;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
 }
 
 .card2 {
