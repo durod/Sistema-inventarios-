@@ -84,11 +84,6 @@ CREATE TABLE pc_info (
 	
 );
 
-
-
-
-
-
 tabla perfiles
 
 CREATE TABLE perfilesinventario (
@@ -97,3 +92,50 @@ CREATE TABLE perfilesinventario (
   password VARCHAR(255) NOT NULL,
   rol VARCHAR(255) NOT NULL
 );
+
+equipos para ingresar en tabla pc_info:
+-- Dell LATITUDE 3440
+INSERT INTO pc_info (codigo_inventario, tipo_equipo, numero_serie, marca, modelo, sistema_operativo, memoria_ram, procesador, almacenamiento, numero_serie_cargador, monitor, teclado, raton, accesorios, suscripcion_office, ubicacion, status) VALUES ('INV001', 'Laptop', 'NSDELL001', 'Dell', 'LATITUDE 3440', 'Windows 11', '8 GB', 'Intel Core i5-1335U', '256 GB', 'NSCARG001', '15.6 pulgadas', 'Español', 'Óptico', 'Bolsa de transporte', 'si', 'piso3', 1);
+
+-- Apple MacBook Pro 13
+INSERT INTO pc_info (codigo_inventario, tipo_equipo, numero_serie, marca, modelo, sistema_operativo, memoria_ram, procesador, almacenamiento, numero_serie_cargador, monitor, teclado, raton, accesorios, suscripcion_office, ubicacion, status) VALUES ('INV002', 'Laptop', 'NSAPPLE001', 'Apple', 'MacBook Pro 13', 'MacOS Catalina', '8 GB', 'Apple M1 chip con CPU de 8 núcleos', 'SSD de 256 GB', 'NSCARG002', '13 pulgadas', 'Español', 'Trackpad', 'Funda', 'no', 'piso4', 1);
+
+-- Dell OptiPlex 7050
+INSERT INTO pc_info (codigo_inventario, tipo_equipo, numero_serie, marca, modelo, sistema_operativo, memoria_ram, procesador, almacenamiento, numero_serie_cargador, monitor, teclado, raton, accesorios, suscripcion_office, ubicacion, status) VALUES ('INV003', 'Desktop', 'NSDELL002', 'Dell', 'OPTIPLEX 7050', 'Windows 10', '16 GB', 'Intel® Core™ i5-1135G7', '1 TB', 'NSCARG003', '24 pulgadas', 'Mecánico', 'Gaming', 'Altavoces externos', 'si', 'pbalmacen', 1);
+
+-- Apple MAC STUDIO
+INSERT INTO pc_info (codigo_inventario, tipo_equipo, numero_serie, marca, modelo, sistema_operativo, memoria_ram, procesador, almacenamiento, numero_serie_cargador, monitor, teclado, raton, accesorios, suscripcion_office, ubicacion, status) VALUES ('INV004', 'Desktop', 'NSAPPLE002', 'Apple', 'MAC STUDIO', 'MacOS Ventura', '16 GB', 'APPLE M1 MAX', '512 GB', 'NSCARG004', '27 pulgadas', 'Español', 'Magic Mouse', 'Magic Keyboard', 'no', 'santander', 1);
+
+-- Dell LATITUDE 3590
+INSERT INTO pc_info (codigo_inventario, tipo_equipo, numero_serie, marca, modelo, sistema_operativo, memoria_ram, procesador, almacenamiento, numero_serie_cargador, monitor, teclado, raton, accesorios, suscripcion_office, ubicacion, status) VALUES ('INV005', 'Laptop', 'NSDELL003', 'Dell', 'LATITUDE 3590', 'Linux Ubuntu', '8 GB', 'Intel® Core™ i5-4590', '1 TB', 'NSCARG005', '15.6 pulgadas', 'Español', 'Óptico', 'Mochila', 'si', 'piso3', 1);
+-- Dell latitude 3420 256
+INSERT INTO pc_info (codigo_inventario, tipo_equipo, numero_serie, marca, modelo, sistema_operativo, memoria_ram, procesador, almacenamiento, numero_serie_cargador, monitor, teclado, raton, accesorios, suscripcion_office, ubicacion, status) VALUES ('INV006', 'Laptop', 'NSDELL004', 'Dell', 'latitude 3420 256', 'Windows 10', '8 GB', 'Intel® Core™ i5-1135G7 de 11.ª generación', 'M.2, de 256 GB', 'NSCARG006', '14 pulgadas', 'Español', 'Óptico', 'Adaptador USB-C', 'si', 'piso4', 1);
+
+-- Apple iMac 27
+INSERT INTO pc_info (codigo_inventario, tipo_equipo, numero_serie, marca, modelo, sistema_operativo, memoria_ram, procesador, almacenamiento, numero_serie_cargador, monitor, teclado, raton, accesorios, suscripcion_office, ubicacion, status) VALUES ('INV007', 'AllInOne', 'NSAPPLE003', 'Apple', 'iMac 27', 'MacOS Ventura', '16 GB', 'Intel Core i5 de 10.ª generación, 6 núcleos', 'SSD de 512 GB', 'NSCARG007', '27 pulgadas', 'Español', 'Magic Mouse', 'Magic Keyboard, Trackpad', 'no', 'pbalmacen', 1);
+
+-- Dell OPTIPLEX 3040
+INSERT INTO pc_info (codigo_inventario, tipo_equipo, numero_serie, marca, modelo, sistema_operativo, memoria_ram, procesador, almacenamiento, numero_serie_cargador, monitor, teclado, raton, accesorios, suscripcion_office, ubicacion, status) VALUES ('INV008', 'Desktop', 'NSDELL005', 'Dell', 'OPTIPLEX 3040', 'Windows 11', '8 GB', 'Intel Core I5 2.40GHz 11gen', '1 TB', 'NSCARG008', '22 pulgadas', 'Mecánico', 'Gaming', 'Webcam HD', 'si', 'santander', 1);
+
+-- Dell latitude 3520T
+INSERT INTO pc_info (codigo_inventario, tipo_equipo, numero_serie, marca, modelo, sistema_operativo, memoria_ram, procesador, almacenamiento, numero_serie_cargador, monitor, teclado, raton, accesorios, suscripcion_office, ubicacion, status) VALUES ('INV009', 'Laptop', 'NSDELL006', 'Dell', 'latitude 3520T', 'Linux Ubuntu', '16 GB', '11th Gen Intel(R) Core(TM) i5-1135G7', '512 GB', 'NSCARG009', '15.6 pulgadas', 'Español', 'Óptico', 'Hub USB', 'no', 'piso3', 1);
+
+-- Apple Mac Book Pro 16 inch
+INSERT INTO pc_info (codigo_inventario, tipo_equipo, numero_serie, marca, modelo, sistema_operativo, memoria_ram, procesador, almacenamiento, numero_serie_cargador, monitor, teclado, raton, accesorios, suscripcion_office, ubicacion, status) VALUES ('INV010', 'Laptop', 'NSAPPLE004', 'Apple', 'Mac Book Pro 16 inch', 'MacOS Catalina', '16 GB', 'APPLE M1 PRO', '512 GB', 'NSCARG010', '16 pulgadas', 'Español', 'Trackpad', 'Estuche de transporte', 'si', 'piso4', 1);
+
+registros para empleados de prueba:
+INSERT INTO empleados (numEmpleado, idUsuario, jefe, nombre, appaterno, apmaterno, FechaIngreso, email, foto, FechaNacimiento, perfilLlamada, extencion, sustituye, FechaElavoracion, observaciones, estatus, horario, moviliario, id_direccion, id_tipo_puesto, puesto, id_departamento, rfc, nss, cajon, auto, password_raw, firma, created_at, updated_at, tarjeta_pin, activo_pin, alta_pin, baja_pin, activo_cms, alta_cms, baja_cms, activo_eeclub, alta_eeclub, baja_eeclub, restriccion, tiempoRestriccion, fechaRestriccionInicio, fechaRestriccionFin) VALUES
+(1001, 1, 'Gonzalez Ramirez Juan', 'Ana', 'Martinez', 'Lopez', '2020-01-15', 'ana.martinez@empresa.com', 'URL_DE_FOTO', '1985-04-12', 'Soporte Técnico', 101, 'Perez Soto Irma', '2023-03-15', 'Excelente desempeño y compromiso', 'Activo', '08:00 - 16:00', 'Escritorio, Silla ergonómica', 2, 1, 'Analista de Sistemas', 1, 'MART850412HDFLNA00', '12345678901', '3A', 'No', 'password123', 'URL_DE_FIRMA', '2023-03-15 08:00:00', '2024-03-15 08:00:00', '1234', 1, '2023-03-15', NULL, 1, '2023-03-15', NULL, 1, '2023-03-15', NULL, 'Ninguna', 'NA', 'NA', 'NA');
+
+INSERT INTO empleados (numEmpleado, idUsuario, jefe, nombre, appaterno, apmaterno, FechaIngreso, email, foto, FechaNacimiento, perfilLlamada, extencion, sustituye, FechaElavoracion, observaciones, estatus, horario, moviliario, id_direccion, id_tipo_puesto, puesto, id_departamento, rfc, nss, cajon, auto, password_raw, firma, created_at, updated_at, tarjeta_pin, activo_pin, alta_pin, baja_pin, activo_cms, alta_cms, baja_cms, activo_eeclub, alta_eeclub, baja_eeclub, restriccion, tiempoRestriccion, fechaRestriccionInicio, fechaRestriccionFin) VALUES
+(1002, 2, 'Martinez Lopez Ana', 'Carlos', 'Hernandez', 'Gomez', '2018-09-20', 'carlos.hernandez@empresa.com', 'URL_DE_FOTO', '1990-07-22', 'Administrativo', 102, 'Vega Duran Carlos', '2023-03-14', 'Necesita mejorar en puntualidad', 'Activo', '09:00 - 18:00', 'Escritorio, Silla ergonómica, Archivero', 1, 2, 'Gerente de Proyecto', 2, 'HERG900722HMNRCL08', '98765432102',
+'4B', 'Sí, modelo 2018', 'carlosSafePass', 'URL_DE_FIRMA', '2023-03-14 09:30:00', '2024-03-14 09:30:00', '5678', 1, '2023-03-14', NULL, 1, '2023-03-14', NULL, 1, '2023-03-14', NULL, 'Ninguna', 'NA', 'NA', 'NA');
+
+INSERT INTO empleados (numEmpleado, idUsuario, jefe, nombre, appaterno, apmaterno, FechaIngreso, email, foto, FechaNacimiento, perfilLlamada, extencion, sustituye, FechaElavoracion, observaciones, estatus, horario, moviliario, id_direccion, id_tipo_puesto, puesto, id_departamento, rfc, nss, cajon, auto, password_raw, firma, created_at, updated_at, tarjeta_pin, activo_pin, alta_pin, baja_pin, activo_cms, alta_cms, baja_cms, activo_eeclub, alta_eeclub, baja_eeclub, restriccion, tiempoRestriccion, fechaRestriccionInicio, fechaRestriccionFin) VALUES
+(1003, 3, 'Hernandez Gomez Carlos', 'Luisa', 'Vega', 'Duran', '2021-05-07', 'luisa.vega@empresa.com', 'URL_DE_FOTO', '1988-10-30', 'Recursos Humanos', 103, 'Martinez Lopez Ana', '2023-03-16', 'Liderazgo destacado en su equipo', 'Activo', '08:30 - 17:30', 'Escritorio, Silla ergonómica, Planta decorativa', 3, 3, 'Director de Recursos Humanos', 3, 'VEGL881030HMNTDS09', '45678912303', '5C', 'No', 'luisaHRPass', 'URL_DE_FIRMA', '2023-03-16 10:00:00', '2024-03-16 10:00:00', '91011', 1, '2023-03-16', NULL, 1, '2023-03-16', NULL, 1, '2023-03-16', NULL, 'Ninguna', 'NA', 'NA', 'NA');
+
+INSERT INTO empleados (numEmpleado, idUsuario, jefe, nombre, appaterno, apmaterno, FechaIngreso, email, foto, FechaNacimiento, perfilLlamada, extencion, sustituye, FechaElavoracion, observaciones, estatus, horario, moviliario, id_direccion, id_tipo_puesto, puesto, id_departamento, rfc, nss, cajon, auto, password_raw, firma, created_at, updated_at, tarjeta_pin, activo_pin, alta_pin, baja_pin, activo_cms, alta_cms, baja_cms, activo_eeclub, alta_eeclub, baja_eeclub, restriccion, tiempoRestriccion, fechaRestriccionInicio, fechaRestriccionFin) VALUES
+(1004, 4, 'Vega Duran Luisa', 'Roberto', 'Juarez', 'Navarro', '2019-11-11', 'roberto.juarez@empresa.com', 'URL_DE_FOTO', '1978-03-02', 'Finanzas', 104, 'NONE', '2023-03-17', 'Referente en el equipo de finanzas por su experiencia', 'Activo', '07:00 - 15:00', 'Escritorio, Silla ergonómica, Calculadora avanzada', 4, 4, 'Contador', 4, 'JUAN780302HMNRVB07', '19283746501', '7D', 'Sí, modelo 2020', 'robSafePass', 'URL_DE_FIRMA', '2023-03-17 11:00:00', '2024-03-17 11:00:00', '1213', 1, '2023-03-17', NULL, 1, '2023-03-17', NULL, 1, '2023-03-17', NULL, 'Ninguna', 'NA', 'NA', 'NA');
+
+INSERT INTO empleados (numEmpleado, idUsuario, jefe, nombre, appaterno, apmaterno, FechaIngreso, email, foto, FechaNacimiento, perfilLlamada, extencion, sustituye, FechaElavoracion, observaciones, estatus, horario, moviliario, id_direccion, id_tipo_puesto, puesto, id_departamento, rfc, nss, cajon, auto, password_raw, firma, created_at, updated_at, tarjeta_pin, activo_pin, alta_pin, baja_pin, activo_cms, alta_cms, baja_cms, activo_eeclub, alta_eeclub, baja_eeclub, restriccion, tiempoRestriccion, fechaRestriccionInicio, fechaRestriccionFin) VALUES
+(1005, 5, 'Juarez Navarro Roberto', 'Maria', 'Fernandez', 'Luna', '2022-02-20', 'maria.fernandez@empresa.com', 'URL_DE_FOTO', '1992-08-15', 'Marketing', 105, 'Juarez Navarro Roberto', '2023-03-18', 'Creatividad destacada en campañas publicitarias', 'Activo', '10:00 - 19:00', 'Escritorio, Silla ergonómica, Pizarra digital', 5, 5, 'Jefe de Marketing', 5, 'FERN920815HMNLNA04', '34567890123', '9E', 'No', 'mariaMarkPass', 'URL_DE_FIRMA', '2023-03-18 12:00:00', '2024-03-18 12:00:00', '1415', 1, '2023-03-18', NULL, 1, '2023-03-18', NULL, 1, '2023-03-18', NULL, 'Ninguna', 'NA', 'NA', 'NA');

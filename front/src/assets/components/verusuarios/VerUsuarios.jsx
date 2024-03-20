@@ -52,7 +52,7 @@ function verUsuarios() {
         <Table striped bordered hover variant="dark" className="custom-table">
           <thead>
             <tr>
-              <th className="text-center align-middle">Correo</th>
+              <th className="text-center align-middle">Usuario</th>
               <th className="text-center align-middle">Password </th>
               <th className="text-center align-middle">Rol</th>
               <th className="text-center align-middle">Acción</th>
