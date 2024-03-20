@@ -7,6 +7,7 @@ function LoginUser() {
     <div className="containerlogin">
       <div>
         <AdminEquipos/>
+        <h1>HOLANDA QUE TALCA</h1>
       </div>
     <div className="cardlogin">
   <div className="card2">
