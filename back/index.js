@@ -3,6 +3,8 @@ import * as dotenv from "dotenv";
 dotenv.config();
 import path from "path";
 import ExcelJS from "exceljs";
+import express from 'express';
+
 
 // importando modulos personalizados
 import { handleErrors } from "./errors.js";
@@ -50,6 +52,10 @@ const upload = multer({ storage: storage });
 app.listen(PORT, () => {
   console.log("servidor listo en http://localhost:" + PORT);
 });
+
+// Ruta de inicio de sesión
+app.post('/login', login);
+
 
 //rutas del enrutador/ Api Rest, enlazar ruta con funcion BD
 
