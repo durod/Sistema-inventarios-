@@ -35,7 +35,7 @@ function AdminEquipos() {
                   fill="#7D8590"
                 ></path>
               </svg>
-              <Link to="/">Ver los Equipos</Link>
+              <Link to="/verequipos">Ver los Equipos</Link>
             </button>
             <button className="value">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
