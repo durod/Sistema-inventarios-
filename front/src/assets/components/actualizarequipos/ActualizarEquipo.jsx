@@ -18,7 +18,7 @@ const ActualizarEquipo = () => {
   const handleCloseModal = () => {
     setShowModal(false);
     // Redirigir al usuario a la página de inicio
-    window.location.href = "/";
+    window.location.href = "https://durod.github.io/Sistema-inventarios-/verequipos";
   };
 
   const { id } = useParams(); // Obtener el parámetro de la URL

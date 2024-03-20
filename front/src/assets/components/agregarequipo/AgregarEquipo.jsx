@@ -23,7 +23,7 @@ export default function AgregarEquipo() {
     setShowModal(false);
     // Si el mensaje es de éxito, redirigir al usuario
     if (modalMessage === "El equipo se ha agregado correctamente.") {
-      window.location.href = "/";
+      window.location.href = "https://durod.github.io/Sistema-inventarios-/verequipos";
     }
   };
   const handleSubmit = async (event) => {
