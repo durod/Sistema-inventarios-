@@ -16,6 +16,9 @@
   transition: 1s;
   padding: 10px;
   overflow: hidden;
+  top: 20%;
+  left: 5px;
+  position: fixed;
 }
 
 .value {
