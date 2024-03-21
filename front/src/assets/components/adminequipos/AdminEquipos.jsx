@@ -35,7 +35,7 @@ function AdminEquipos() {
                   fill="#7D8590"
                 ></path>
               </svg>
-              <Link to="/verequipos">Ver los Equipos</Link>
+              <Link to="/verequipos">Ver Equipos</Link>
             </button>
             <button className="value">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -44,7 +44,7 @@ function AdminEquipos() {
                   fill="#7D8590"
                 ></path>
               </svg>
-              <Link to="/buscarEquipo">Buscar Equipo</Link>
+              <Link to="/buscarEquipo">Buscar Equipos</Link>
             </button>
             <button className="value">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
@@ -62,7 +62,7 @@ function AdminEquipos() {
                   fill="#7D8590"
                 ></path>
               </svg>
-              <Link to="/usuario">ver Usuarios</Link>
+              <Link to="/usuario">Ver Usuarios</Link>
             </button>
 
             <button className="value">
@@ -92,7 +92,7 @@ function AdminEquipos() {
                   fill="#7D8590"
                 ></path>
               </svg>
-              <Link to="/equiposinactivos">Equipos Inactivos.</Link>
+              <Link to="/equiposinactivos">Equipos Inactivos</Link>
             </button>
             
           </div>
