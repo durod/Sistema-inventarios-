@@ -62,6 +62,7 @@ function VerEquipos() {
                   </button>
                 </Dropdown.Item>
               )}
+               {usuarioActual && usuarioActual.rol !== 'RH' && (
               <Dropdown.Item>
                 <button
                   className="btn btn-warning"
@@ -75,6 +76,7 @@ function VerEquipos() {
                   Quitar Asignación
                 </button>
               </Dropdown.Item>
+              )}
             </Dropdown.Menu>
           </Dropdown>
         </td>
