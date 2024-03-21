@@ -281,7 +281,7 @@ const eliminarEquipo = async (id) => {
     // No es necesario llamar a verEquipos aquí ya que este es el backend
   } catch (error) {
     console.error("Error al eliminar equipo:", error.message);
-    throw error; // Es importante propagar el error para manejarlo en la capa superior
+    throw error; // Es importante propagar el error para manejarlo en la capa superior.
   }
 };
 
