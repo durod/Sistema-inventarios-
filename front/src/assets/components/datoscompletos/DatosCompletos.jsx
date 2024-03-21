@@ -126,7 +126,7 @@ function DatosCompletos() {
                   <Form.Control
                     className="text-center-inputdatoscompletos"
                     type="text"
-                    name="numempleado"
+                    name="id_puesto"
                     value={datos.puesto || "No Asignado"}
                   />
                 </Form.Group>
@@ -180,7 +180,7 @@ function DatosCompletos() {
                 </Form.Label>
                 <Form.Control
                   className="text-center-inputdatoscompletos"
-                  as="select"
+                  type="text"
                   name="tipo_equipo"
                   value={datos.tipo_equipo || ""}
                 ></Form.Control>
@@ -204,7 +204,7 @@ function DatosCompletos() {
                 </Form.Label>
                 <Form.Control
                   className="text-center-inputdatoscompletos"
-                  as="select"
+                  type="text"
                   name="marca"
                   value={datos.marca || ""}
                 ></Form.Control>
@@ -230,7 +230,7 @@ function DatosCompletos() {
                 </Form.Label>
                 <Form.Control
                   className="text-center-inputdatoscompletos"
-                  as="select"
+                  type="text"
                   name="sistema_operativo"
                   value={datos.sistema_operativo || ""}
                 ></Form.Control>
@@ -242,7 +242,7 @@ function DatosCompletos() {
                 </Form.Label>
                 <Form.Control
                   className="text-center-inputdatoscompletos"
-                  as="select"
+                  type="text"
                   name="memoria_ram"
                   value={datos.memoria_ram || ""}
                 ></Form.Control>
@@ -352,7 +352,7 @@ function DatosCompletos() {
                 </Form.Label>
                 <Form.Control
                   className="text-center-inputdatoscompletos"
-                  as="select"
+                  type="text"
                   aria-label="Default select example"
                   name="ubicacion"
                   value={datos.ubicacion || ""}
@@ -365,7 +365,7 @@ function DatosCompletos() {
                 </Form.Label>
                 <Form.Control
                   className="text-center-inputdatoscompletos"
-                  as="select"
+                  type="text"
                   aria-label="Default select example"
                   name="status"
                   value={datos.status || ""}
