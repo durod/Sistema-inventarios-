@@ -13,6 +13,7 @@ function VerEquipos() {
     obtenerEquipos,
     confirmarEliminarEquipo,
     quitarAsignacionEquipo,
+    usuarioActual,
   } = useEquiposContext();
 
   useEffect(() => {
@@ -49,16 +50,18 @@ function VerEquipos() {
                   Ver Más
                 </Link>
               </Dropdown.Item>
-              <Dropdown.Item>
-                <button
-                  className="btn btn-danger mx-auto"
-                  onClick={() =>
-                    confirmarEliminarEquipo(equipo.id, equipo.codigo_inventario)
-                  }
-                >
-                  Eliminar
-                </button>
-              </Dropdown.Item>
+              {usuarioActual && usuarioActual.rol !== 'RH' && (
+                <Dropdown.Item>
+                  <button
+                    className="btn btn-danger mx-auto"
+                    onClick={() =>
+                      confirmarEliminarEquipo(equipo.id, equipo.codigo_inventario)
+                    }
+                  >
+                    Eliminar
+                  </button>
+                </Dropdown.Item>
+              )}
               <Dropdown.Item>
                 <button
                   className="btn btn-warning"
