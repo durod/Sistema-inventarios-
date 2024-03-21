@@ -7,12 +7,14 @@
 .cajaadminequiposbusquedaequipos {
   width: 17%;
   margin-left: 1rem;
+  margin-top: 15%;
 }
 
 .colbuscar {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 5%;
 }
 
 .colbuscarequipos {
