@@ -1,11 +1,14 @@
 .containerverequipos {
   margin-top: 8%;
   display: flex;
-  gap: 1%;
+  gap: 10px;
 }
 
 .cajaprincipalverequipos {
+  opacity: 90%;
   width: 83%;
+  margin-left: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .cajaadminequiposverequipos {

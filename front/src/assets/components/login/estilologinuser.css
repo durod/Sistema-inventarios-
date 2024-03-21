@@ -19,6 +19,8 @@
 }
 
 .cardlogin {
+  padding: 3rem;
+  margin-left: 1rem;
   background-image: linear-gradient(163deg, #00ff75, #3700ff);
   border-radius: 22px;
   transition: all .3s;
