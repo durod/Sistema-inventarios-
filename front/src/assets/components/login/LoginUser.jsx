@@ -5,26 +5,24 @@ import AdminEquipos from "../adminequipos/AdminEquipos";
 import "../login/estilologinuser.css";
 
 function LoginUser() {
-  const { iniciarSesion, usuarioActual } = useEquiposContext();
+  const { iniciarSesion, usuarioActual, error } = useEquiposContext(); // Asegúrate de incluir 'error' aquí
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (usuarioActual?.rol) {
-      if (usuarioActual.rol === 'auditor') {
-        navigate("/vistaauditor");
-      } else if (usuarioActual.rol === 'admin' || usuarioActual.rol === 'rh') {
-        navigate("/verequipos");
-      }
+    if (usuarioActual) { // No necesitas verificar por rol si siempre rediriges a '/verequipos'
+      navigate("/verequipos");
     }
   }, [usuarioActual, navigate]);
-  const handleSubmit = async (event) => {
 
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const username = event.target.querySelector('.input-field[type="text"]').value;
+    const correo = event.target.querySelector('.input-field[type="text"]').value; // Usando 'correo' en lugar de 'username'
     const password = event.target.querySelector('.input-field[type="password"]').value;
-    console.log(`Intento de inicio de sesión con correo: ${correo} y contraseña: ${password}`); // Esto se mostrará en la consola
-    await iniciarSesion(username, password);
-    // No es necesario realizar la redirección aquí, el useEffect se encargará
+
+    console.log(`Intento de inicio de sesión con correo: ${correo} y contraseña: ${password}`); // Asegúrate de que estas variables correspondan
+
+    await iniciarSesion(correo, password); // Asegúrate de pasar 'correo' y 'password'
+
     console.log('usuarioActual:', usuarioActual);
     console.log('Error:', error);
   };
