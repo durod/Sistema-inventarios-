@@ -114,19 +114,24 @@ export const EquiposProvider = ({ children }) => {
   };
 
   // Función para manejar el inicio de sesión
-const iniciarSesion = async (username, password) => {
-  try {
-    const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/login`, {
-      username,
-      password,
-    });
-    setUsuarioActual(response.data.usuario); // Actualiza el estado con los detalles del usuario
-    setError(null);
-  } catch (error) {
-    console.error("Error al iniciar sesión:", error.message);
-    setError("Error al iniciar sesión. Por favor, inténtalo de nuevo.");
-  }
-};
+  const iniciarSesion = async (correo, password) => {
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/login`, {
+        correo,
+        password,
+      });
+  
+      if (response.data.usuario) {
+        setUsuarioActual(response.data.usuario);
+        setError(null);
+      } else {
+        setError("Inicio de sesión fallido. Por favor, verifica tus credenciales.");
+      }
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error.response?.data?.mensaje || "Error desconocido");
+      setError("Error al iniciar sesión. Por favor, inténtalo de nuevo.");
+    }
+  };
 
   const contextValue = {
     equipos,

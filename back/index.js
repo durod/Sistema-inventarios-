@@ -52,9 +52,24 @@ app.listen(PORT, () => {
   console.log("servidor listo en http://localhost:" + PORT);
 });
 
-// Ruta de inicio de sesión
-app.post("/login", login);
+app.post("/login", async (req, res) => {
+  const { correo, password } = req.body;
+  // Aquí deberías buscar al usuario por correo en tu base de datos
+  const user = await buscarUsuarioPorCorreo(correo);
 
+  if (!user) {
+    return res.status(404).json({ mensaje: "Usuario no encontrado" });
+  }
+
+  // Aquí deberías verificar si las contraseñas coinciden
+  if (user.password === password) {
+    // Contraseña correcta
+    return res.json({ mensaje: "Inicio de sesión exitoso", usuario: user });
+  } else {
+    // Contraseña incorrecta
+    return res.status(401).json({ mensaje: "Contraseña incorrecta" });
+  }
+});
 //rutas del enrutador/ Api Rest, enlazar ruta con funcion BD
 
 //1. GET para ver todos los equipos registrados en la tabla
