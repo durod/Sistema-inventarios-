@@ -1,11 +1,12 @@
 .cajaprincipalbusquedaequipos {
   margin-top: 5%;
-  color: yellow;
+  color: white;
   display: flex;
 }
 
 .cajaadminequiposbusquedaequipos {
   width: 17%;
+  margin-left: 1rem;
 }
 
 .colbuscar {
