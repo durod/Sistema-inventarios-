@@ -24,7 +24,7 @@ import {
 import fs from "fs";
 
 // importando express y cors
-import express from "express";
+
 const app = express();
 import cors from "cors";
 import multer from "multer";
