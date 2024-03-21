@@ -1,11 +1,11 @@
-// para manejar variables de ambiente
+// Variables de ambiente
 import * as dotenv from "dotenv";
 dotenv.config();
 import path from "path";
 import ExcelJS from "exceljs";
 import express from "express";
 
-// importando modulos personalizados
+// Modulos personalizados
 import { handleErrors } from "./errors.js";
 import {
   agregarEquipo,
@@ -23,7 +23,7 @@ import {
 } from "./consulta.js";
 import fs from "fs";
 
-// importando express y cors
+// Cors / Express
 
 const app = express();
 import cors from "cors";
@@ -32,11 +32,11 @@ import { log } from "console";
 //const currentFileUrl = import.meta.url;
 //const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
-// middleware para parsear body enviado al servidor
+// Middleware que parsea el body recibido
 app.use(express.json());
 app.use(cors());
 
-//// levantando servidor USANDO UN PUERTO PREDETERMINADO EN .ENV
+// Levantamos servidor con configuracion en archivo env
 const PORT = process.env.PORT || 3002;
 
 const storage = multer.diskStorage({
@@ -57,14 +57,11 @@ app.listen(PORT, () => {
 app.post("/login", async (req, res) => {
   const { correo, password } = req.body;
   console.log(correo);
-  // Aquí deberías buscar al usuario por correo en tu base de datos
   const usuario = await buscarUsuarioPorCorreo(correo);
 console.log(usuario);
   if (!usuario) {
     return res.status(404).json({ mensaje: "Usuario no encontrado" });
   }
-
-  // Aquí deberías verificar si las contraseñas coinciden
   if (usuario.password === password) {
     // Contraseña correcta
     return res.json({ mensaje: "Inicio de sesión exitoso", usuario: usuario });
@@ -74,7 +71,7 @@ console.log(usuario);
   }
 });
 
-//rutas del enrutador/ Api Rest, enlazar ruta con funcion BD
+// Rutas
 
 //1. GET para ver todos los equipos registrados en la tabla
 app.get("/equipos", async (req, res) => {
