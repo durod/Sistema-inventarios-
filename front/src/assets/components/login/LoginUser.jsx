@@ -5,27 +5,30 @@ import AdminEquipos from "../adminequipos/AdminEquipos";
 import "../login/estilologinuser.css";
 
 function LoginUser() {
-  const { iniciarSesion, usuarioActual, error } = useEquiposContext(); // Asegúrate de incluir 'error' aquí
+  const { iniciarSesion, usuarioActual, error } = useEquiposContext();
   const navigate = useNavigate();
 
+  // Observa cambios en usuarioActual y error para actuar en consecuencia
   useEffect(() => {
-    if (usuarioActual) { // No necesitas verificar por rol si siempre rediriges a '/verequipos'
+    if (usuarioActual) {
+      console.log('Inicio de sesión exitoso', usuarioActual);
       navigate("/verequipos");
     }
-  }, [usuarioActual, navigate]);
+
+    if (error) {
+      console.log('Error al iniciar sesión:', error);
+    }
+  }, [usuarioActual, error, navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const correo = event.target.querySelector('.input-field[type="text"]').value; // Usando 'correo' en lugar de 'username'
+    const correo = event.target.querySelector('.input-field[type="text"]').value;
     const password = event.target.querySelector('.input-field[type="password"]').value;
 
-    console.log(`Intento de inicio de sesión con correo: ${correo} y contraseña: ${password}`); // Asegúrate de que estas variables correspondan
-
-    await iniciarSesion(correo, password); // Asegúrate de pasar 'correo' y 'password'
-
-    console.log('usuarioActual:', usuarioActual);
-    console.log('Error:', error);
+    // Iniciar sesión
+    await iniciarSesion(correo, password);
   };
+
   return (
     <div className="containerlogin">
       <div>
