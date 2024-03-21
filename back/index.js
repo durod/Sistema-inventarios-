@@ -28,6 +28,7 @@ import express from "express";
 const app = express();
 import cors from "cors";
 import multer from "multer";
+import { log } from "console";
 //const currentFileUrl = import.meta.url;
 //const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
@@ -55,9 +56,10 @@ app.listen(PORT, () => {
 
 app.post("/login", async (req, res) => {
   const { correo, password } = req.body;
+  console.log(correo);
   // Aquí deberías buscar al usuario por correo en tu base de datos
   const usuario = await buscarUsuarioPorCorreo(correo);
-
+console.log(usuario);
   if (!usuario) {
     return res.status(404).json({ mensaje: "Usuario no encontrado" });
   }
