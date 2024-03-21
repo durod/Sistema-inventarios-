@@ -17,8 +17,8 @@ function LoginUser() {
         case 'auditor':
           navigate("/vistaauditor"); // Si el usuario es auditor, lo redirige a VistaAuditor
           break;
-        case 'admin':
-        case 'rh':
+        case 'Administrador':
+        case 'RH':
           navigate("/verequipos"); // Para los roles admin y rh, se redirige a VerEquipos
           break;
         default:
