@@ -317,7 +317,7 @@ function DatosCompletos() {
                   className="text-center-inputdatoscompletos"
                   type="text"
                   name="raton"
-                  value={datos.mouse || ""}
+                  value={datos.raton || ""}
                 />
               </Form.Group>
             </Row>
