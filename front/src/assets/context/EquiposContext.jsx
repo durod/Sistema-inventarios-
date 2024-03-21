@@ -120,18 +120,17 @@ export const EquiposProvider = ({ children }) => {
         correo,
         password,
       });
-    
+      
       if (response.data.usuario) {
         setUsuarioActual(response.data.usuario);
-        // Si no importa el rol, y siempre rediriges a "/verequipos"
-        window.location.href = '/verequipos'; // Esto redirige directamente a '/verequipos'
-        setError(null);
+        // Aquí podrías redirigir según el rol si es necesario
+        setError(null); // Limpiar cualquier error anterior
       } else {
         setError("Inicio de sesión fallido. Por favor, verifica tus credenciales.");
       }
     } catch (error) {
-      console.error("Error al iniciar sesión:", error.response?.data?.mensaje || "Error desconocido");
-      setError("Error al iniciar sesión. Por favor, inténtalo de nuevo.");
+      // Capturar errores específicos de la respuesta y mostrarlos
+      setError(error.response?.data?.mensaje || "Error al iniciar sesión. Por favor, inténtalo de nuevo.");
     }
   };
 
