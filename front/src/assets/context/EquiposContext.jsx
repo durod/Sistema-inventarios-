@@ -120,9 +120,11 @@ export const EquiposProvider = ({ children }) => {
         correo,
         password,
       });
-  
+    
       if (response.data.usuario) {
         setUsuarioActual(response.data.usuario);
+        // Si no importa el rol, y siempre rediriges a "/verequipos"
+        window.location.href = '/verequipos'; // Esto redirige directamente a '/verequipos'
         setError(null);
       } else {
         setError("Inicio de sesión fallido. Por favor, verifica tus credenciales.");
