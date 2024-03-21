@@ -347,8 +347,9 @@ const eliminarUsuario = async (usuarioId) => {
     throw error;
   }
 };
+
 const buscarUsuarioPorCorreo = async (correo) => {
-  const query = "SELECT * FROM perfilesinventario WHERE correo = $1";
+  "SELECT * FROM public.perfilesinventario WHERE correo ="+"'"+correo+"'";
   const values = [correo];
 
   try {
@@ -376,5 +377,5 @@ export {
   agregarUsuario,
   verUsuarios,
   eliminarUsuario,
-  buscarUsuarioPorCorreo
+  buscarUsuarioPorCorreo,
 };

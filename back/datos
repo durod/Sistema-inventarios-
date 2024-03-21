@@ -93,7 +93,7 @@ CREATE TABLE perfilesinventario (
   rol VARCHAR(255) NOT NULL
 );
 
-equipos para ingresar en tabla pc_info:
+-----equipos para ingresar en tabla pc_info:-----
 -- Dell LATITUDE 3440
 INSERT INTO pc_info (codigo_inventario, tipo_equipo, numero_serie, marca, modelo, sistema_operativo, memoria_ram, procesador, almacenamiento, numero_serie_cargador, monitor, teclado, raton, accesorios, suscripcion_office, ubicacion, status) VALUES ('INV001', 'Laptop', 'NSDELL001', 'Dell', 'LATITUDE 3440', 'Windows 11', '8 GB', 'Intel Core i5-1335U', '256 GB', 'NSCARG001', '15.6 pulgadas', 'Español', 'Óptico', 'Bolsa de transporte', 'si', 'piso3', 1);
 
@@ -123,7 +123,9 @@ INSERT INTO pc_info (codigo_inventario, tipo_equipo, numero_serie, marca, modelo
 -- Apple Mac Book Pro 16 inch
 INSERT INTO pc_info (codigo_inventario, tipo_equipo, numero_serie, marca, modelo, sistema_operativo, memoria_ram, procesador, almacenamiento, numero_serie_cargador, monitor, teclado, raton, accesorios, suscripcion_office, ubicacion, status) VALUES ('INV010', 'Laptop', 'NSAPPLE004', 'Apple', 'Mac Book Pro 16 inch', 'MacOS Catalina', '16 GB', 'APPLE M1 PRO', '512 GB', 'NSCARG010', '16 pulgadas', 'Español', 'Trackpad', 'Estuche de transporte', 'si', 'piso4', 1);
 
-registros para empleados de prueba:
+
+
+-----registros para empleados de prueba:----------
 INSERT INTO empleados (numEmpleado, idUsuario, jefe, nombre, appaterno, apmaterno, FechaIngreso, email, foto, FechaNacimiento, perfilLlamada, extencion, sustituye, FechaElavoracion, observaciones, estatus, horario, moviliario, id_direccion, id_tipo_puesto, puesto, id_departamento, rfc, nss, cajon, auto, password_raw, firma, created_at, updated_at, tarjeta_pin, activo_pin, alta_pin, baja_pin, activo_cms, alta_cms, baja_cms, activo_eeclub, alta_eeclub, baja_eeclub, restriccion, tiempoRestriccion, fechaRestriccionInicio, fechaRestriccionFin) VALUES
 (1001, 1, 'Gonzalez Ramirez Juan', 'Ana', 'Martinez', 'Lopez', '2020-01-15', 'ana.martinez@empresa.com', 'URL_DE_FOTO', '1985-04-12', 'Soporte Técnico', 101, 'Perez Soto Irma', '2023-03-15', 'Excelente desempeño y compromiso', 'Activo', '08:00 - 16:00', 'Escritorio, Silla ergonómica', 2, 1, 'Analista de Sistemas', 1, 'MART850412HDFLNA00', '12345678901', '3A', 'No', 'password123', 'URL_DE_FIRMA', '2023-03-15 08:00:00', '2024-03-15 08:00:00', '1234', 1, '2023-03-15', NULL, 1, '2023-03-15', NULL, 1, '2023-03-15', NULL, 'Ninguna', 'NA', 'NA', 'NA');
 
