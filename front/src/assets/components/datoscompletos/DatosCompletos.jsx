@@ -7,11 +7,13 @@ import Col from "react-bootstrap/Col";
 import axios from "axios";
 import "../datoscompletos/estilodatoscompletos.css";
 import AdminEquipos from "../adminequipos/AdminEquipos";
+import { useEquiposContext } from "../../context/EquiposContext.jsx";
 
 function DatosCompletos() {
   const { codigo_inventario, numempleado } = useParams(); // Extrae los parámetros
   const [datos, setDatos] = useState(null); // Estado para almacenar los datos cargados
   const navigate = useNavigate();
+  const { usuarioActual } = useEquiposContext();
 
   useEffect(() => {
     const cargarDatos = async () => {
@@ -64,12 +66,14 @@ function DatosCompletos() {
 
       <Form className="formdatoscompletos">
         <div className="botonesdatoscompletos">
-          <Link
-            to={`/actualizarequipo/${datos.id}`}
-            className="btn btn-warning mb-2"
-          >
-            Actualizar Datos
-          </Link>
+        {usuarioActual && usuarioActual.rol !== 'RH' && (
+            <Link
+              to={`/actualizarequipo/${datos.id}`}
+              className="btn btn-warning mb-2"
+            >
+              Actualizar Datos
+            </Link>
+          )}
 
           <Button variant="light" onClick={handleVerResponsivaClick}>
             Ver Responsiva
