@@ -32,7 +32,8 @@ function LoginUser() {
   return (
     <div className="containerlogin">
       <div>
-        <AdminEquipos/>        
+        <AdminEquipos/> 
+        <h1>HOLAAA</h1>       
         </div>
     <div className="cardlogin">
   <div className="card2">
