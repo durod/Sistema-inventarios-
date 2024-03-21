@@ -10,21 +10,23 @@ function LoginUser() {
 
   useEffect(() => {
     if (usuarioActual?.rol) {
-      // Aquí decides a dónde redirigir según el rol del usuario
       if (usuarioActual.rol === 'auditor') {
         navigate("/vistaauditor");
       } else if (usuarioActual.rol === 'admin' || usuarioActual.rol === 'rh') {
         navigate("/verequipos");
       }
     }
-  }, [usuarioActual, navigate]); // Dependencias del useEffect
+  }, [usuarioActual, navigate]);
   const handleSubmit = async (event) => {
+
     event.preventDefault();
     const username = event.target.querySelector('.input-field[type="text"]').value;
     const password = event.target.querySelector('.input-field[type="password"]').value;
-
+    console.log(`Intento de inicio de sesión con correo: ${correo} y contraseña: ${password}`); // Esto se mostrará en la consola
     await iniciarSesion(username, password);
     // No es necesario realizar la redirección aquí, el useEffect se encargará
+    console.log('usuarioActual:', usuarioActual);
+    console.log('Error:', error);
   };
   return (
     <div className="containerlogin">
