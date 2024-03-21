@@ -151,7 +151,8 @@ function DatosCompletos() {
                 <div className="cajaimgequipo">
                   <img
                     className="imgequipo"
-                    src={`../../../public/uploads/${datos.codigo_inventario}.jpg`}
+                    //src={`../../../public/uploads/${datos.codigo_inventario}.jpg`}
+                    src="https://i.ytimg.com/vi/LUFOnPjijPQ/maxresdefault.jpg"
                     alt={datos.codigo_inventario}
                   />
                 </div>
@@ -296,6 +297,7 @@ function DatosCompletos() {
                 value={datos.monitor || ""}
               />
             </Form.Group>
+
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridKeyboard">
                 <Form.Label className="formLabeldatoscompletos">
