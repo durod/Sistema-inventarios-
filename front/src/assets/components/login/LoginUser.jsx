@@ -71,7 +71,7 @@ function LoginUser() {
         <input type="password" className="input-field" placeholder="Password" />
       </div>
       <div className="btnlogin">
-        <button className="button1">
+        <button className="button1" type="submit" >
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </button>
         </div>
