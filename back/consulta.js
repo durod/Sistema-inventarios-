@@ -353,7 +353,8 @@ const buscarUsuarioPorCorreo = async (correo) => {
   const values = [correo];
 
   try {
-    const result = await pool.query(query, values);
+    const result = await pool.query(query);
+    console.log(query, result);
     if (result.rows.length > 0) {
       return result.rows[0]; // Retorna el primer usuario encontrado
     } else {
@@ -364,6 +365,7 @@ const buscarUsuarioPorCorreo = async (correo) => {
     throw error;
   }
 };
+
 
 export {
   agregarEquipo,
