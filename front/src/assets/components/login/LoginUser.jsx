@@ -1,13 +1,31 @@
-
+import React, { useEffect } from 'react'; // Importa useEffect
+import { useNavigate } from 'react-router-dom';
+import { useEquiposContext } from "../../context/EquiposContext.jsx";
 import AdminEquipos from "../adminequipos/AdminEquipos";
 import "../login/estilologinuser.css";
 
-import { useEquiposContext } from "../../context/EquiposContext.jsx";
-
 function LoginUser() {
-  const { verUsuarios, usuarios, } =
-    useEquiposContext();
+  const { iniciarSesion, usuarioActual } = useEquiposContext();
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (usuarioActual?.rol) {
+      // Aquí decides a dónde redirigir según el rol del usuario
+      if (usuarioActual.rol === 'auditor') {
+        navigate("/vistaauditor");
+      } else if (usuarioActual.rol === 'admin' || usuarioActual.rol === 'rh') {
+        navigate("/verequipos");
+      }
+    }
+  }, [usuarioActual, navigate]); // Dependencias del useEffect
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const username = event.target.querySelector('.input-field[type="text"]').value;
+    const password = event.target.querySelector('.input-field[type="password"]').value;
+
+    await iniciarSesion(username, password);
+    // No es necesario realizar la redirección aquí, el useEffect se encargará
+  };
   return (
     <div className="containerlogin">
       <div>
@@ -15,7 +33,7 @@ function LoginUser() {
         </div>
     <div className="cardlogin">
   <div className="card2">
-    <form className="formlogin">
+    <form className="formlogin" onSubmit={handleSubmit}>
       <p id="heading">Login</p>
       <div className="field">
         <svg

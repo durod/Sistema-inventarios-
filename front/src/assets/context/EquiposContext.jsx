@@ -6,6 +6,7 @@ const EquiposContext = createContext();
 
 export const EquiposProvider = ({ children }) => {
   const [equipos, setEquipos] = useState([]);
+  const [usuarioActual, setUsuarioActual] = useState(null); // Estado para almacenar el usuario autenticado
   const [usuarios, setUsuarios] = useState([]);
   const [detallesEquipo, setDetallesEquipo] = useState(null); // Para almacenar los detalles del equipo seleccionado
   const [empleadosAsignados, setEmpleadosAsignados] = useState([]); // Para los empleados asignados al equipo seleccionado
@@ -112,6 +113,21 @@ export const EquiposProvider = ({ children }) => {
     }
   };
 
+  // Función para manejar el inicio de sesión
+const iniciarSesion = async (username, password) => {
+  try {
+    const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/login`, {
+      username,
+      password,
+    });
+    setUsuarioActual(response.data.usuario); // Actualiza el estado con los detalles del usuario
+    setError(null);
+  } catch (error) {
+    console.error("Error al iniciar sesión:", error.message);
+    setError("Error al iniciar sesión. Por favor, inténtalo de nuevo.");
+  }
+};
+
   const contextValue = {
     equipos,
     detallesEquipo,
@@ -125,6 +141,8 @@ export const EquiposProvider = ({ children }) => {
     verUsuarios,
     eliminarUsuario,
     usuarios,
+    usuarioActual,
+    iniciarSesion,
     // Cualquier otra función o estado que estés proporcionando
   };
 
