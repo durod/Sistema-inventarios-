@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'; // Importa useEffect
+import  { useEffect } from 'react'; // Importa useEffect
 import { useNavigate } from 'react-router-dom';
 import { useEquiposContext } from "../../context/EquiposContext.jsx";
-import AdminEquipos from "../adminequipos/AdminEquipos";
+
 import "../login/estilologinuser.css";
 
 function LoginUser() {
@@ -31,10 +31,7 @@ function LoginUser() {
 
   return (
     <div className="containerlogin">
-      <div>
-        <AdminEquipos/> 
-        <h1>HOLAAA</h1>       
-        </div>
+     
     <div className="cardlogin">
   <div className="card2">
     <form className="formlogin" onSubmit={handleSubmit}>
