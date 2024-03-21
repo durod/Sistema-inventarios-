@@ -12,7 +12,20 @@ function LoginUser() {
   useEffect(() => {
     if (usuarioActual) {
       console.log('Inicio de sesión exitoso', usuarioActual);
-      navigate("/verequipos");
+      // Verifica el rol del usuario para redirigirlo a la ruta correspondiente
+      switch (usuarioActual.rol) {
+        case 'auditor':
+          navigate("/vistaauditor"); // Si el usuario es auditor, lo redirige a VistaAuditor
+          break;
+        case 'admin':
+        case 'rh':
+          navigate("/verequipos"); // Para los roles admin y rh, se redirige a VerEquipos
+          break;
+        default:
+          // Manejar cualquier otro caso o mostrar un mensaje de error
+          console.log('Rol no reconocido o usuario sin rol asignado');
+          break;
+      }
     }
 
     if (error) {
