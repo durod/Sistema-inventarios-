@@ -342,7 +342,7 @@ export default function AgregarEquipo() {
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridubicacion">
                 <Form.Label className="formLabelagregarequipo">
-                  Ubicación
+                  UBICACION
                 </Form.Label>
                 <Form.Control
                   className="text-center-inputagregarequipo"
