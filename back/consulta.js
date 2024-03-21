@@ -347,6 +347,22 @@ const eliminarUsuario = async (usuarioId) => {
     throw error;
   }
 };
+const buscarUsuarioPorCorreo = async (correo) => {
+  const query = "SELECT * FROM perfilesinventario WHERE correo = $1";
+  const values = [correo];
+
+  try {
+    const result = await pool.query(query, values);
+    if (result.rows.length > 0) {
+      return result.rows[0]; // Retorna el primer usuario encontrado
+    } else {
+      return null; // No se encontró el usuario
+    }
+  } catch (error) {
+    console.error("Error al buscar el usuario por correo:", error);
+    throw error;
+  }
+};
 
 export {
   agregarEquipo,
@@ -360,4 +376,5 @@ export {
   agregarUsuario,
   verUsuarios,
   eliminarUsuario,
+  buscarUsuarioPorCorreo
 };
