@@ -3,8 +3,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 import path from "path";
 import ExcelJS from "exceljs";
-import express from 'express';
-
+import express from "express";
 
 // importando modulos personalizados
 import { handleErrors } from "./errors.js";
@@ -54,8 +53,7 @@ app.listen(PORT, () => {
 });
 
 // Ruta de inicio de sesión
-app.post('/login', login);
-
+app.post("/login", login);
 
 //rutas del enrutador/ Api Rest, enlazar ruta con funcion BD
 
@@ -484,7 +482,6 @@ app.delete("/usuario/:id", async (req, res) => {
     res.status(status).send("Error al eliminar el usuario: " + message);
   }
 });
-
 
 //0. GET para ver ruta raiz
 app.use("*", (req, res) => {

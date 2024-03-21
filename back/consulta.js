@@ -8,8 +8,6 @@ const pool = new Pool({
   },
 });
 
-
-
 // funcion para insertar un equipo en la tabla en forma de parametros
 const agregarEquipo = async ({
   codigo_inventario,
@@ -273,7 +271,10 @@ WHERE
 const eliminarEquipo = async (id) => {
   try {
     // Eliminar directamente el equipo de pc_info sin considerar asignaciones
-    const result = await pool.query("DELETE FROM pc_info WHERE id = $1 RETURNING *", [id]);
+    const result = await pool.query(
+      "DELETE FROM pc_info WHERE id = $1 RETURNING *",
+      [id]
+    );
 
     console.log("Equipo eliminado:", result.rows[0]); // Imprime los datos del equipo eliminado
 
@@ -302,25 +303,15 @@ const quitarAsignacion = async (codigo_inventario, numempleado) => {
   }
 };
 
-
 //------------------- Funciones para administrar usuarios--------------------------------
 
-const agregarUsuario = async ({
-  correo,
-  password,
-  rol,
-}) => {
+const agregarUsuario = async ({ correo, password, rol }) => {
   try {
     const consulta =
       "INSERT INTO perfilesinventario VALUES (DEFAULT, $1, $2, $3) RETURNING *";
-    const values = [
-      correo,
-  password,
-  rol,
-    ];
+    const values = [correo, password, rol];
 
     const result = await pool.query(consulta, values);
-
   } catch (error) {
     console.error("Error al agregar el usuario: ", error);
     throw error; // Agrega esto para propagar el error
@@ -346,7 +337,10 @@ const verUsuarios = async () => {
 
 const eliminarUsuario = async (usuarioId) => {
   try {
-    const result = await pool.query("DELETE FROM perfilesinventario WHERE id = $1 RETURNING *", [usuarioId]);
+    const result = await pool.query(
+      "DELETE FROM perfilesinventario WHERE id = $1 RETURNING *",
+      [usuarioId]
+    );
     return result.rows[0];
   } catch (error) {
     console.error("Error al eliminar el usuario: ", error);
@@ -365,5 +359,5 @@ export {
   quitarAsignacion,
   agregarUsuario,
   verUsuarios,
-  eliminarUsuario
+  eliminarUsuario,
 };

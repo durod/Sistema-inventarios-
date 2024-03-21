@@ -26,19 +26,25 @@ function App() {
           <Routes>
             
             <Route path="/" element={<LoginUser />} />
+
                        
             <Route path="/agregarequipo" element={<AgregarEquipo />} />
             <Route path="/actualizarequipo/:id" element={<ActualizarEquipo />} />
-            <Route path="/datoscompletos/:codigo_inventario/:numempleado" element={<DatosCompletos />} />
-            <Route path="/buscarEquipo" element={<BusquedaEquipos />} />
+            <Route path="/registrarusuario" element={<RegistrarUsuario />} />            
             <Route path="/verResponsiva/:id" element={<Responsiva />} />
             <Route path="/dashboardequipos" element={<Dashboardequipos />} />
             <Route path="/usuario" element={<VerUsuarios />} />
-            <Route path="/verequipos" element={<VerEquipos />} />
+            
 
-            <Route path="/registrarusuario" element={<RegistrarUsuario />} />
+            <Route path="/verequipos" element={<VerEquipos />} />
+            <Route path="/datoscompletos/:codigo_inventario/:numempleado" element={<DatosCompletos />} />
+            <Route path="/buscarEquipo" element={<BusquedaEquipos />} />
 
             <Route path="/vistaauditor" element={<VistaAuditor />} />
+            
+            
+
+            
 
           </Routes>
         </BrowserRouter>

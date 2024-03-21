@@ -2,7 +2,12 @@
 import AdminEquipos from "../adminequipos/AdminEquipos";
 import "../login/estilologinuser.css";
 
+import { useEquiposContext } from "../../context/EquiposContext.jsx";
+
 function LoginUser() {
+  const { verUsuarios, usuarios, } =
+    useEquiposContext();
+
   return (
     <div className="containerlogin">
       <div>
