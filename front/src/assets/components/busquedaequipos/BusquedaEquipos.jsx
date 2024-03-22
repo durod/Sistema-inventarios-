@@ -12,8 +12,9 @@ const backendURL = import.meta.env.VITE_BACKEND_URL;
 const BusquedaEquipos = () => {
   const [parametro, setParametro] = useState("");
   const [equipos, setEquipos] = useState([]);
-  const [error, setError] = useState(null);
-  const { usuarioActual } = useEquiposContext(); // U
+  const { usuarioActual, confirmarEliminarEquipo, quitarAsignacionEquipo } =
+    useEquiposContext(); // Utiliza las funciones del contexto
+
   const buscarEquipos = async () => {
     try {
       const response = await axios.get(
@@ -24,19 +25,6 @@ const BusquedaEquipos = () => {
     } catch (error) {
       console.error("Error al buscar equipos:", error.message);
       setError("Error al buscar equipos. Por favor, inténtalo de nuevo.");
-    }
-  };
-  const eliminarEquipo = async (id, codigoInventario) => {
-    try {
-      const confirmacion = window.confirm(
-        `¿Estás seguro de eliminar el equipo con código de inventario: ${codigoInventario}?`
-      );
-      if (confirmacion) {
-        await axios.delete(`${backendURL}/${id}`);
-        buscarEquipos();
-      }
-    } catch (error) {
-      console.error("Error al eliminar equipo:", error.message);
     }
   };
 
@@ -58,14 +46,37 @@ const BusquedaEquipos = () => {
         <td className="text-center align-middle">{equipo.monitor}</td>
 
         <td>
-        <Link to={`/datoscompletos/${equipo.id}`} className="btn btn-info mb-2">Ver Más</Link>
-          {usuarioActual && usuarioActual.rol !== 'RH' && (
-            <button
-              className="btn btn-danger mx-auto"
-              onClick={() => eliminarEquipo(equipo.id, equipo.codigo_inventario)}
-            >
-              Eliminar
-            </button>
+          <Link
+            to={`/datoscompletos/${equipo.codigo_inventario}/${
+              equipo.numempleado || "sinEmpleado"
+            }`}
+            className="btn btn-info mb-2"
+          >
+            Ver Más
+          </Link>
+          {usuarioActual && usuarioActual.rol !== "RH" && (
+            <>
+              <button
+                className="btn btn-danger mx-auto"
+                onClick={() =>
+                  confirmarEliminarEquipo(equipo.id, equipo.codigo_inventario)
+                }
+              >
+                Eliminar
+              </button>
+              {/* Asegúrate de incluir 'Quitar Asignación' si es una acción disponible y relevante */}
+              <button
+                className="btn btn-warning mx-auto"
+                onClick={() =>
+                  quitarAsignacionEquipo(
+                    equipo.codigo_inventario,
+                    equipo.numempleado
+                  )
+                }
+              >
+                Quitar Asignación
+              </button>
+            </>
           )}
         </td>
       </tr>
