@@ -21,10 +21,10 @@ const BusquedaEquipos = () => {
         `${backendURL}/buscarEquipo?parametro=${parametro}`
       );
       setEquipos(response.data);
-      setError(null);
+      
     } catch (error) {
       console.error("Error al buscar equipos:", error.message);
-      setError("Error al buscar equipos. Por favor, inténtalo de nuevo.");
+    
     }
   };
 
@@ -108,7 +108,7 @@ const BusquedaEquipos = () => {
         </div>
         <h1>Resultados de Búsqueda de Equipos: </h1>
 
-        {error && <div className="alert alert-danger">{error}</div>}
+      
         <Table striped bordered hover variant="dark" className="custom-table">
           <thead>
             <tr>
