@@ -1,19 +1,19 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
+import axios from "axios";
 
 import "../busquedaequipos/estilobuscadeequipo.css";
-
-import axios from "axios";
 import AdminEquipos from "../adminequipos/AdminEquipos.jsx";
-import { EquiposContext } from "../../context/EquiposContext.jsx";
+import { useEquiposContext } from "../../context/EquiposContext.jsx"; // Asegúrate de que la ruta sea correcta
+
 const backendURL = import.meta.env.VITE_BACKEND_URL;
 
 const BusquedaEquipos = () => {
   const [parametro, setParametro] = useState("");
   const [equipos, setEquipos] = useState([]);
   const [error, setError] = useState(null);
-  const { usuarioActual } = useContext(EquiposContext);
+  const { usuarioActual } = useEquiposContext(); // U
   const buscarEquipos = async () => {
     try {
       const response = await axios.get(
@@ -58,21 +58,14 @@ const BusquedaEquipos = () => {
         <td className="text-center align-middle">{equipo.monitor}</td>
 
         <td>
-          <Link
-            to={`/datoscompletos/${equipo.id}`}
-            className="btn btn-info mb-2"
-          >
-            Ver Mas
-            </Link>
+        <Link to={`/datoscompletos/${equipo.id}`} className="btn btn-info mb-2">Ver Más</Link>
           {usuarioActual && usuarioActual.rol !== 'RH' && (
-            <>
-              <button
-                className="btn btn-danger mx-auto"
-                onClick={() => eliminarEquipo(equipo.id, equipo.codigo_inventario)}
-              >
-                Eliminar
-              </button>
-            </>
+            <button
+              className="btn btn-danger mx-auto"
+              onClick={() => eliminarEquipo(equipo.id, equipo.codigo_inventario)}
+            >
+              Eliminar
+            </button>
           )}
         </td>
       </tr>
