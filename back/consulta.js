@@ -225,36 +225,36 @@ const buscarEquiposPorParametro = async (parametro) => {
   try {
     const consulta = `
     SELECT 
-  pc_info.*,
-  empleados.numempleado,
-  empleados.nombre,
-  empleados.appaterno,
-  empleados.apmaterno
+    pc_info.*,
+    empleados.numempleado,
+    empleados.nombre,
+    empleados.appaterno,
+    empleados.apmaterno
 FROM 
-  pc_info
-INNER JOIN asignaciones ON pc_info.codigo_inventario = asignaciones.codigo_inventario
-INNER JOIN empleados ON asignaciones.numempleado = empleados.numempleado
+    pc_info
+LEFT JOIN asignaciones ON pc_info.codigo_inventario = asignaciones.codigo_inventario
+LEFT JOIN empleados ON asignaciones.numempleado = empleados.numempleado
 WHERE 
-  pc_info.codigo_inventario ILIKE $1 OR
-  pc_info.tipo_equipo ILIKE $1 OR
-  pc_info.numero_serie ILIKE $1 OR
-  pc_info.marca ILIKE $1 OR
-  pc_info.modelo ILIKE $1 OR
-  pc_info.sistema_operativo ILIKE $1 OR
-  pc_info.memoria_ram ILIKE $1 OR
-  pc_info.procesador ILIKE $1 OR
-  pc_info.almacenamiento ILIKE $1 OR
-  pc_info.numero_serie_cargador ILIKE $1 OR
-  pc_info.monitor ILIKE $1 OR
-  pc_info.teclado ILIKE $1 OR
-  pc_info.raton ILIKE $1 OR
-  pc_info.accesorios ILIKE $1 OR
-  pc_info.suscripcion_office ILIKE $1 OR
-  pc_info.ubicacion ILIKE $1 OR
-  empleados.numempleado::text ILIKE $1 OR
-  empleados.nombre ILIKE $1 OR
-  empleados.appaterno ILIKE $1 OR
-  empleados.apmaterno ILIKE $1;
+    pc_info.codigo_inventario ILIKE $1 OR
+    pc_info.tipo_equipo ILIKE $1 OR
+    pc_info.numero_serie ILIKE $1 OR
+    pc_info.marca ILIKE $1 OR
+    pc_info.modelo ILIKE $1 OR
+    pc_info.sistema_operativo ILIKE $1 OR
+    pc_info.memoria_ram ILIKE $1 OR
+    pc_info.procesador ILIKE $1 OR
+    pc_info.almacenamiento ILIKE $1 OR
+    pc_info.numero_serie_cargador ILIKE $1 OR
+    pc_info.monitor ILIKE $1 OR
+    pc_info.teclado ILIKE $1 OR
+    pc_info.raton ILIKE $1 OR
+    pc_info.accesorios ILIKE $1 OR
+    pc_info.suscripcion_office ILIKE $1 OR
+    pc_info.ubicacion ILIKE $1 OR
+    empleados.numempleado::text ILIKE $1 OR
+    empleados.nombre ILIKE $1 OR
+    empleados.appaterno ILIKE $1 OR
+    empleados.apmaterno ILIKE $1;
       `;
     const values = [`%${parametro}%`];
 
